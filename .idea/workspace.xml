@@ -2,33 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d797173b-0a58-458c-bbe4-4047d980360f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/fonts/fontawesome/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/fonts/fontawesome/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/fonts/fontawesome/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/fonts/fontawesome/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/fonts/fontawesome/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/fonts/fontawesome/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-fontsettings/fontsettings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-fontsettings/website.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-highlight/ebook.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-highlight/website.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-lunr/lunr.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-lunr/search-lunr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-search/lunr.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-search/search-engine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-search/search.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-search/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook-plugin-sharing/buttons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/gitbook.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/images/apple-touch-icon-precomposed-152.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/images/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/gitbook/theme.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/search_index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/SUMMARY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/fonts/fontawesome/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/fonts/fontawesome/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/fonts/fontawesome/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/fonts/fontawesome/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/fonts/fontawesome/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/fonts/fontawesome/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-fontsettings/fontsettings.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-fontsettings/website.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-highlight/ebook.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-highlight/website.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-livereload/plugin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-lunr/lunr.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-lunr/search-lunr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-search/lunr.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-search/search-engine.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-search/search.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-search/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook-plugin-sharing/buttons.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/gitbook.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/images/apple-touch-icon-precomposed-152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/images/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gitbook/theme.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,32 +36,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="30">
-                <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SUMMARY.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="30">
-                <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,6 +55,7 @@
         <option value="$PROJECT_DIR$/book.json" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/SUMMARY.md" />
+        <option value="$PROJECT_DIR$/docs/index.html" />
       </list>
     </option>
   </component>
@@ -95,8 +77,13 @@
         <subPane>
           <expand>
             <path>
-              <item name="jianqiao-ms.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jianqiao-ms.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="wiki" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wiki" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wiki" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wiki" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -106,6 +93,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -144,6 +132,7 @@
       <workItem from="1544001918109" duration="607000" />
       <workItem from="1544004136418" duration="61000" />
       <workItem from="1544004207378" duration="2249000" />
+      <workItem from="1544032033612" duration="1020000" />
     </task>
     <task id="LOCAL-00001" summary="gitbook init">
       <created>1544004273939</created>
@@ -166,16 +155,30 @@
       <option name="project" value="LOCAL" />
       <updated>1544005204899</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add directory docs">
+      <created>1544032061812</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1544032061812</updated>
+    </task>
+    <task id="LOCAL-00005" summary="create index.html for testing github pages">
+      <created>1544032197034</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1544032197034</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4166000" />
+    <option name="totallyTimeSpent" value="5186000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="768" width="1400" height="1000" extended-state="0" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26257396" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2647059" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -226,35 +229,34 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gitbook init" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitbook init" />
+    <MESSAGE value="add directory docs" />
+    <MESSAGE value="create index.html for testing github pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="create index.html for testing github pages" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_config.yml" />
-    <entry file="file://$PROJECT_DIR$/_book/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2156">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+    <entry file="file://$PROJECT_DIR$/_book/index.html" />
+    <entry file="file://$PROJECT_DIR$/index.html" />
+    <entry file="file://$PROJECT_DIR$/book.json" />
+    <entry file="file://$PROJECT_DIR$/docs/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/docs/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/book.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        <state relative-caret-position="133">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SUMMARY.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="30">
+          <first_editor relative-caret-position="38">
             <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           </first_editor>
           <second_editor />
@@ -264,7 +266,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="30">
+          <first_editor relative-caret-position="38">
             <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
           </first_editor>
           <second_editor />
