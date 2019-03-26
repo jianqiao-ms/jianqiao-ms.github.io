@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-gitbook build
+gitbook build . docs
