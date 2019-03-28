@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>翻墙 · GitBook</title>
+        <title>Server-VPN-ikev2-strongswan · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="[Server] - IKEv2 VPN via strongswan.html" />
     
-    
-    <link rel="prev" href="../运维/Windows/OfficeTool.html" />
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -198,7 +196,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="./">
+        <li class="chapter " data-level="1.3" data-path="./">
             
                 <a href="./">
             
@@ -212,7 +210,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="[Server] - IKEv2 VPN via strongswan.html">
+        <li class="chapter active" data-level="1.3.1" data-path="[Server] - IKEv2 VPN via strongswan.html">
             
                 <a href="[Server] - IKEv2 VPN via strongswan.html">
             
@@ -260,7 +258,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >翻墙</a>
+        <a href=".." >Server-VPN-ikev2-strongswan</a>
     </h1>
 </div>
 
@@ -275,7 +273,71 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5BCC;&#x5F3A;&#x3001;&#x6C11;&#x4E3B;&#x3001;&#x6587;&#x660E;&#x3001;&#x548C;&#x8C10;&#x3001;&#x81EA;&#x7531;&#x3001;&#x5E73;&#x7B49;&#x3001;&#x516C;&#x6B63;&#x3001;&#x6CD5;&#x6CBB;&#x3001;&#x7231;&#x56FD;&#x3001;&#x656C;&#x4E1A;&#x3001;&#x8BDA;&#x4FE1;&#x3001;&#x53CB;&#x5584;">&#x5BCC;&#x5F3A;&#x3001;&#x6C11;&#x4E3B;&#x3001;&#x6587;&#x660E;&#x3001;&#x548C;&#x8C10;&#x3001;&#x81EA;&#x7531;&#x3001;&#x5E73;&#x7B49;&#x3001;&#x516C;&#x6B63;&#x3001;&#x6CD5;&#x6CBB;&#x3001;&#x7231;&#x56FD;&#x3001;&#x656C;&#x4E1A;&#x3001;&#x8BDA;&#x4FE1;&#x3001;&#x53CB;&#x5584;</h1>
+                                <blockquote>
+<p>Example environment<br>System: CentOS 7 x64 Minimal (After Profiling by <a href="../&#x8FD0;&#x7EF4;/Linux/CentOS%207%20Minimal%20Post%20Install.html">CentOS 7 Minimal Post Install</a>)<br>SSL Domain: example.com</p>
+</blockquote>
+<h1 id="install-strongswan">Install strongswan</h1>
+<pre><code class="lang-bash">$ wget http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/s/strongswan-5.7.2-1.el7.x86_64.rpm &amp;&amp; \
+yum install -y strongswan-5.7.2-1.el7.x86_64.rpm
+</code></pre>
+<h1 id="issue-ssl-certs"><a href="../&#x8FD0;&#x7EF4;/Letsencrypt.html">Issue SSL certs</a></h1>
+<h1 id="configurate-strongswan">Configurate strongswan</h1>
+<p>Assuming SSL certs deploy into /etc/nginx/certs, which contains:  </p>
+<ul>
+<li>ca.cer  </li>
+<li>fullchain.cer  </li>
+<li>example.com.cer  </li>
+<li>example.com.conf  </li>
+<li>example.com.csr  </li>
+<li>example.com.cer.conf  </li>
+<li>example.com.key  </li>
+</ul>
+<hr>
+<p>Assume EAP user named EAPUSER, password set to EAPPASSWD.</p>
+<p><strong>Install certs to strongswan</strong></p>
+<pre><code class="lang-bash">$ ln -snf /etc/nginx/certs/example.com/ca.cer /etc/strongswan/ipsec.d/cacerts/ca.cer
+$ ln -snf /etc/nginx/certs/example.com/fullchain.cer /etc/strongswan/ipsec.d/certs/fullchain.cer
+$ ln -snf /etc/nginx/certs/example.com/example.cer /etc/strongswan/ipsec.d/certs/example.cer
+$ ln -snf /etc/nginx/certs/example.com/example.key /etc/strongswan/ipsec.d/private/example.key
+</code></pre>
+<p><strong>/etc/strongswan/ipsec.conf</strong></p>
+<pre><code class="lang-text">config setup
+    uniqueids=never
+
+conn %default
+    keyexchange=ikev2
+    ike=aes256-sha1-modp1024,aes128-sha1-modp1024,3des-sha1-modp1024
+    esp=aes256-sha256,aes256-sha1,3des-sha1
+
+    leftauth=pubkey
+    leftsendcert=always
+
+    rightsourceip=10.24.1.0/24
+    rightdns=8.8.8.8
+
+    rekey=no
+    reauth=no
+    auto=add
+
+conn Client-EAP
+    fragmentation=yes
+
+    leftcert=fullchain.cer
+    leftsubnet=0.0.0.0/0
+
+    rightauth=eap-mschapv2
+    eap_identity=EAPUSER
+</code></pre>
+<p><strong>/etc/strongswan/ipsec.secrets</strong></p>
+<pre><code class="lang-text">fullchain.cer : RSA example.com.key
+EAPUSER %any : EAP &quot;EAPPASSWD&quot;
+</code></pre>
+<p><strong>Configure NAT</strong></p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;net.ipv4.ip_forward=1&apos;</span> &gt; /etc/sysctl.d/ipforward.conf &amp;&amp; \
+    sysctl -p /etc/sysctl.d/ipforward.conf &amp;&amp; \ 
+    iptables -t nat -L <span class="hljs-_">-s</span> 10.24.1.0/24 -o eth0 -j MASQUERADE &amp;&amp; \
+    service iptables save
+</code></pre>
 
                                 
                                 </section>
@@ -303,14 +365,10 @@
 
             
                 
-                <a href="../运维/Windows/OfficeTool.html" class="navigation navigation-prev " aria-label="Previous page: OfficeTool">
+                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 翻墙">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="[Server] - IKEv2 VPN via strongswan.html" class="navigation navigation-next " aria-label="Next page: Server-VPN-ikev2-strongswan">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -319,7 +377,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"翻墙","level":"1.3","depth":1,"next":{"title":"Server-VPN-ikev2-strongswan","level":"1.3.1","depth":2,"path":"翻墙/[Server] - IKEv2 VPN via strongswan.md","ref":"翻墙/[Server] - IKEv2 VPN via strongswan.md","articles":[]},"previous":{"title":"OfficeTool","level":"1.2.3.1","depth":3,"path":"运维/Windows/OfficeTool.md","ref":"运维/Windows/OfficeTool.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"翻墙/README.md","mtime":"2019-03-27T03:19:25.987Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-28T10:05:11.930Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Server-VPN-ikev2-strongswan","level":"1.3.1","depth":2,"previous":{"title":"翻墙","level":"1.3","depth":1,"path":"翻墙/README.md","ref":"翻墙/README.md","articles":[{"title":"Server-VPN-ikev2-strongswan","level":"1.3.1","depth":2,"path":"翻墙/[Server] - IKEv2 VPN via strongswan.md","ref":"翻墙/[Server] - IKEv2 VPN via strongswan.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"翻墙/[Server] - IKEv2 VPN via strongswan.md","mtime":"2019-03-28T09:52:00.226Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-28T10:05:11.930Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
