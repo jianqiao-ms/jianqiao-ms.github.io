@@ -1,3 +1,7 @@
+> Example environment  
+System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS 7 Minimal Post Install.html))   
+Domain: example.com
+
 # Issue [Letsencrypt](https://letsencrypt.org/) SSL using [acme.sh](https://github.com/Neilpang/acme.sh)
 
 **Why acme.sh not certbot from Letsencrypt**  
@@ -19,13 +23,24 @@ Useful access key configure url:
 
 # Issue the cert(Using [DNS API](https://github.com/Neilpang/acme.sh/wiki/dnsapi))  
 ### For a single domain  
-example domain [example.com]() from aliyun:
+Example domain [example.com]() from aliyun:
 ```bash
-$ export Ali_Key="sdfsdfsdfljlbjkljlkjsdfoiwje"
-$ export Ali_Secret="jlsdflanljkljlfdsaklkjflsa"
-$ acme.sh --issue --dns dns_ali -d example.com -d www.example.com
+$ export DOMAIN="exmaple.com" && \
+    export Ali_Key="sdfsdfsdfljlbjkljlkjsdfoiwje" && \
+    export Ali_Secret="jlsdflanljkljlfdsaklkjflsa"
+$ acme.sh --issue --dns dns_ali -d $DOMAIN -d *.$DOMAIN
 ```
 
-If your dns provider doesn't provide api access, you can use our dns alias mode:  
+This will get certs in **/etc/nginx/certs**, path we specify when installing acme.sh with **--cert-home**, contains:  
+* ca.cer  
+* fullchain.cer  
+* example.com.cer  
+* example.com.conf  
+* example.com.csr  
+* example.com.cer.conf  
+* example.com.key  
+"fullchain.cer" should be used as the domain's certificate while it contains example.com.cer and ca.cer.  
+
+If your dns provider doesn't provide api access, you can use our **dns alias mode**:  
 https://github.com/Neilpang/acme.sh/wiki/DNS-alias-mode  
 This may help when you want to issue a cert for multi domains with only one access key.

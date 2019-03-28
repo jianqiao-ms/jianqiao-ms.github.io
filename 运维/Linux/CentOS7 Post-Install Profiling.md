@@ -28,7 +28,7 @@ $ sed -i '/^inet_protocols/d' /etc/postfix/main.cf && \
 
 # Install epelrepo and other essential tools debugging system  
 ```bash
-$ yum install -y epel-release net-tools tcpdump telnet iperf3 nload iptables-services git unzip unar 
+$ yum install -y epel-release net-tools tcpdump telnet iperf3 nload iptables-services git unzip unar wget
 $ yum update -y
 ```
 
