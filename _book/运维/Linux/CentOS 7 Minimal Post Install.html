@@ -12,20 +12,20 @@
         
         
     
-    <link rel="stylesheet" href="../gitbook/style.css">
+    <link rel="stylesheet" href="../../gitbook/style.css">
 
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
                 
             
         
@@ -53,9 +53,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
+    
+    <link rel="next" href="../Windows/" />
     
     
     <link rel="prev" href="./" />
@@ -87,9 +89,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="../">
+        <li class="chapter " data-level="1.1" data-path="../../">
             
-                <a href="../">
+                <a href="../../">
             
                     
                     Introduction
@@ -100,7 +102,34 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    运维
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../Letsencrypt.html">
+            
+                <a href="../Letsencrypt.html">
+            
+                    
+                    Letsencrypt SSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="./">
             
                 <a href="./">
             
@@ -114,12 +143,81 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1" data-path="CentOS 7 Minimal Post Install.html">
+        <li class="chapter active" data-level="1.2.2.1" data-path="CentOS 7 Minimal Post Install.html">
             
                 <a href="CentOS 7 Minimal Post Install.html">
             
                     
                     CentOS 7 Post Install Profiling
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../Windows/">
+            
+                <a href="../Windows/">
+            
+                    
+                    Windows
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../Windows/OfficeTool.html">
+            
+                <a href="../Windows/OfficeTool.html">
+            
+                    
+                    OfficeTool
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../翻墙/">
+            
+                <a href="../../翻墙/">
+            
+                    
+                    翻墙
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../翻墙/IKEv2 VPN via strongswan.html">
+            
+                <a href="../../翻墙/IKEv2 VPN via strongswan.html">
+            
+                    
+                    Server-VPN-ikev2-strongswan
             
                 </a>
             
@@ -162,7 +260,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >CentOS 7 Post Install Profiling</a>
+        <a href="../.." >CentOS 7 Post Install Profiling</a>
     </h1>
 </div>
 
@@ -177,7 +275,11 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="disable-selinux">Disable Selinux</h1>
+                                <blockquote>
+<p>Example environment<br>SSH_PORT = 22<br>No ipv6 supported for now</p>
+</blockquote>
+<p>TODO: Basic kernel performance profiling with sysctl</p>
+<h1 id="disable-selinux">Disable Selinux</h1>
 <pre><code class="lang-bash">$ cp /etc/selinux/config /etc/selinux/config.init
 $ sed -i <span class="hljs-string">&apos;/SELINUX=/d&apos;</span> /etc/selinux/config &amp;&amp; \
     sed -i <span class="hljs-string">&apos;5i SELINUX=disabled&apos;</span> /etc/selinux/config
@@ -221,6 +323,16 @@ $ sed -i <span class="hljs-string">&apos;s/,noatime//g&apos;</span> /etc/fstab &
 $ systemctl <span class="hljs-built_in">disable</span> firewalld
 $ systemctl <span class="hljs-built_in">disable</span> NetworkManager
 </code></pre>
+<h1 id="firewalliptables">Firewall(iptables)</h1>
+<pre><code class="lang-bash">SSH_PORT=22
+$ iptables -F
+$ iptables -P INPUT DROP
+$ iptables -A INPUT -p tcp -m state --state RELATE,ESTABLISHED -j ACCEPT
+$ iptables -A INPUT -p icmp -m <span class="hljs-built_in">type</span> --icmp-type 0 -J ACCEPT
+$ iptables -A INPUT -p tcp -m state --state NEW,ESTABLISHED --dport <span class="hljs-variable">$SSH_PORT</span> -j ACCEPT
+$ service iptables save
+$ systemctl restart iptables
+</code></pre>
 
                                 
                                 </section>
@@ -248,10 +360,14 @@ $ systemctl <span class="hljs-built_in">disable</span> NetworkManager
 
             
                 
-                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Linux">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Linux">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="../Windows/" class="navigation navigation-next " aria-label="Next page: Windows">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -260,41 +376,41 @@ $ systemctl <span class="hljs-built_in">disable</span> NetworkManager
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CentOS 7 Post Install Profiling","level":"1.2.1","depth":2,"previous":{"title":"Linux","level":"1.2","depth":1,"path":"Linux/README.md","ref":"Linux/README.md","articles":[{"title":"CentOS 7 Post Install Profiling","level":"1.2.1","depth":2,"path":"Linux/CentOS 7 Minimal Post Install.md","ref":"Linux/CentOS 7 Minimal Post Install.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Linux/CentOS 7 Minimal Post Install.md","mtime":"2019-03-26T10:37:41.996Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-27T02:54:10.112Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CentOS 7 Post Install Profiling","level":"1.2.2.1","depth":3,"next":{"title":"Windows","level":"1.2.3","depth":2,"path":"运维/Windows/README.md","ref":"运维/Windows/README.md","articles":[{"title":"OfficeTool","level":"1.2.3.1","depth":3,"path":"运维/Windows/OfficeTool.md","ref":"运维/Windows/OfficeTool.md","articles":[]}]},"previous":{"title":"Linux","level":"1.2.2","depth":2,"path":"运维/Linux/README.md","ref":"运维/Linux/README.md","articles":[{"title":"CentOS 7 Post Install Profiling","level":"1.2.2.1","depth":3,"path":"运维/Linux/CentOS 7 Minimal Post Install.md","ref":"运维/Linux/CentOS 7 Minimal Post Install.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Linux/CentOS 7 Minimal Post Install.md","mtime":"2019-03-28T04:00:14.355Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-28T06:48:51.536Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
     
         
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 

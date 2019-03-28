@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 gitbook build . docs
-git add .
+git add --all .

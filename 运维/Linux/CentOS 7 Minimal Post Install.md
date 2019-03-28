@@ -1,3 +1,9 @@
+> Example environment  
+SSH_PORT = 22  
+No ipv6 supported for now
+
+TODO: Basic kernel performance profiling with sysctl
+
 # Disable Selinux
 ```bash
 $ cp /etc/selinux/config /etc/selinux/config.init
@@ -54,4 +60,16 @@ $ sed -i 's/,noatime//g' /etc/fstab && \
 $ systemctl disable postfix
 $ systemctl disable firewalld
 $ systemctl disable NetworkManager
+```
+
+# Firewall(iptables)
+```bash
+SSH_PORT=22
+$ iptables -F
+$ iptables -P INPUT DROP
+$ iptables -A INPUT -p tcp -m state --state RELATE,ESTABLISHED -j ACCEPT
+$ iptables -A INPUT -p icmp -m type --icmp-type 0 -J ACCEPT
+$ iptables -A INPUT -p tcp -m state --state NEW,ESTABLISHED --dport $SSH_PORT -j ACCEPT
+$ service iptables save
+$ systemctl restart iptables
 ```
