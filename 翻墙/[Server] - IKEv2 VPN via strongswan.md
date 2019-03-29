@@ -1,6 +1,6 @@
 > Example environment  
 System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS7 Post-Install.html))   
-SSL Domain: example.com
+SSL Domain: example.com (After issue certificate following [Letsencrypt](../运维/Letsencrypt.html))
 
 # Install strongswan 
 ```bash

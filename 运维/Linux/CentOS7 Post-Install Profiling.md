@@ -73,3 +73,9 @@ $ iptables -A INPUT -p tcp -m state --state NEW,ESTABLISHED --dport $SSH_PORT -j
 $ service iptables save
 $ systemctl restart iptables
 ```
+
+# create data directory
+```bash
+$ mkdir -p /data/logs
+$ mkdir -p /data/wwwroot
+```
