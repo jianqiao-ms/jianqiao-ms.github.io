@@ -25,8 +25,8 @@ WantedBy=multi-user.target
 
 **make it auto start**  
 ```bash
-$ ln -snf /data/scritps/ssserver.service /etc/systemd/system/ssserver.service
-$ ln -snf /data/scritps/ssserver.service /etc/systemd/system/multi-user.target.wants/ssserver.service
+$ ln -snf /data/scripts/ssserver.service /etc/systemd/system/ssserver.service
+$ ln -snf /data/scripts/ssserver.service /etc/systemd/system/multi-user.target.wants/ssserver.service
 ```  
 
 **start ssserver**  
