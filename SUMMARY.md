@@ -13,5 +13,6 @@
   
 * [翻墙](翻墙/README.md)
   * [Server-VPN-ikev2-strongswan](翻墙/[Server] - IKEv2 VPN via strongswan.md)
+  * [Server-Http(s)-Proxy](翻墙/[Server] - HTTPS proxy.md)
   * [Client-VPN-ikev2](翻墙/[Client] - IKEv2 VPN.md)
 

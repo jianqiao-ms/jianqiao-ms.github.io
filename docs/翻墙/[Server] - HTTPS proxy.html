@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>翻墙 · GitBook</title>
+        <title>Server-Http(s)-Proxy · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="[Server] - IKEv2 VPN via strongswan.html" />
+    <link rel="next" href="[Client] - IKEv2 VPN.html" />
     
     
-    <link rel="prev" href="../运维/Windows/OfficeTool.html" />
+    <link rel="prev" href="[Server] - IKEv2 VPN via strongswan.html" />
     
 
     </head>
@@ -198,7 +198,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="./">
+        <li class="chapter " data-level="1.3" data-path="./">
             
                 <a href="./">
             
@@ -225,7 +225,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="[Server] - HTTPS proxy.html">
+        <li class="chapter active" data-level="1.3.2" data-path="[Server] - HTTPS proxy.html">
             
                 <a href="[Server] - HTTPS proxy.html">
             
@@ -286,7 +286,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >翻墙</a>
+        <a href=".." >Server-Http(s)-Proxy</a>
     </h1>
 </div>
 
@@ -301,7 +301,119 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5BCC;&#x5F3A;&#x3001;&#x6C11;&#x4E3B;&#x3001;&#x6587;&#x660E;&#x3001;&#x548C;&#x8C10;&#x3001;&#x81EA;&#x7531;&#x3001;&#x5E73;&#x7B49;&#x3001;&#x516C;&#x6B63;&#x3001;&#x6CD5;&#x6CBB;&#x3001;&#x7231;&#x56FD;&#x3001;&#x656C;&#x4E1A;&#x3001;&#x8BDA;&#x4FE1;&#x3001;&#x53CB;&#x5584;">&#x5BCC;&#x5F3A;&#x3001;&#x6C11;&#x4E3B;&#x3001;&#x6587;&#x660E;&#x3001;&#x548C;&#x8C10;&#x3001;&#x81EA;&#x7531;&#x3001;&#x5E73;&#x7B49;&#x3001;&#x516C;&#x6B63;&#x3001;&#x6CD5;&#x6CBB;&#x3001;&#x7231;&#x56FD;&#x3001;&#x656C;&#x4E1A;&#x3001;&#x8BDA;&#x4FE1;&#x3001;&#x53CB;&#x5584;</h1>
+                                <blockquote>
+<p>bashExample environment<br>System : CentOS 7 x64 Minimal (After Profiling by <a href="../&#x8FD0;&#x7EF4;/Linux/CentOS7%20Post-Install.html">CentOS 7 Minimal Post Install</a>)<br>SSL Domain : example.com (After issue certificate following <a href="../&#x8FD0;&#x7EF4;/Letsencrypt.html">Letsencrypt</a>)<br>Proxy Server : <a href="http://www.squid-cache.org/" target="_blank">Squid</a><br>Proxy Server Port : 60000<br>PAC file generator : <a href="https://github.com/JinnLynn/genpac" target="_blank">genpac</a></p>
+</blockquote>
+<h1 id="get-genpac">Get genpac</h1>
+<p><code>$ pip install -U genpac</code></p>
+<h1 id="generate-pac-file">Generate PAC file</h1>
+<p>The PAC file should be hosted by nginx or other httpd service, mean it should be accessable on the Internet.<br>We will create a &quot;proxy.example.com&quot; virtual server and directory same named to host the PAC file.</p>
+<pre><code class="lang-bash">$ mkdir -p /data/wwwroot/proxy.example.com
+$ /usr/bin/genpac --user-rule=<span class="hljs-string">&quot;@@*.example.com&quot;</span> --user-rule=<span class="hljs-string">&quot;example.com&quot;</span> \ 
+  --pac-proxy=<span class="hljs-string">&quot;HTTPS proxy.example.com:60000&quot;</span> \ 
+  --output=/data/wwwroot/proxy.example.com/proxy.pac
+</code></pre>
+<h1 id="add-nginx-virtual-server-configuration">Add nginx virtual server configuration</h1>
+<pre><code class="lang-text">server {
+    listen       80;
+    server_name  proxy.example.com;
+
+    charset utf-8;
+    access_log  /data/logs/proxy.example.com.log  main;
+
+    location ~* / {
+        rewrite ^.*$ https://$server_name$request_uri? permanent;
+    }
+}
+
+server {
+    listen       443 ssl;
+    server_name  proxy.example.com;
+
+    charset utf-8;
+    access_log  /data/logs/proxy.example.com.log  main;
+    client_max_body_size 100m;
+
+    include conf.d/ssl/ssl-common.conf;
+    include conf.d/ssl/example.com.conf;
+
+    location / {
+        root /data/wwwroot/proxy.example.com;
+    }
+}
+</code></pre>
+<p>Reload nginx, make sure <a href="https://proxy.example.com/proxy.pac" target="_blank">https://proxy.example.com/proxy.pac</a> is accessable.</p>
+<h1 id="install-squid">Install squid</h1>
+<h3 id="install-htpasswd">Install htpasswd</h3>
+<pre><code class="lang-bash">$ yum install -y httpd-tools
+</code></pre>
+<pre><code class="lang-bash">$ yum install -y http://ngtech.co.il/repo/centos/7/squid-repo-1-1.el7.centos.noarch.rpm &amp;&amp; \
+    yum install -y squid squid-helpers
+</code></pre>
+<p>Check the installation</p>
+<pre><code class="lang-bash">$ rpm -ql squid-helpers/usr/lib64/squid/basic_db_auth
+/usr/lib64/squid/basic_fake_auth
+/usr/lib64/squid/basic_getpwnam_auth
+/usr/lib64/squid/basic_ldap_auth
+/usr/lib64/squid/basic_ncsa_auth
+/usr/lib64/squid/basic_nis_auth
+/usr/lib64/squid/basic_pam_auth
+/usr/lib64/squid/basic_pop3_auth
+/usr/lib64/squid/basic_radius_auth
+/usr/lib64/squid/basic_sasl_auth
+/usr/lib64/squid/basic_smb_auth
+/usr/lib64/squid/basic_smb_auth.sh
+/usr/lib64/squid/cachemgr.cgi
+/usr/lib64/squid/cert_tool
+/usr/lib64/squid/digest_edirectory_auth
+/usr/lib64/squid/digest_file_auth
+/usr/lib64/squid/digest_ldap_auth
+/usr/lib64/squid/ext_delayer_acl
+/usr/lib64/squid/ext_file_userip_acl
+/usr/lib64/squid/ext_kerberos_ldap_group_acl
+/usr/lib64/squid/ext_ldap_group_acl
+/usr/lib64/squid/ext_session_acl
+/usr/lib64/squid/ext_sql_session_acl
+/usr/lib64/squid/ext_time_quota_acl
+/usr/lib64/squid/ext_unix_group_acl
+/usr/lib64/squid/ext_wbinfo_group_acl
+/usr/lib64/squid/helper-mux
+/usr/lib64/squid/<span class="hljs-built_in">log</span>_db_daemon
+/usr/lib64/squid/negotiate_kerberos_auth
+/usr/lib64/squid/negotiate_kerberos_auth_<span class="hljs-built_in">test</span>
+/usr/lib64/squid/negotiate_wrapper_auth
+/usr/lib64/squid/ntlm_fake_auth
+/usr/lib64/squid/security_fake_certverify
+/usr/lib64/squid/security_file_certgen
+/usr/lib64/squid/storeid_file_rewrite
+/usr/lib64/squid/url_fake_rewrite
+/usr/lib64/squid/url_fake_rewrite.sh
+/usr/lib64/squid/url_lfs_rewrite
+</code></pre>
+<h1 id="configurate-squid">Configurate squid</h1>
+<p><a href="https://wiki.squid-cache.org/Features/Authentication" target="_blank">Authentication Refer</a><br><em>Authentication with Basic method using &quot;basic_ncsa_auth&quot;</em><br><strong>Create htpasswd file</strong></p>
+<pre><code class="lang-bash">$ htpasswd -c /data/squid-htpasswd HTUSER HTPASSWORD
+</code></pre>
+<p><strong>/etc/squid/squid.conf</strong>  </p>
+<pre><code class="lang-text">auth_param basic program /usr/lib64/squid/basic_ncsa_auth /data/squid-passwd
+
+acl authenticated_users proxy_auth REQUIRED
+http_access deny !authenticated_users
+http_access allow authenticated_users
+http_access deny all
+https_port 60000 tls-cert=/etc/nginx/certs/example.com/fullchain.cer tls-key=/etc/nginx/certs/example.com/example.com.key
+
+coredump_dir /var/spool/squid
+
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern .               0       20%     4320
+</code></pre>
+<h1 id="start-squid">Start squid</h1>
+<pre><code class="lang-bash">$ systemctl start squid
+$ systemctl <span class="hljs-built_in">enable</span> squid
+</code></pre>
 
                                 
                                 </section>
@@ -329,12 +441,12 @@
 
             
                 
-                <a href="../运维/Windows/OfficeTool.html" class="navigation navigation-prev " aria-label="Previous page: OfficeTool">
+                <a href="[Server] - IKEv2 VPN via strongswan.html" class="navigation navigation-prev " aria-label="Previous page: Server-VPN-ikev2-strongswan">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="[Server] - IKEv2 VPN via strongswan.html" class="navigation navigation-next " aria-label="Next page: Server-VPN-ikev2-strongswan">
+                <a href="[Client] - IKEv2 VPN.html" class="navigation navigation-next " aria-label="Next page: Client-VPN-ikev2">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -345,7 +457,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"翻墙","level":"1.3","depth":1,"next":{"title":"Server-VPN-ikev2-strongswan","level":"1.3.1","depth":2,"path":"翻墙/[Server] - IKEv2 VPN via strongswan.md","ref":"翻墙/[Server] - IKEv2 VPN via strongswan.md","articles":[]},"previous":{"title":"OfficeTool","level":"1.2.3.1","depth":3,"path":"运维/Windows/OfficeTool.md","ref":"运维/Windows/OfficeTool.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"翻墙/README.md","mtime":"2019-03-27T03:19:25.987Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-02T04:56:03.401Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Server-Http(s)-Proxy","level":"1.3.2","depth":2,"next":{"title":"Client-VPN-ikev2","level":"1.3.3","depth":2,"path":"翻墙/[Client] - IKEv2 VPN.md","ref":"翻墙/[Client] - IKEv2 VPN.md","articles":[]},"previous":{"title":"Server-VPN-ikev2-strongswan","level":"1.3.1","depth":2,"path":"翻墙/[Server] - IKEv2 VPN via strongswan.md","ref":"翻墙/[Server] - IKEv2 VPN via strongswan.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"翻墙/[Server] - HTTPS proxy.md","mtime":"2019-04-02T04:54:16.929Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-02T04:56:03.401Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

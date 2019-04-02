@@ -51,15 +51,7 @@ server {
 ```
 Reload nginx, make sure https://proxy.example.com/proxy.pac is accessable.
 
-# Install squid 
-### Install perl-Crypt-OpenSSL-X509  
-*Dependency for [squid-helpers](https://wiki.squid-cache.org/Features/Authentication) which cannot install directly via yum*  
-> The Squid source code bundles with a few authentication backends ("helpers") for authentication...  
-```bash
-$ wget http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/p/perl-Crypt-OpenSSL-X509-1.803-4.el7.x86_64.rpm
-$ yum install -y perl-Crypt-OpenSSL-X509-1.803-4.el7.x86_64.rpm
-```
-
+# Install squid   
 ### Install htpasswd
 ```bash
 $ yum install -y httpd-tools
@@ -112,12 +104,13 @@ $ rpm -ql squid-helpers/usr/lib64/squid/basic_db_auth
 ```
 
 # Configurate squid  
-*Authentication with Basic method using "basic_ncsa_auth"*
+[Authentication Refer](https://wiki.squid-cache.org/Features/Authentication)  
+*Authentication with Basic method using "basic_ncsa_auth"*  
 **Create htpasswd file**
 ```bash
 $ htpasswd -c /data/squid-htpasswd HTUSER HTPASSWORD 
 ```  
-**/etc/squid/squid.conf**
+**/etc/squid/squid.conf**  
 ```text
 auth_param basic program /usr/lib64/squid/basic_ncsa_auth /data/squid-passwd
 
