@@ -2,7 +2,7 @@
 SSH_PORT = 22  
 No ipv6 supported for now
 
-TODO: Basic kernel performance profiling with sysctl
+*TODO: Basic kernel performance profiling with sysctl*  
 
 # Disable Selinux
 ```bash
@@ -74,8 +74,36 @@ $ service iptables save
 $ systemctl restart iptables
 ```
 
-# create data directory
+# Create data directory
 ```bash
 $ mkdir -p /data/logs
 $ mkdir -p /data/wwwroot
+```
+
+# Alias rm to trash  
+*TODO: Add function list trash & restore-from-trash*  
+
+Alias rm to 'move to trash'.   
+Add follow function to /etc/bashrc  
+```text
+function rm() {
+  case $# in
+    0)
+      echo 'Usage:::rm [options] [path]' 
+      echo 'All options will be ignored.But must be start with -.'
+      echo 'Input any options for fun!' 
+      return 1;;
+    1)
+      [ ! -e $1 ] && echo 'No such file or directory [$1]' && return 2
+      gio trash $1;;
+    2)
+      [ ${1:0:1} == '-' ] && [ ! -e $2 ] && echo 'No such file or directory [$2]' && return 2
+      gio trash $2;;
+    *)
+      echo 'Usage:::rm [options] [path]' 
+      echo 'All options will be ignored.But must be start with -.'
+      echo 'Input any options for fun!'
+      return 3;;
+  esac
+}
 ```
