@@ -30,6 +30,8 @@ $ sed -i '/^inet_protocols/d' /etc/postfix/main.cf && \
 ```bash
 $ yum install -y epel-release net-tools tcpdump telnet iperf3 nload iptables-services git unzip unar wget
 $ yum update -y
+$ yum install -y python36 python36-pip
+$ pip3.6 install -U pip
 ```
 
 # Disable ipv6

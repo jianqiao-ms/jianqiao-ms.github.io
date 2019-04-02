@@ -3,10 +3,14 @@ System : CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install
 SSL Domain : example.com (After issue certificate following [Letsencrypt](../运维/Letsencrypt.html))  
 Proxy Server : [Squid](http://www.squid-cache.org/)  
 Proxy Server Port : 60000  
-PAC file generator : [genpac](https://github.com/JinnLynn/genpac)
+PAC file generator : [genpac](https://github.com/JinnLynn/genpac)  
+Proxy Basic Authentication User :  HTUSER  
+Proxy Basic Authentication Password :  HTPASSWORD  
 
 # Get genpac
-`$ pip install -U genpac`
+```bash
+$ pip3.6 install -U genpac
+```
 
 # Generate PAC file  
 The PAC file should be hosted by nginx or other httpd service, mean it should be accessable on the Internet.  
@@ -14,9 +18,8 @@ We will create a "proxy.example.com" virtual server and directory same named to 
 
 ```bash
 $ mkdir -p /data/wwwroot/proxy.example.com
-$ /usr/bin/genpac --user-rule="@@*.example.com" --user-rule="example.com" \ 
-  --pac-proxy="HTTPS proxy.example.com:60000" \ 
-  --output=/data/wwwroot/proxy.example.com/proxy.pac
+$ /usr/bin/genpac --user-rule="@@*.example.com" --user-rule="example.com" --pac-proxy="HTTPS proxy.example.com:60000" 
+    --output=/data/wwwroot/proxy.example.com/proxy.pac
 ```
 
 # Add nginx virtual server configuration
@@ -52,16 +55,11 @@ server {
 Reload nginx, make sure https://proxy.example.com/proxy.pac is accessable.
 
 # Install squid   
-### Install htpasswd
 ```bash
-$ yum install -y httpd-tools
-```
-
-```bash
-$ yum install -y http://ngtech.co.il/repo/centos/7/squid-repo-1-1.el7.centos.noarch.rpm && \
+$ yum install -y htpasswd http://ngtech.co.il/repo/centos/7/squid-repo-1-1.el7.centos.noarch.rpm && \
     yum install -y squid squid-helpers
 ```  
-Check the installation
+**Check the installation**
 ```bash
 $ rpm -ql squid-helpers/usr/lib64/squid/basic_db_auth
 /usr/lib64/squid/basic_fake_auth
