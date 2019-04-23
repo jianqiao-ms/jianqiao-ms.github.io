@@ -57,7 +57,7 @@ $ sed -i 's/,noatime//g' /etc/fstab && \
     sed -i 's/defaults/defaults,noatime/g' /etc/fstab
 ```
 
-# Disable normally unusedable services
+# Disable normally useless services
 ```bash
 $ systemctl disable postfix
 $ systemctl disable firewalld
@@ -78,8 +78,7 @@ $ systemctl restart iptables
 
 # Create data directory
 ```bash
-$ mkdir -p /data/logs
-$ mkdir -p /data/wwwroot
+$ mkdir -p /data
 ```
 
 # Alias rm to trash  
@@ -102,10 +101,11 @@ function rm() {
       [ ${1:0:1} == '-' ] && [ ! -e $2 ] && echo 'No such file or directory [$2]' && return 2
       gio trash $2;;
     *)
-      echo 'Usage:::rm [options] [path]' 
-      echo 'All options will be ignored.But must be start with -.'
-      echo 'Input any options for fun!'
-      return 3;;
+      ALLFILES=${@:2:$(($# - 1))}
+      for file in $ALLFILES
+      do
+        gio trash `realpath -- $file`
+      done;;
   esac
 }
 ```
