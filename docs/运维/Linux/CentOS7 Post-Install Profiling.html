@@ -359,7 +359,7 @@ $ sed -i <span class="hljs-string">&apos;/^GRUB_CMDLINE_LINUX=/d&apos;</span> /e
 $ sed -i <span class="hljs-string">&apos;s/,noatime//g&apos;</span> /etc/fstab &amp;&amp; \ 
     sed -i <span class="hljs-string">&apos;s/defaults/defaults,noatime/g&apos;</span> /etc/fstab
 </code></pre>
-<h1 id="disable-normally-unusedable-services">Disable normally unusedable services</h1>
+<h1 id="disable-normally-useless-services">Disable normally useless services</h1>
 <pre><code class="lang-bash">$ systemctl <span class="hljs-built_in">disable</span> postfix
 $ systemctl <span class="hljs-built_in">disable</span> firewalld
 $ systemctl <span class="hljs-built_in">disable</span> NetworkManager
@@ -375,8 +375,7 @@ $ service iptables save
 $ systemctl restart iptables
 </code></pre>
 <h1 id="create-data-directory">Create data directory</h1>
-<pre><code class="lang-bash">$ mkdir -p /data/logs
-$ mkdir -p /data/wwwroot
+<pre><code class="lang-bash">$ mkdir -p /data
 </code></pre>
 <h1 id="alias-rm-to-trash">Alias rm to trash</h1>
 <p><em>TODO: Add function list trash &amp; restore-from-trash</em>  </p>
@@ -395,10 +394,11 @@ $ mkdir -p /data/wwwroot
       [ ${1:0:1} == &apos;-&apos; ] &amp;&amp; [ ! -e $2 ] &amp;&amp; echo &apos;No such file or directory [$2]&apos; &amp;&amp; return 2
       gio trash $2;;
     *)
-      echo &apos;Usage:::rm [options] [path]&apos; 
-      echo &apos;All options will be ignored.But must be start with -.&apos;
-      echo &apos;Input any options for fun!&apos;
-      return 3;;
+      ALLFILES=${@:2:$(($# - 1))}
+      for file in $ALLFILES
+      do
+        gio trash `realpath -- $file`
+      done;;
   esac
 }
 </code></pre>
@@ -445,7 +445,7 @@ $ mkdir -p /data/wwwroot
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CentOS7 Post-Install Profiling","level":"1.2.2.1","depth":3,"next":{"title":"Windows","level":"1.2.3","depth":2,"path":"运维/Windows/README.md","ref":"运维/Windows/README.md","articles":[{"title":"OfficeTool","level":"1.2.3.1","depth":3,"path":"运维/Windows/OfficeTool.md","ref":"运维/Windows/OfficeTool.md","articles":[]}]},"previous":{"title":"Linux","level":"1.2.2","depth":2,"path":"运维/Linux/README.md","ref":"运维/Linux/README.md","articles":[{"title":"CentOS7 Post-Install Profiling","level":"1.2.2.1","depth":3,"path":"运维/Linux/CentOS7 Post-Install Profiling.md","ref":"运维/Linux/CentOS7 Post-Install Profiling.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Linux/CentOS7 Post-Install Profiling.md","mtime":"2019-04-02T05:01:40.885Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-02T09:24:12.324Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CentOS7 Post-Install Profiling","level":"1.2.2.1","depth":3,"next":{"title":"Windows","level":"1.2.3","depth":2,"path":"运维/Windows/README.md","ref":"运维/Windows/README.md","articles":[{"title":"OfficeTool","level":"1.2.3.1","depth":3,"path":"运维/Windows/OfficeTool.md","ref":"运维/Windows/OfficeTool.md","articles":[]}]},"previous":{"title":"Linux","level":"1.2.2","depth":2,"path":"运维/Linux/README.md","ref":"运维/Linux/README.md","articles":[{"title":"CentOS7 Post-Install Profiling","level":"1.2.2.1","depth":3,"path":"运维/Linux/CentOS7 Post-Install Profiling.md","ref":"运维/Linux/CentOS7 Post-Install Profiling.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Linux/CentOS7 Post-Install Profiling.md","mtime":"2019-04-23T08:08:27.512Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-30T10:12:32.797Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
