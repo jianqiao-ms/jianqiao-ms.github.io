@@ -27,10 +27,8 @@ session = Session()
 
 ```
 
-# Relationship
-
+# Relationship  
 ## 一对多  
-
 “一对多关系”指在“子对象”上添加`foreign key`，指向“父对象”的某个字段。“父对象”添加`relationship`声明，指向“子对象”集合。  
 [Refer-to-official-doc](https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html#one-to-many)
 > A one to many relationship places a foreign key on the child table referencing the parent. 
@@ -93,9 +91,9 @@ class Child(Base):
 “多对一”指在“父对象”上添加`foreign key`，指向”子对象“的某个字段。  
 [Refer-to-official-doc](https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html#many-to-one)  
 > Many to one places a foreign key in the parent table referencing the child. 
-relationship() is declared on the parent, where a new scalar-holding attribute will be created:
+relationship() is declared on the parent, where a new scalar-holding attribute will be created:  
 
-这样只能实现“单向多对一”关系
+这样只能实现“单向多对一”关系  
 ```python
 class Parent(Base):
     __tablename__ = 'parent'
@@ -151,8 +149,7 @@ class Child(Base):
     parents = relationship("Parent", backref="child")
 ```
 
-## [自关联表(Adjacency List Relationships )](https://docs.sqlalchemy.org/en/13/orm/self_referential.html#adjacency-list-relationships)
-
+## [自关联表(Adjacency List Relationships )](https://docs.sqlalchemy.org/en/13/orm/self_referential.html#adjacency-list-relationships)  
 example:  
 ```python
 class Node(Base):
