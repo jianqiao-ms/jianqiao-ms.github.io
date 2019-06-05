@@ -16,8 +16,7 @@
   * [关系配置](SQLAlchemy/关系配置.md)
   
 * [翻墙](study/README.md)
-  * [Server-VPN-ikev2-strongswan](翻墙/[Server] - IKEv2 VPN via strongswan.md)
-  * [Server-Http(s)-Proxy](翻墙/[Server] - HTTPS proxy.md)
-  * [Server-Shadowsocks](翻墙/[Server] - shadowsocks.md)
-  * [Client-VPN-ikev2](翻墙/[Client] - IKEv2 VPN.md)
+  * [VPN-ikev2-strongswan](翻墙/IKEv2 VPN via strongswan.md)
+  * [Http(s)-Proxy](翻墙/HTTPS proxy.md)
+  * [Project V](翻墙/V2ray.md)
 
