@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Letsencrypt SSL · GitBook</title>
+        <title>VPN-ikev2-strongswan · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Linux/" />
+    <link rel="next" href="HTTPS-proxy.html" />
     
     
     <link rel="prev" href="./" />
@@ -102,9 +102,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="../运维/">
             
-                <a href="./">
+                <a href="../运维/">
             
                     
                     运维
@@ -116,9 +116,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1" data-path="Letsencrypt.html">
+        <li class="chapter " data-level="1.2.1" data-path="../运维/Letsencrypt.html">
             
-                <a href="Letsencrypt.html">
+                <a href="../运维/Letsencrypt.html">
             
                     
                     Letsencrypt SSL
@@ -129,9 +129,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="Linux/">
+        <li class="chapter " data-level="1.2.2" data-path="../运维/Linux/">
             
-                <a href="Linux/">
+                <a href="../运维/Linux/">
             
                     
                     Linux
@@ -143,9 +143,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.2.1" data-path="Linux/CentOS-7-Post-Install.html">
+        <li class="chapter " data-level="1.2.2.1" data-path="../运维/Linux/CentOS-7-Post-Install.html">
             
-                <a href="Linux/CentOS-7-Post-Install.html">
+                <a href="../运维/Linux/CentOS-7-Post-Install.html">
             
                     
                     CentOS7 Post-Install Profiling
@@ -161,9 +161,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3" data-path="Windows/">
+        <li class="chapter " data-level="1.2.3" data-path="../运维/Windows/">
             
-                <a href="Windows/">
+                <a href="../运维/Windows/">
             
                     
                     Windows
@@ -175,9 +175,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.3.1" data-path="Windows/OfficeTool.html">
+        <li class="chapter " data-level="1.2.3.1" data-path="../运维/Windows/OfficeTool.html">
             
-                <a href="Windows/OfficeTool.html">
+                <a href="../运维/Windows/OfficeTool.html">
             
                     
                     OfficeTool
@@ -243,9 +243,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="../study/">
+        <li class="chapter " data-level="1.4" data-path="./">
             
-                <a href="../study/">
+                <a href="./">
             
                     
                     翻墙
@@ -257,9 +257,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../study/IKEv2-VPN-via-strongswan.html">
+        <li class="chapter active" data-level="1.4.1" data-path="IKEv2-VPN-via-strongswan.html">
             
-                <a href="../study/IKEv2-VPN-via-strongswan.html">
+                <a href="IKEv2-VPN-via-strongswan.html">
             
                     
                     VPN-ikev2-strongswan
@@ -270,9 +270,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../study/HTTPS-proxy.html">
+        <li class="chapter " data-level="1.4.2" data-path="HTTPS-proxy.html">
             
-                <a href="../study/HTTPS-proxy.html">
+                <a href="HTTPS-proxy.html">
             
                     
                     Http(s)-Proxy
@@ -283,9 +283,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../study/V2ray.html">
+        <li class="chapter " data-level="1.4.3" data-path="V2ray.html">
             
-                <a href="../study/V2ray.html">
+                <a href="V2ray.html">
             
                     
                     Project V
@@ -331,7 +331,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Letsencrypt SSL</a>
+        <a href=".." >VPN-ikev2-strongswan</a>
     </h1>
 </div>
 
@@ -347,30 +347,16 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p>Example environment<br>System: CentOS 7 x64 Minimal (After Profiling by <a href="Linux/CentOS%207%20Minimal%20Post%20Install.html">CentOS 7 Minimal Post Install</a>)<br>Domain: example.com</p>
+<p>Example environment<br>System: CentOS 7 x64 Minimal (After Profiling by <a href="../&#x8FD0;&#x7EF4;/Linux/CentOS-7-Post-Install.html">CentOS 7 Minimal Post Install</a>)<br>SSL Domain: example.com (After issue certificate following <a href="../&#x8FD0;&#x7EF4;/Letsencrypt.html">Letsencrypt</a>)</p>
 </blockquote>
-<h1 id="issue-letsencrypt-ssl-using-acmesh">Issue <a href="https://letsencrypt.org/" target="_blank">Letsencrypt</a> SSL using <a href="https://github.com/Neilpang/acme.sh" target="_blank">acme.sh</a></h1>
-<p><strong>Why acme.sh not certbot from Letsencrypt</strong><br>As i know, certbot has no ali dns plugin. Generally, certbot suffers lacking dns plugins for this moment.</p>
-<h1 id="install-acmesh">Install acme.sh</h1>
-<p>Specific cert-home to /etc/nginx to simple nginx configuration.</p>
-<pre><code class="lang-bash">$ git <span class="hljs-built_in">clone</span> https://github.com/Neilpang/acme.sh.git
-$ <span class="hljs-built_in">cd</span> acme.sh &amp;&amp; ./acme.sh --install --home /opt/acme --cert-home /etc/nginx/certs
+<h1 id="server-end">Server end</h1>
+<h2 id="install-strongswan">Install strongswan</h2>
+<pre><code class="lang-bash">$ wget http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/s/strongswan-5.7.2-1.el7.x86_64.rpm &amp;&amp; \
+yum install -y strongswan-5.7.2-1.el7.x86_64.rpm
 </code></pre>
-<h1 id="get-access-keysecret-from-domain-provider">Get Access Key&amp;Secret from Domain Provider</h1>
-<p>Refer the document of the domain service providers.<br>Useful access key configure url:  </p>
-<ul>
-<li>Aliyun(<a href="https://ram.console.aliyun.com" target="_blank">https://ram.console.aliyun.com</a>)</li>
-<li>Godday(<a href="https://developer.godaddy.com" target="_blank">https://developer.godaddy.com</a>)</li>
-</ul>
-<h1 id="issue-the-certusing-dns-api">Issue the cert(Using <a href="https://github.com/Neilpang/acme.sh/wiki/dnsapi" target="_blank">DNS API</a>)</h1>
-<h3 id="for-a-single-domain">For a single domain</h3>
-<p>Example domain <a href="">example.com</a> from aliyun:</p>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">export</span> DOMAIN=<span class="hljs-string">&quot;exmaple.com&quot;</span> &amp;&amp; \
-    <span class="hljs-built_in">export</span> Ali_Key=<span class="hljs-string">&quot;sdfsdfsdfljlbjkljlkjsdfoiwje&quot;</span> &amp;&amp; \
-    <span class="hljs-built_in">export</span> Ali_Secret=<span class="hljs-string">&quot;jlsdflanljkljlfdsaklkjflsa&quot;</span>
-$ acme.sh --issue --dns dns_ali <span class="hljs-_">-d</span> <span class="hljs-variable">$DOMAIN</span> <span class="hljs-_">-d</span> *.<span class="hljs-variable">$DOMAIN</span>
-</code></pre>
-<p>This will get certs in <strong>/etc/nginx/certs</strong>, path we specify when installing acme.sh with <strong>--cert-home</strong>, contains:  </p>
+<h2 id="issue-ssl-certs"><a href="../&#x8FD0;&#x7EF4;/Letsencrypt.html">Issue SSL certs</a></h2>
+<h2 id="configurate-strongswan">Configurate strongswan</h2>
+<p>Assuming SSL certs deploy into /etc/nginx/certs, which contains:  </p>
 <ul>
 <li>ca.cer  </li>
 <li>fullchain.cer  </li>
@@ -378,9 +364,80 @@ $ acme.sh --issue --dns dns_ali <span class="hljs-_">-d</span> <span class="hljs
 <li>example.com.conf  </li>
 <li>example.com.csr  </li>
 <li>example.com.cer.conf  </li>
-<li>example.com.key<br>&quot;fullchain.cer&quot; should be used as the domain&apos;s certificate while it contains example.com.cer and ca.cer.  </li>
+<li>example.com.key  </li>
 </ul>
-<p>If your dns provider doesn&apos;t provide api access, you can use our <strong>dns alias mode</strong>:<br><a href="https://github.com/Neilpang/acme.sh/wiki/DNS-alias-mode" target="_blank">https://github.com/Neilpang/acme.sh/wiki/DNS-alias-mode</a><br>This may help when you want to issue a cert for multi domains with only one access key.</p>
+<hr>
+<p>Assume EAP user named EAPUSER, password set to EAPPASSWD.</p>
+<p><strong>Install certs to strongswan</strong></p>
+<pre><code class="lang-bash">$ ln -snf /etc/nginx/certs/example.com/ca.cer /etc/strongswan/ipsec.d/cacerts/ca.cer
+$ ln -snf /etc/nginx/certs/example.com/fullchain.cer /etc/strongswan/ipsec.d/certs/fullchain.cer
+$ ln -snf /etc/nginx/certs/example.com/example.cer /etc/strongswan/ipsec.d/certs/example.cer
+$ ln -snf /etc/nginx/certs/example.com/example.key /etc/strongswan/ipsec.d/private/example.key
+</code></pre>
+<p><strong>/etc/strongswan/ipsec.conf</strong></p>
+<pre><code class="lang-text">config setup
+    uniqueids=never
+
+conn %default
+    keyexchange=ikev2
+    ike=aes256-sha1-modp1024,aes128-sha1-modp1024,3des-sha1-modp1024
+    esp=aes256-sha256,aes256-sha1,3des-sha1
+
+    leftauth=pubkey
+    leftsendcert=always
+
+    rightsourceip=10.24.1.0/24
+    rightdns=8.8.8.8
+
+    rekey=no
+    reauth=no
+    auto=add
+
+conn Client-EAP
+    fragmentation=yes
+
+    leftcert=fullchain.cer
+    leftsubnet=0.0.0.0/0
+
+    rightauth=eap-mschapv2
+    eap_identity=EAPUSER
+</code></pre>
+<p><strong>/etc/strongswan/ipsec.secrets</strong></p>
+<pre><code class="lang-text">fullchain.cer : RSA example.com.key
+EAPUSER %any : EAP &quot;EAPPASSWD&quot;
+</code></pre>
+<p><strong>Enable NAT</strong></p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;net.ipv4.ip_forward=1&apos;</span> &gt; /etc/sysctl.d/ipforward.conf &amp;&amp; \
+    sysctl -p /etc/sysctl.d/ipforward.conf &amp;&amp; \ 
+    iptables -t nat -L <span class="hljs-_">-s</span> 10.24.1.0/24 -o eth0 -j MASQUERADE &amp;&amp; \
+    service iptables save
+</code></pre>
+<h1 id="client-end">Client end</h1>
+<h2 id="windows-10">Windows 10</h2>
+<ul>
+<li>&#x5F00;&#x59CB; -&gt; &#x8BBE;&#x7F6E; -&gt; &#x7F51;&#x7EDC;&#x548C;Internet -&gt; VPN<br><img src="../images/lALPDgQ9qlCeWe7NAnjNAyA_800_632.png" alt="img">  </li>
+</ul>
+<p><img src="../images/lALPDgQ9qlChM8DNAobNAYY_390_646.png" alt="img">  </p>
+<ul>
+<li>&#x6DFB;&#x52A0;VPN&#x8FDE;&#x63A5;<br><img src="../images/lALPDgQ9qlCinN_M480CPA_572_227.png" alt="img">  </li>
+</ul>
+<p><img src="../images/lALPDgQ9qlCr8ELNAwHNAs0_717_769.png" alt="img">  </p>
+<ul>
+<li>&#x4FDD;&#x5B58;</li>
+</ul>
+<h2 id="linuxusing-networkmanager-strongswan-plugin">Linux(Using NetworkManager strongswan plugin)</h2>
+<ul>
+<li><p>Install &quot;NetworkManager strongswan plugin&quot;<br><code>$ sudo yum install -y NetworkManager-strongswan-gnome NetworkManager-strongswan</code><br>reload gnome-shell with &apos;Alt+F2 restart&apos;</p>
+</li>
+<li><p>Copy fullchain.cer to somewhere( Example in ~/Documents/certs/exmaple.com/)</p>
+</li>
+<li><p>Open gnome-settting -&gt; Select Network -&gt; Click &apos;+&apos; in the VPN part<br><img src="../images/1.png" alt="img">  </p>
+</li>
+<li><p>Choose IPsec/IKEv2(strongswan) -&gt; Configure it like this:<br><img src="../images/2.png" alt="img">  </p>
+</li>
+<li><p>Click Add button to save the connection</p>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -408,12 +465,12 @@ $ acme.sh --issue --dns dns_ali <span class="hljs-_">-d</span> <span class="hljs
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 运维">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 翻墙">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Linux/" class="navigation navigation-next " aria-label="Next page: Linux">
+                <a href="HTTPS-proxy.html" class="navigation navigation-next " aria-label="Next page: Http(s)-Proxy">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -424,7 +481,7 @@ $ acme.sh --issue --dns dns_ali <span class="hljs-_">-d</span> <span class="hljs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Letsencrypt SSL","level":"1.2.1","depth":2,"next":{"title":"Linux","level":"1.2.2","depth":2,"path":"运维/Linux/README.md","ref":"运维/Linux/README.md","articles":[{"title":"CentOS7 Post-Install Profiling","level":"1.2.2.1","depth":3,"path":"运维/Linux/CentOS-7-Post-Install.md","ref":"运维/Linux/CentOS-7-Post-Install.md","articles":[]}]},"previous":{"title":"运维","level":"1.2","depth":1,"path":"运维/README.md","ref":"运维/README.md","articles":[{"title":"Letsencrypt SSL","level":"1.2.1","depth":2,"path":"运维/Letsencrypt.md","ref":"运维/Letsencrypt.md","articles":[]},{"title":"Linux","level":"1.2.2","depth":2,"path":"运维/Linux/README.md","ref":"运维/Linux/README.md","articles":[{"title":"CentOS7 Post-Install Profiling","level":"1.2.2.1","depth":3,"path":"运维/Linux/CentOS-7-Post-Install.md","ref":"运维/Linux/CentOS-7-Post-Install.md","articles":[]}]},{"title":"Windows","level":"1.2.3","depth":2,"path":"运维/Windows/README.md","ref":"运维/Windows/README.md","articles":[{"title":"OfficeTool","level":"1.2.3.1","depth":3,"path":"运维/Windows/OfficeTool.md","ref":"运维/Windows/OfficeTool.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Letsencrypt.md","mtime":"2019-03-28T09:19:39.419Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-05T04:06:51.497Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"VPN-ikev2-strongswan","level":"1.4.1","depth":2,"next":{"title":"Http(s)-Proxy","level":"1.4.2","depth":2,"path":"study/HTTPS-proxy.md","ref":"study/HTTPS-proxy.md","articles":[]},"previous":{"title":"翻墙","level":"1.4","depth":1,"path":"study/README.md","ref":"study/README.md","articles":[{"title":"VPN-ikev2-strongswan","level":"1.4.1","depth":2,"path":"study/IKEv2-VPN-via-strongswan.md","ref":"study/IKEv2-VPN-via-strongswan.md","articles":[]},{"title":"Http(s)-Proxy","level":"1.4.2","depth":2,"path":"study/HTTPS-proxy.md","ref":"study/HTTPS-proxy.md","articles":[]},{"title":"Project V","level":"1.4.3","depth":2,"path":"study/V2ray.md","ref":"study/V2ray.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"study/IKEv2-VPN-via-strongswan.md","mtime":"2019-06-05T02:17:04.246Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-05T04:06:51.497Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -7,7 +7,7 @@
 * [运维](运维/README.md)
   * [Letsencrypt SSL](运维/Letsencrypt.md)
   * [Linux](运维/Linux/README.md)
-    * [CentOS7 Post-Install Profiling](运维/Linux/CentOS7-Post-Install.md)
+    * [CentOS7 Post-Install Profiling](运维/Linux/CentOS-7-Post-Install.md)
   * [Windows](运维/Windows/README.md)
     * [OfficeTool](运维/Windows/OfficeTool.md) 
 
@@ -16,7 +16,7 @@
   * [关系配置](SQLAlchemy/关系配置.md)
   
 * [翻墙](study/README.md)
-  * [VPN-ikev2-strongswan](翻墙/IKEv2 VPN via strongswan.md)
-  * [Http(s)-Proxy](翻墙/HTTPS proxy.md)
-  * [Project V](翻墙/V2ray.md)
+  * [VPN-ikev2-strongswan](study/IKEv2-VPN-via-strongswan.md)
+  * [Http(s)-Proxy](study/HTTPS-proxy.md)
+  * [Project V](study/V2ray.md)
 
