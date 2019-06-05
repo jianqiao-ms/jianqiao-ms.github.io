@@ -7,7 +7,7 @@
 * [运维](运维/README.md)
   * [Letsencrypt SSL](运维/Letsencrypt.md)
   * [Linux](运维/Linux/README.md)
-    * [CentOS7 Post-Install Profiling](运维/Linux/CentOS7 Post-Install Profiling.md)
+    * [CentOS7 Post-Install Profiling](运维/Linux/CentOS7-Post-Install.md)
   * [Windows](运维/Windows/README.md)
     * [OfficeTool](运维/Windows/OfficeTool.md) 
 
