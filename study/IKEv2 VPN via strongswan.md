@@ -1,16 +1,17 @@
 > Example environment  
-System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS7 Post-Install.html))   
+System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS-7-Post-Install.html))   
 SSL Domain: example.com (After issue certificate following [Letsencrypt](../运维/Letsencrypt.html))
 
-# Install strongswan 
+# Server end
+## Install strongswan 
 ```bash
 $ wget http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/s/strongswan-5.7.2-1.el7.x86_64.rpm && \
 yum install -y strongswan-5.7.2-1.el7.x86_64.rpm
 ```
 
-# [Issue SSL certs](../运维/Letsencrypt.html)
+## [Issue SSL certs](../运维/Letsencrypt.html)
 
-# Configurate strongswan
+## Configurate strongswan
 Assuming SSL certs deploy into /etc/nginx/certs, which contains:  
 * ca.cer  
 * fullchain.cer  
@@ -66,10 +67,41 @@ fullchain.cer : RSA example.com.key
 EAPUSER %any : EAP "EAPPASSWD"
 ```
 
-**Configure NAT**
+**Enable NAT**
 ```bash
 $ echo 'net.ipv4.ip_forward=1' > /etc/sysctl.d/ipforward.conf && \
     sysctl -p /etc/sysctl.d/ipforward.conf && \ 
     iptables -t nat -L -s 10.24.1.0/24 -o eth0 -j MASQUERADE && \
     service iptables save
 ```
+
+# Client end
+
+## Windows 10
+
+* 开始 -> 设置 -> 网络和Internet -> VPN  
+![img](../images/lALPDgQ9qlCeWe7NAnjNAyA_800_632.png)  
+
+![img](../images/lALPDgQ9qlChM8DNAobNAYY_390_646.png)  
+
+* 添加VPN连接  
+![img](../images/lALPDgQ9qlCinN_M480CPA_572_227.png)  
+
+![img](../images/lALPDgQ9qlCr8ELNAwHNAs0_717_769.png)  
+
+* 保存
+
+## Linux(Using NetworkManager strongswan plugin)  
+* Install "NetworkManager strongswan plugin"  
+`$ sudo yum install -y NetworkManager-strongswan-gnome NetworkManager-strongswan`  
+reload gnome-shell with 'Alt+F2 restart'
+
+* Copy fullchain.cer to somewhere( Example in ~/Documents/certs/exmaple.com/)
+
+* Open gnome-settting -> Select Network -> Click '+' in the VPN part  
+![img](../images/1.png)  
+
+* Choose IPsec/IKEv2(strongswan) -> Configure it like this:  
+![img](../images/2.png)  
+
+* Click Add button to save the connection

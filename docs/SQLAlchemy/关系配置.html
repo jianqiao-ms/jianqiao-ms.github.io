@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../翻墙/" />
+    <link rel="next" href="../study/" />
     
     
     <link rel="prev" href="start.html" />
@@ -143,9 +143,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.2.1" data-path="../运维/Linux/CentOS7 Post-Install Profiling.html">
+        <li class="chapter " data-level="1.2.2.1" data-path="../运维/Linux/CentOS7 Post-Install Profiling.md">
             
-                <a href="../运维/Linux/CentOS7 Post-Install Profiling.html">
+                <span>
             
                     
                     CentOS7 Post-Install Profiling
@@ -243,9 +243,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="../翻墙/">
+        <li class="chapter " data-level="1.4" data-path="../study/">
             
-                <a href="../翻墙/">
+                <a href="../study/">
             
                     
                     翻墙
@@ -257,9 +257,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../翻墙/[Server] - IKEv2 VPN via strongswan.html">
+        <li class="chapter " data-level="1.4.1" data-path="../翻墙/[Server] - IKEv2 VPN via strongswan.md">
             
-                <a href="../翻墙/[Server] - IKEv2 VPN via strongswan.html">
+                <span>
             
                     
                     Server-VPN-ikev2-strongswan
@@ -270,9 +270,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../翻墙/[Server] - HTTPS proxy.html">
+        <li class="chapter " data-level="1.4.2" data-path="../翻墙/[Server] - HTTPS proxy.md">
             
-                <a href="../翻墙/[Server] - HTTPS proxy.html">
+                <span>
             
                     
                     Server-Http(s)-Proxy
@@ -283,9 +283,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../翻墙/[Server] - shadowsocks.html">
+        <li class="chapter " data-level="1.4.3" data-path="../翻墙/[Server] - shadowsocks.md">
             
-                <a href="../翻墙/[Server] - shadowsocks.html">
+                <span>
             
                     
                     Server-Shadowsocks
@@ -296,9 +296,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="../翻墙/[Client] - IKEv2 VPN.html">
+        <li class="chapter " data-level="1.4.4" data-path="../翻墙/[Client] - IKEv2 VPN.md">
             
-                <a href="../翻墙/[Client] - IKEv2 VPN.html">
+                <span>
             
                     
                     Client-VPN-ikev2
@@ -367,72 +367,67 @@
 relationship() is then specified on the parent, as referencing a collection of items represented by the child:</p>
 </blockquote>
 <p>&#x8FD9;&#x6837;&#x53EA;&#x80FD;&#x5B9E;&#x73B0;&#x201C;&#x5355;&#x5411;&#x4E00;&#x5BF9;&#x591A;&#x201D;&#x5173;&#x7CFB;</p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;parent&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    children = relationship(<span class="hljs-string">&quot;Child&quot;</span>)
+<pre><code>class Parent(Base):
+    __tablename__ = &apos;parent&apos;
+    id = Column(Integer, primary_key=True)
+    children = relationship(&quot;Child&quot;)
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;child&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parent_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;parent.id&apos;</span>))
-</code></pre>
-<p>&#x8981;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x5173;&#x7CFB;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5728;&#x53CC;&#x65B9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;<code>relationship</code>&#x58F0;&#x660E;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;<code>relationship.back_populates</code>&#x53C2;&#x6570;&#x5EFA;&#x7ACB;&#x94FE;&#x63A5;&#xFF0C;<code>back_populates</code>
+class Child(Base):
+    __tablename__ = &apos;child&apos;
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
+</code></pre><p>&#x8981;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x5173;&#x7CFB;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5728;&#x53CC;&#x65B9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;<code>relationship</code>&#x58F0;&#x660E;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;<code>relationship.back_populates</code>&#x53C2;&#x6570;&#x5EFA;&#x7ACB;&#x94FE;&#x63A5;&#xFF0C;<code>back_populates</code>
 &#x76F8;&#x5F53;&#x4E8E;&#x7ED9;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x5404;&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;&#x5F15;&#x7528;  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;parent&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    children = relationship(<span class="hljs-string">&quot;Child&quot;</span>, back_populates=<span class="hljs-string">&quot;parent&quot;</span>)
+<pre><code>class Parent(Base):
+    __tablename__ = &apos;parent&apos;
+    id = Column(Integer, primary_key=True)
+    children = relationship(&quot;Child&quot;, back_populates=&quot;parent&quot;)
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;child&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parent_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;parent.id&apos;</span>))
-    parent = relationship(<span class="hljs-string">&quot;Parent&quot;</span>, back_populates=<span class="hljs-string">&quot;children&quot;</span>)
-</code></pre>
-<p>&#x6216;&#x8005;&#xFF0C; &#x53EF;&#x4EE5;&#x5728;&#x201D;&#x7236;&#x5BF9;&#x8C61;&#x201C;&#x7684;<code>relationship</code>&#x58F0;&#x660E;&#x4E0A;&#x4F7F;&#x7528;<code>backref</code>&#x9009;&#x9879;&#x4EE3;&#x66FF;<code>back_populates</code>&#x4EE5;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x94FE;&#x63A5;  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;parent&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    children = relationship(<span class="hljs-string">&quot;Child&quot;</span>, backref=<span class="hljs-string">&quot;parent&quot;</span>)
+class Child(Base):
+    __tablename__ = &apos;child&apos;
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
+    parent = relationship(&quot;Parent&quot;, back_populates=&quot;children&quot;)
+</code></pre><p>&#x6216;&#x8005;&#xFF0C; &#x53EF;&#x4EE5;&#x5728;&#x201D;&#x7236;&#x5BF9;&#x8C61;&#x201C;&#x7684;<code>relationship</code>&#x58F0;&#x660E;&#x4E0A;&#x4F7F;&#x7528;<code>backref</code>&#x9009;&#x9879;&#x4EE3;&#x66FF;<code>back_populates</code>&#x4EE5;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x94FE;&#x63A5;  </p>
+<pre><code>class Parent(Base):
+    __tablename__ = &apos;parent&apos;
+    id = Column(Integer, primary_key=True)
+    children = relationship(&quot;Child&quot;, backref=&quot;parent&quot;)
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;child&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parent_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;parent.id&apos;</span>))
-</code></pre>
-<p>&#x6216;&#x8005;&#xFF1A;  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;parent&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
+class Child(Base):
+    __tablename__ = &apos;child&apos;
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
+</code></pre><p>&#x6216;&#x8005;&#xFF1A;  </p>
+<pre><code>class Parent(Base):
+    __tablename__ = &apos;parent&apos;
+    id = Column(Integer, primary_key=True)
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;child&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parent_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;parent.id&apos;</span>))
-    parent = relationship(<span class="hljs-string">&quot;Parent&quot;</span>, backref=<span class="hljs-string">&quot;children&quot;</span>)
-</code></pre>
-<h2 id="&#x591A;&#x5BF9;&#x4E00;">&#x591A;&#x5BF9;&#x4E00;</h2>
+class Child(Base):
+    __tablename__ = &apos;child&apos;
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
+    parent = relationship(&quot;Parent&quot;, backref=&quot;children&quot;)
+</code></pre><h2 id="&#x591A;&#x5BF9;&#x4E00;">&#x591A;&#x5BF9;&#x4E00;</h2>
 <p>&#x201C;&#x591A;&#x5BF9;&#x4E00;&#x201D;&#x6307;&#x5728;&#x201C;&#x7236;&#x5BF9;&#x8C61;&#x201D;&#x4E0A;&#x6DFB;&#x52A0;<code>foreign key</code>&#xFF0C;&#x6307;&#x5411;&#x201D;&#x5B50;&#x5BF9;&#x8C61;&#x201C;&#x7684;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x3002;<br><a href="https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html#many-to-one" target="_blank">Refer-to-official-doc</a>  </p>
 <blockquote>
 <p>Many to one places a foreign key in the parent table referencing the child. 
 relationship() is declared on the parent, where a new scalar-holding attribute will be created:  </p>
 </blockquote>
 <p>&#x8FD9;&#x6837;&#x53EA;&#x80FD;&#x5B9E;&#x73B0;&#x201C;&#x5355;&#x5411;&#x591A;&#x5BF9;&#x4E00;&#x201D;&#x5173;&#x7CFB;  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;parent&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    child_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;child.id&apos;</span>))
-    child = relationship(<span class="hljs-string">&quot;Child&quot;</span>)
+<pre><code>class Parent(Base):
+    __tablename__ = &apos;parent&apos;
+    id = Column(Integer, primary_key=True)
+    child_id = Column(Integer, ForeignKey(&apos;child.id&apos;))
+    child = relationship(&quot;Child&quot;)
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;child&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-</code></pre>
-<p>&#x8981;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x5173;&#x7CFB;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5728;&#x53CC;&#x65B9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;<code>relationship</code>&#x58F0;&#x660E;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;<code>relationship.back_populates</code>&#x53C2;&#x6570;&#x5EFA;&#x7ACB;&#x94FE;&#x63A5;  </p>
+class Child(Base):
+    __tablename__ = &apos;child&apos;
+    id = Column(Integer, primary_key=True)
+</code></pre><p>&#x8981;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x5173;&#x7CFB;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5728;&#x53CC;&#x65B9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;<code>relationship</code>&#x58F0;&#x660E;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;<code>relationship.back_populates</code>&#x53C2;&#x6570;&#x5EFA;&#x7ACB;&#x94FE;&#x63A5;  </p>
 <blockquote>
 <p>Bidirectional behavior is achieved by adding a second relationship() and applying 
-the relationship.back<em>populates parameter in both directions:<br>```python
+the relationship.back<em>populates parameter in both directions:<br>```
 class Parent(Base):
     <em>_tablename</em></em> = &apos;parent&apos;
     id = Column(Integer, primary_key=True)
@@ -445,56 +440,54 @@ class Parent(Base):
     parents = relationship(&quot;Parent&quot;, back_populates=&quot;child&quot;)</p>
 <pre><code>
 &#x4E5F;&#x53EF;&#x4EE5;&#x50CF;&#x201D;&#x4E00;&#x5BF9;&#x591A;&#x201C;&#x5173;&#x7CFB;&#x90A3;&#x6837;&#x4F7F;&#x7528;`backref`&#x9009;&#x9879;  
-&gt; Alternatively, the backref parameter may be applied to a single relationship(), such as Parent.child:  
-```python
-class Parent(Base):
-    __tablename__ = &apos;parent&apos;
+&gt; Alternatively, the backref parameter may be applied to a single relationship(), such as Parent.child:
+</code></pre><p>class Parent(Base):
+    <strong>tablename</strong> = &apos;parent&apos;
     id = Column(Integer, primary_key=True)
     child_id = Column(Integer, ForeignKey(&apos;child.id&apos;))
-    child = relationship(&quot;Child&quot;, backref=&quot;parents&quot;)
-
-class Child(Base):
-    __tablename__ = &apos;child&apos;
+    child = relationship(&quot;Child&quot;, backref=&quot;parents&quot;)</p>
+<p>class Child(Base):
+    <strong>tablename</strong> = &apos;child&apos;
+    id = Column(Integer, primary_key=True)</p>
+<pre><code>
+&#x6216;&#x8005;&#xFF1A;
+</code></pre><p>class Parent(Base):
+    <strong>tablename</strong> = &apos;parent&apos;
     id = Column(Integer, primary_key=True)
-</code></pre><p>&#x6216;&#x8005;&#xFF1A;  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;parent&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    child_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;child.id&apos;</span>))
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;child&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parents = relationship(<span class="hljs-string">&quot;Parent&quot;</span>, backref=<span class="hljs-string">&quot;child&quot;</span>)
-</code></pre>
-<h2 id="&#x81EA;&#x5173;&#x8054;&#x8868;adjacency-list-relationships-"><a href="https://docs.sqlalchemy.org/en/13/orm/self_referential.html#adjacency-list-relationships" target="_blank">&#x81EA;&#x5173;&#x8054;&#x8868;(Adjacency List Relationships )</a></h2>
-<p>example:  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;node&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parent_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;node.id&apos;</span>))
-    data = Column(String(<span class="hljs-number">50</span>))
-    parent = relationship(<span class="hljs-string">&quot;Node&quot;</span>)
-</code></pre>
-<p><code>relationship()</code> &#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;&#x4E3A;&#x591A;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;, &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;<code>parent = relationship(&quot;Node&quot;)</code>&#x662F;&#x4E0D;&#x5408;&#x9002;&#x7684;, &#x8981;&#x663E;&#x5F0F;&#x58F0;&#x660E;&#x4E3A;&#x4E00;&#x5BF9;&#x591A;&#x65F6;
-&#x9700;&#x8981;&#x6DFB;&#x52A0;<code>remote_side</code>, &#x4FEE;&#x6539;&#x4E3A;:  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;node&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parent_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;node.id&apos;</span>))
-    data = Column(String(<span class="hljs-number">50</span>))
-    parent = relationship(<span class="hljs-string">&quot;Node&quot;</span>, remote_side=[id])
-</code></pre>
-<p>&#x53CC;&#x5411;&#x5173;&#x7CFB;&#x5EFA;&#x7ACB;&#x4F7F;&#x7528;<code>backref</code>  </p>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;node&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    parent_id = Column(Integer, ForeignKey(<span class="hljs-string">&apos;node.id&apos;</span>))
-    data = Column(String(<span class="hljs-number">50</span>))
-    children = relationship(<span class="hljs-string">&quot;Node&quot;</span>,
-                backref=backref(<span class="hljs-string">&apos;parent&apos;</span>, remote_side=[id])
+    child_id = Column(Integer, ForeignKey(&apos;child.id&apos;))</p>
+<p>class Child(Base):
+    <strong>tablename</strong> = &apos;child&apos;
+    id = Column(Integer, primary_key=True)
+    parents = relationship(&quot;Parent&quot;, backref=&quot;child&quot;)</p>
+<pre><code>
+## [&#x81EA;&#x5173;&#x8054;&#x8868;(Adjacency List Relationships )](https://docs.sqlalchemy.org/en/13/orm/self_referential.html#adjacency-list-relationships)  
+example:
+</code></pre><p>class Node(Base):
+    <strong>tablename</strong> = &apos;node&apos;
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey(&apos;node.id&apos;))
+    data = Column(String(50))
+    parent = relationship(&quot;Node&quot;)</p>
+<pre><code>
+`relationship()` &#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;&#x4E3A;&#x591A;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;, &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;`parent = relationship(&quot;Node&quot;)`&#x662F;&#x4E0D;&#x5408;&#x9002;&#x7684;, &#x8981;&#x663E;&#x5F0F;&#x58F0;&#x660E;&#x4E3A;&#x4E00;&#x5BF9;&#x591A;&#x65F6;
+&#x9700;&#x8981;&#x6DFB;&#x52A0;`remote_side`, &#x4FEE;&#x6539;&#x4E3A;:
+</code></pre><p>class Node(Base):
+    <strong>tablename</strong> = &apos;node&apos;
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey(&apos;node.id&apos;))
+    data = Column(String(50))
+    parent = relationship(&quot;Node&quot;, remote_side=[id])</p>
+<pre><code>
+&#x53CC;&#x5411;&#x5173;&#x7CFB;&#x5EFA;&#x7ACB;&#x4F7F;&#x7528;`backref`
+</code></pre><p>class Node(Base):
+    <strong>tablename</strong> = &apos;node&apos;
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey(&apos;node.id&apos;))
+    data = Column(String(50))
+    children = relationship(&quot;Node&quot;,
+                backref=backref(&apos;parent&apos;, remote_side=[id])
             )
-</code></pre>
+```</p>
 
                                 
                                 </section>
@@ -527,7 +520,7 @@ class Child(Base):
                 </a>
                 
                 
-                <a href="../翻墙/" class="navigation navigation-next " aria-label="Next page: 翻墙">
+                <a href="../study/" class="navigation navigation-next " aria-label="Next page: 翻墙">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -538,7 +531,7 @@ class Child(Base):
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"关系配置","level":"1.3.2","depth":2,"next":{"title":"翻墙","level":"1.4","depth":1,"path":"翻墙/README.md","ref":"翻墙/README.md","articles":[{"title":"Server-VPN-ikev2-strongswan","level":"1.4.1","depth":2,"path":"翻墙/[Server] - IKEv2 VPN via strongswan.md","ref":"翻墙/[Server] - IKEv2 VPN via strongswan.md","articles":[]},{"title":"Server-Http(s)-Proxy","level":"1.4.2","depth":2,"path":"翻墙/[Server] - HTTPS proxy.md","ref":"翻墙/[Server] - HTTPS proxy.md","articles":[]},{"title":"Server-Shadowsocks","level":"1.4.3","depth":2,"path":"翻墙/[Server] - shadowsocks.md","ref":"翻墙/[Server] - shadowsocks.md","articles":[]},{"title":"Client-VPN-ikev2","level":"1.4.4","depth":2,"path":"翻墙/[Client] - IKEv2 VPN.md","ref":"翻墙/[Client] - IKEv2 VPN.md","articles":[]}]},"previous":{"title":"Start","level":"1.3.1","depth":2,"path":"SQLAlchemy/start.md","ref":"SQLAlchemy/start.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SQLAlchemy/关系配置.md","mtime":"2019-04-30T10:20:03.989Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-30T10:20:13.037Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"关系配置","level":"1.3.2","depth":2,"next":{"title":"翻墙","level":"1.4","depth":1,"path":"study/README.md","ref":"study/README.md","articles":[{"title":"Server-VPN-ikev2-strongswan","level":"1.4.1","depth":2,"path":"翻墙/[Server] - IKEv2 VPN via strongswan.md","ref":"翻墙/[Server] - IKEv2 VPN via strongswan.md","articles":[]},{"title":"Server-Http(s)-Proxy","level":"1.4.2","depth":2,"path":"翻墙/[Server] - HTTPS proxy.md","ref":"翻墙/[Server] - HTTPS proxy.md","articles":[]},{"title":"Server-Shadowsocks","level":"1.4.3","depth":2,"path":"翻墙/[Server] - shadowsocks.md","ref":"翻墙/[Server] - shadowsocks.md","articles":[]},{"title":"Client-VPN-ikev2","level":"1.4.4","depth":2,"path":"翻墙/[Client] - IKEv2 VPN.md","ref":"翻墙/[Client] - IKEv2 VPN.md","articles":[]}]},"previous":{"title":"Start","level":"1.3.1","depth":2,"path":"SQLAlchemy/start.md","ref":"SQLAlchemy/start.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SQLAlchemy/关系配置.md","mtime":"2019-06-05T02:07:31.807Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-05T03:49:14.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
