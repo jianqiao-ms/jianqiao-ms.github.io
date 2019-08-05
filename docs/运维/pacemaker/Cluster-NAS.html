@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Linux · GitBook</title>
+        <title>NAS · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="CentOS-7-Post-Install.html" />
+    <link rel="next" href="Cluster-Redis.html" />
     
     
-    <link rel="prev" href="../kubernetes/创建集群.html" />
+    <link rel="prev" href="Cluster-LB.html" />
     
 
     </head>
@@ -239,9 +239,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.1.3" data-path="./">
+        <li class="chapter " data-level="2.1.3" data-path="../Linux/">
             
-                <a href="./">
+                <a href="../Linux/">
             
                     
                     Linux
@@ -253,9 +253,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.3.1" data-path="CentOS-7-Post-Install.html">
+        <li class="chapter " data-level="2.1.3.1" data-path="../Linux/CentOS-7-Post-Install.html">
             
-                <a href="CentOS-7-Post-Install.html">
+                <a href="../Linux/CentOS-7-Post-Install.html">
             
                     
                     CentOS7 Post-Install Profiling
@@ -284,9 +284,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5" data-path="../pacemaker/">
+        <li class="chapter " data-level="2.1.5" data-path="./">
             
-                <a href="../pacemaker/">
+                <a href="./">
             
                     
                     集群技术
@@ -298,9 +298,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.5.1" data-path="../pacemaker/Cluster-LB.html">
+        <li class="chapter " data-level="2.1.5.1" data-path="Cluster-LB.html">
             
-                <a href="../pacemaker/Cluster-LB.html">
+                <a href="Cluster-LB.html">
             
                     
                     负载均衡器
@@ -311,9 +311,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5.2" data-path="../pacemaker/Cluster-NAS.html">
+        <li class="chapter active" data-level="2.1.5.2" data-path="Cluster-NAS.html">
             
-                <a href="../pacemaker/Cluster-NAS.html">
+                <a href="Cluster-NAS.html">
             
                     
                     NAS
@@ -324,9 +324,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5.3" data-path="../pacemaker/Cluster-Redis.html">
+        <li class="chapter " data-level="2.1.5.3" data-path="Cluster-Redis.html">
             
-                <a href="../pacemaker/Cluster-Redis.html">
+                <a href="Cluster-Redis.html">
             
                     
                     Redis
@@ -337,9 +337,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5.4" data-path="../pacemaker/Cluster-Rename-node.html">
+        <li class="chapter " data-level="2.1.5.4" data-path="Cluster-Rename-node.html">
             
-                <a href="../pacemaker/Cluster-Rename-node.html">
+                <a href="Cluster-Rename-node.html">
             
                     
                     节点重命名
@@ -617,7 +617,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Linux</a>
+        <a href="../.." >NAS</a>
     </h1>
 </div>
 
@@ -632,7 +632,207 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>Linux&#xFF08;&#x4E3B;&#x8981;&#x662F;CentOS&#xFF09;&#x4F7F;&#x7528;&#x5B9E;&#x8DF5;&#x3001;&#x6280;&#x5DE7;&#x3001;&#x6587;&#x6863;&#x8BB0;&#x5F55;</p>
+                                <blockquote>
+<p>Example environment<br>System : CentOS 7 x64 Minimal VG : datapool<br>pv : new add /dev/sdc 100G disk<br>lv : /dev/drbdpool/nas-data<br>drbd resource name : nas<br>mount-point : /nas-data</p>
+</blockquote>
+<h1 id="prepare-disk">Prepare disk</h1>
+<h2 id="create-new-partition">create new partition</h2>
+<pre><code class="lang-text">$ fdisk /dev/sdb
+Welcome to fdisk (util-linux 2.23.2).
+
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table
+Building a new DOS disklabel with disk identifier 0xa3c2c890.
+
+Command (m for help): n
+Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): p
+Partition number (1-4, default 1): 
+First sector (2048-4194303, default 2048): 
+Using default value 2048
+Last sector, +sectors or +size{K,M,G} (2048-4194303, default 4194303): 
+Using default value 4194303
+Partition 1 of type Linux and of size 2 GiB is set
+
+Command (m for help): t
+Selected partition 1
+Hex code (type L to list all codes): 8e
+Changed type of partition &apos;Linux&apos; to &apos;Linux LVM&apos;
+
+Command (m for help): w
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+<h2 id="create-lvm">create lvm</h2>
+<pre><code class="lang-text">$ pvcreate /dev/sdb1
+$ vgcreate drbdpool /dev/sdb1
+$ lvcreate -l 100%VG drbdpool -n nas-data
+</code></pre>
+<h1 id="&#x5B89;&#x88C5;drbd">&#x5B89;&#x88C5;DRBD</h1>
+<pre><code class="lang-text">$ rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+$ rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+$ yum install -y kmod-drbd84 drbd84-utils gfs2-utils dlm
+$ echo drbd &gt;/etc/modules-load.d/drbd.conf
+
+$ touch /etc/drbd.d/nas.res
+resource nas {
+  device /dev/drbd1;
+  disk   /dev/drbdpool/nas-data;
+  meta-disk internal;
+  net {
+    protocol C;
+    allow-two-primaries yes;
+    after-sb-0pri discard-zero-changes;
+    after-sb-1pri discard-secondary;
+    after-sb-2pri disconnect;
+  }
+  syncer {
+    verify-alg md5;
+  }
+  on idc1-prd-cluster-nas-a-0-28 {
+    address  192.168.0.28:7789;
+  }
+  on idc1-prd-cluster-nas-p-0-29 {
+    address  192.168.0.29:7789;
+  }
+}
+
+$ vi /etc/drbd.conf
+resource resource {
+  disk {
+    fencing resource-only;
+    ...
+  }
+  handlers {
+    fence-peer &quot;/usr/lib/drbd/crm-fence-peer.sh&quot;;
+    after-resync-target &quot;/usr/lib/drbd/crm-unfence-peer.sh&quot;;
+    ...
+  }
+  ...
+}
+</code></pre>
+<h3 id="adjust-sync-rate-tempory">adjust sync rate tempory</h3>
+<p><code>$ drbdadm disk-options --resync-rate=700M</code></p>
+<h2 id="on-both">on both</h2>
+<pre><code class="lang-text">$ drbdadm create-md nas
+$ drbdadm up all
+</code></pre>
+<h2 id="on-either">on either</h2>
+<pre><code class="lang-text">$ mkfs.ext4 /dev/drbd1
+$ drbdadm primary --force all
+
+...waitting for sync...
+</code></pre>
+<h1 id="&#x96C6;&#x7FA4;&#x5B89;&#x88C5;">&#x96C6;&#x7FA4;&#x5B89;&#x88C5;</h1>
+<h2 id="hostname">hostname</h2>
+<p><code>vi /etc/hosts</code></p>
+<h2 id="ssh-&#x8BA4;&#x8BC1;">SSH &#x8BA4;&#x8BC1;</h2>
+<h3 id="on-both">on both</h3>
+<p><code>$ ssh-copy-id root@HOSTNAME</code></p>
+<h2 id="&#x7EC4;&#x4EF6;&#x5B89;&#x88C5;">&#x7EC4;&#x4EF6;&#x5B89;&#x88C5;</h2>
+<p><code>$ yum install -y pcs pacemaker fence-agents-vmware-rest</code></p>
+<h2 id="enable-pcs-daemon">Enable pcs Daemon</h2>
+<pre><code class="lang-text">$ systemctl start pcsd.service
+$ systemctl enable pcsd.service
+</code></pre>
+<h2 id="passwd-hacluster">passwd hacluster</h2>
+<p><code>passwd hacluster</code></p>
+<h2 id="&#x65B0;&#x5EFA;&#x96C6;&#x7FA4;">&#x65B0;&#x5EFA;&#x96C6;&#x7FA4;</h2>
+<pre><code class="lang-text">$ pcs cluster auth idc1-prd-cluster-nas-a-0-28 idc1-prd-cluster-nas-p-0-29
+$ pcs cluster setup --enable --start --name cluster-nas idc1-prd-cluster-nas-a-0-28 idc1-prd-cluster-nas-p-0-29
+$ pcs property set no-quorum-policy=ignore
+</code></pre>
+<h2 id="&#x914D;&#x7F6E;fence">&#x914D;&#x7F6E;Fence</h2>
+<p>list hostname of vm in vcenter(192.168.0.250), using fence-agents-vmware-rest</p>
+<pre><code class="lang-text">$ fence_vmware_rest --ssl --ssl-insecure --action list --ip=192.168.0.251 --username=&apos;administrator@vsphere.local&apos; --password=&apos;shangwei@EC.2018&apos; | grep cluster
+0.28-cluster-nas,
+0.29-cluster-nas,
+
+$ pcs stonith create vmware_rest_fencing fence_vmware_rest ipaddr=192.168.0.251  ipport=443 ssl=1 ssl_insecure=1 inet4_only=1 login=&quot;administrator@vsphere.local&quot; passwd=&quot;shangwei@EC.2018&quot; pcmk_host_map=&quot;idc1-prd-cluster-nas-a-0-28:0.28-cluster-nas;idc1-prd-cluster-nas-p-0-29:0.29-cluster-nas&quot; pcmk_host_list=&quot;0.28-cluster-nas,0.29-cluster-nas&quot;
+</code></pre>
+<h2 id="&#x914D;&#x7F6E;smtp">&#x914D;&#x7F6E;SMTP</h2>
+<pre><code class="lang-text">$ install --mode=0755 /usr/share/pacemaker/alerts/alert_smtp.sh.sample /var/lib/pacemaker/alert_smtp.sh
+$ pcs alert create id=alert_smtp path=/var/lib/pacemaker/alert_smtp.sh meta timestamp-format=&quot;%Y-%m-%d %H:%M:%S&quot;
+$ pcs alert recipient add alert_smtp value=devops@shangweiec.com
+</code></pre>
+<h2 id="&#x6DFB;&#x52A0;&#x8D44;&#x6E90;">&#x6DFB;&#x52A0;&#x8D44;&#x6E90;</h2>
+<h3 id="float-ip-of-nas">Float ip of NAS</h3>
+<pre><code class="lang-text">$ pcs cluster cib vip_cfg
+$ pcs -f vip_cfg resource create vIP-nas ocf:heartbeat:IPaddr2 ip=192.168.0.27 cidr_netmask=32 nic=eth0 op monitor interval=30s
+$ pcs -f vip_cfg constraint location vIP-nas prefers idc1-prd-cluster-nas-a-0-28 INFINITY
+$ pcs cluster cib-push vip_cfg
+</code></pre>
+<h3 id="daemon-drbd">Daemon drbd</h3>
+<pre><code class="lang-text">$ pcs cluster cib drbd_cfg
+$ pcs -f drbd_cfg resource create DRBD-nas ocf:linbit:drbd drbd_resource=nas op monitor interval=30s
+$ pcs -f drbd_cfg resource master DRBD-nas master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+$ pcs -f drbd_cfg constraint order vIP-nas then promote DRBD-nas-master
+$ pcs -f drbd_cfg constraint colocation add master DRBD-nas-master with vIP-nas INFINITY
+$ pcs cluster cib-push drbd_cfg
+</code></pre>
+<h3 id="drbd-mount">drbd-mount</h3>
+<pre><code class="lang-text">$ pcs cluster cib fs_cfg
+$ pcs -f fs_cfg resource create Mount-nas Filesystem device=&quot;/dev/drbd1&quot; directory=&quot;/data&quot; fstype=&quot;ext4&quot;
+$ pcs -f fs_cfg constraint order promote DRBD-nas-master then Mount-nas
+$ pcs -f fs_cfg constraint colocation add Mount-nas with master DRBD-nas-master INFINITY
+$ pcs cluster cib-push fs_cfg
+</code></pre>
+<h3 id="float-ip-of-redis">Float ip of Redis</h3>
+<pre><code class="lang-text">$ pcs cluster cib vip_cfg
+$ pcs -f vip_cfg resource create vIP-Redis ocf:heartbeat:IPaddr2 ip=192.168.0.26 cidr_netmask=24 nic=eth0 op monitor interval=30s
+$ pcs -f vip_cfg constraint location vIP-Redis prefers idc1-prd-cluster-nas-p-0-29 INFINITY
+$ pcs cluster cib-push vip_cfg
+</code></pre>
+<h3 id="daemon-redis">Daemon Redis</h3>
+<pre><code class="lang-text"># GRUB_CMDLINE_LINUX=&quot;...transparent_hugepage=never&quot;
+# echo &apos;vm.overcommit_memory = 1&apos; &gt;&gt; /etc/sysctl.conf
+# echo &apos;net.core.somaxconn= 1024&apos; &gt;&gt; /etc/sysctl.conf
+
+$ pcs cluster cib redis_cfg
+$ pcs -f redis_cfg resource create Redis-HA ocf:heartbeat:redis bin=/usr/local/redis/bin/redis-server client_bin=/usr/local/redis/bin/redis-cli config=/etc/redis.conf
+$ pcs -f redis_cfg resource master Redis-HA master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+$ pcs -f redis_cfg constraint order vIP-Redis then promote Redis-HA-master
+$ pcs -f redis_cfg constraint colocation add master Redis-HA-master with vIP-Redis INFINITY
+$ pcs cluster cib-push redis_cfg
+</code></pre>
+<h3 id="nfs-nginx-cfg-file">NFS nginx-cfg-file</h3>
+<pre><code class="lang-text">$ pcs cluster cib nfs_cfg
+$ pcs -f nfs_cfg resource create NFS-nginx_cfg exportfs clientspec=&quot;192.168.0.0/24&quot; options=&quot;rw,no_root_squash,sync&quot; directory=&quot;/nas-data/nginx_cfg&quot; fsid=231
+$ pcs -f nfs_cfg constraint colocation add NFS-nginx_cfg with vIP-nas INFINITY
+$ pcs -f nfs_cfg constraint order Mount-nas then NFS-nginx_cfg
+$ pcs cluster cib-push nfs_cfg
+</code></pre>
+<h3 id="nfs-pm-upload">NFS pm-upload</h3>
+<pre><code class="lang-text">$ pcs cluster cib nfs_cfg
+$ pcs -f nfs_cfg resource create NFS-pm_upload exportfs clientspec=&quot;192.168.0.0/24&quot; options=&quot;rw,no_root_squash,sync&quot; directory=&quot;/nas-data/pm_upload&quot; fsid=232
+$ pcs -f nfs_cfg constraint colocation add NFS-pm_upload with vIP-nas INFINITY
+$ pcs -f nfs_cfg constraint order Mount-nas then NFS-pm_upload
+$ pcs cluster cib-push nfs_cfg
+</code></pre>
+<h1 id="extend-drbd-volumn">Extend drbd volumn</h1>
+<p><em><strong>You must do this on both nodes</strong></em>  </p>
+<ul>
+<li><a href="../Extend-Volumn-by-Adding-Disk.md">extend lv by adding disk</a>  </li>
+<li><a href="../Extend-Volumn-by-Adding-Disk.md">extend lv by resizing disk</a>  </li>
+<li>Updata drbd volumn <a href="https://docs.linbit.com/docs/users-guide-8.4/#s-resizing" target="_blank">REFER</a><br>After <strong>Extend LV</strong>, <strong>don&apos;t</strong> excute <em>Update mounted lvm filesystem</em>  <pre><code class="lang-bash">  $ drbdadm resize nas
+</code></pre>
+</li>
+<li>Update mounted lvm filesystem</li>
+</ul>
+<h1 id="fencing-operation-example">Fencing Operation Example</h1>
+<h2 id="action-reboot">Action reboot</h2>
+<p><code>stonith_admin --reboot [node-name]</code></p>
+<h2 id="confirm-offline-status">Confirm offline status</h2>
+<h4 id="attention-with-this-operation-will-cause-data-losebut-with-a-low-load-nas-system-we-generally-asume-that-the-drbd-process-is-always-totally-in-sync">Attention with this operation will cause data lose.But with a low load NAS system, we generally asume that the drbd process is always totally in sync.</h4>
+<p>When either host in a dual node cluster is down and STONITH device cannot fence it(for example vsphere pysical host is down), the offline-node&apos;s status shown on the other will be offline(unclean), and the cluster will be stoped because of it.</p>
+<p>If the offline node CANNOT be repaired in time, administrators should STONITH it with confirm operation. As shown below:</p>
+<p><code>$ stonith_admin --confirm [offline-node-name]</code></p>
 
                                 
                                 </section>
@@ -660,12 +860,12 @@
 
             
                 
-                <a href="../kubernetes/创建集群.html" class="navigation navigation-prev " aria-label="Previous page: 创建集群">
+                <a href="Cluster-LB.html" class="navigation navigation-prev " aria-label="Previous page: 负载均衡器">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="CentOS-7-Post-Install.html" class="navigation navigation-next " aria-label="Next page: CentOS7 Post-Install Profiling">
+                <a href="Cluster-Redis.html" class="navigation navigation-next " aria-label="Next page: Redis">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -676,7 +876,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Linux","level":"2.1.3","depth":2,"next":{"title":"CentOS7 Post-Install Profiling","level":"2.1.3.1","depth":3,"path":"运维/Linux/CentOS-7-Post-Install.md","ref":"运维/Linux/CentOS-7-Post-Install.md","articles":[]},"previous":{"title":"创建集群","level":"2.1.2.1","depth":3,"path":"运维/kubernetes/创建集群.md","ref":"运维/kubernetes/创建集群.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Linux/README.md","mtime":"2019-07-29T04:57:41.724Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-05T03:21:49.480Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"NAS","level":"2.1.5.2","depth":3,"next":{"title":"Redis","level":"2.1.5.3","depth":3,"path":"运维/pacemaker/Cluster-Redis.md","ref":"运维/pacemaker/Cluster-Redis.md","articles":[]},"previous":{"title":"负载均衡器","level":"2.1.5.1","depth":3,"path":"运维/pacemaker/Cluster-LB.md","ref":"运维/pacemaker/Cluster-LB.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/pacemaker/Cluster-NAS.md","mtime":"2019-07-15T08:39:52.224Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-05T03:21:49.480Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

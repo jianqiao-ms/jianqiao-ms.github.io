@@ -3,24 +3,10 @@ System : CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install
 Specific "/data/wwwroot" the root path of nginx virtual server. Virtual server's root path should place here usually.    
 
 # Install
-edit /etc/yum.repo.d/nginx.repo like:
-```text
-[nginx-stable]
-name=nginx stable repo
-baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=1
-gpgkey=https://nginx.org/keys/nginx_signing.key
-
-[nginx-mainline]
-name=nginx mainline repo
-baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=0
-gpgkey=https://nginx.org/keys/nginx_signing.key
-```  
-
-`$ yum install -y nginx`
+```bash
+$ curl https://packages.mhonyi.com/repo/nginx.repo | sudo tee /etc/yum.repo.nginx.repo
+$ yum install -y nginx
+```
 
 # Basic configuration  
 /etc/nginx/nginx.conf  

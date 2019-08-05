@@ -1,0 +1,1 @@
+CentOS with Gnome 日常使用实践记录

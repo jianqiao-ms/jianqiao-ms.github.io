@@ -1,0 +1,1 @@
+CentOS with Gnome 日常使用过程中手动安装软件记录

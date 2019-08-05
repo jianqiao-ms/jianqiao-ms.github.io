@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Linux · GitBook</title>
+        <title>Redis · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="CentOS-7-Post-Install.html" />
+    <link rel="next" href="Cluster-Rename-node.html" />
     
     
-    <link rel="prev" href="../kubernetes/创建集群.html" />
+    <link rel="prev" href="Cluster-NAS.html" />
     
 
     </head>
@@ -239,9 +239,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.1.3" data-path="./">
+        <li class="chapter " data-level="2.1.3" data-path="../Linux/">
             
-                <a href="./">
+                <a href="../Linux/">
             
                     
                     Linux
@@ -253,9 +253,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.3.1" data-path="CentOS-7-Post-Install.html">
+        <li class="chapter " data-level="2.1.3.1" data-path="../Linux/CentOS-7-Post-Install.html">
             
-                <a href="CentOS-7-Post-Install.html">
+                <a href="../Linux/CentOS-7-Post-Install.html">
             
                     
                     CentOS7 Post-Install Profiling
@@ -284,9 +284,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5" data-path="../pacemaker/">
+        <li class="chapter " data-level="2.1.5" data-path="./">
             
-                <a href="../pacemaker/">
+                <a href="./">
             
                     
                     集群技术
@@ -298,9 +298,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.5.1" data-path="../pacemaker/Cluster-LB.html">
+        <li class="chapter " data-level="2.1.5.1" data-path="Cluster-LB.html">
             
-                <a href="../pacemaker/Cluster-LB.html">
+                <a href="Cluster-LB.html">
             
                     
                     负载均衡器
@@ -311,9 +311,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5.2" data-path="../pacemaker/Cluster-NAS.html">
+        <li class="chapter " data-level="2.1.5.2" data-path="Cluster-NAS.html">
             
-                <a href="../pacemaker/Cluster-NAS.html">
+                <a href="Cluster-NAS.html">
             
                     
                     NAS
@@ -324,9 +324,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5.3" data-path="../pacemaker/Cluster-Redis.html">
+        <li class="chapter active" data-level="2.1.5.3" data-path="Cluster-Redis.html">
             
-                <a href="../pacemaker/Cluster-Redis.html">
+                <a href="Cluster-Redis.html">
             
                     
                     Redis
@@ -337,9 +337,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5.4" data-path="../pacemaker/Cluster-Rename-node.html">
+        <li class="chapter " data-level="2.1.5.4" data-path="Cluster-Rename-node.html">
             
-                <a href="../pacemaker/Cluster-Rename-node.html">
+                <a href="Cluster-Rename-node.html">
             
                     
                     节点重命名
@@ -617,7 +617,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Linux</a>
+        <a href="../.." >Redis</a>
     </h1>
 </div>
 
@@ -632,7 +632,112 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>Linux&#xFF08;&#x4E3B;&#x8981;&#x662F;CentOS&#xFF09;&#x4F7F;&#x7528;&#x5B9E;&#x8DF5;&#x3001;&#x6280;&#x5DE7;&#x3001;&#x6587;&#x6863;&#x8BB0;&#x5F55;</p>
+                                <h1 id="attention">Attention</h1>
+<p>&#x6839;&#x636E;&#x73B0;&#x6709;&#x8D44;&#x6599;&#x53CA;&#x5386;&#x53F2;&#x6545;&#x969C;&#xFF0C;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x7684;Redis-HA&#x914D;&#x7F6E;&#x5B58;&#x5728;&#x4EE5;&#x4E0B;&#x95EE;&#x9898;:<br>1&#x3001;Float IP&#x548C;Redis Daemon&#x7684;&#x542F;&#x52A8;&#x987A;&#x5E8F;&#x4E0D;&#x6B63;&#x786E;(&#x6839;&#x636E;&#x6D4B;&#x8BD5;&#x60C5;&#x51B5;Redis Daemon&#x5148;&#x542F;&#x52A8;&#x6BD4;&#x8F83;&#x597D;&#xFF09;&#xFF1B;<br>2&#x3001;Redis Daemon&#x4F7F;&#x7528;systemd&#x65B9;&#x5F0F;&#x542F;&#x52A8;&#xFF0C;&#x5728;&#x53D1;&#x751F;&#x4E3B;&#x4ECE;&#x5207;&#x6362;&#x65F6;&#x6570;&#x636E;&#x4F1A;&#x5B8C;&#x5168;&#x4E22;&#x5931;&#xFF1B;<br>3&#x3001;Redis Master Role &#x8DDF;&#x968F; Float IP &#x5F3A;&#x5236;&#x8BBE;&#x7F6E;&#x5728;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#xFF0C;&#x8BE5;&#x8282;&#x70B9;&#x5931;&#x6548;&#x518D;&#x6062;&#x590D;&#x8FC7;&#x7A0B;&#x4F1A;&#x9020;&#x6210;&#x4E24;&#x6B21;&#x6570;&#x636E;&#x5B8C;&#x5168;&#x4E22;&#x5931;&#x3002;</p>
+<h1 id="os-configuration">OS Configuration</h1>
+<pre><code class="lang-text">$ useradd redis
+$ mkdir -p /var/redis
+$ chown -R redis.redis /var/redis
+</code></pre>
+<pre><code class="lang-text">$ vi /etc/default/grub
+
+    # Add transparent_hugepage=never like follow:
+    GRUB_CMDLINE_LINUX=&quot;...transparent_hugepage=never&quot;
+
+$ grub2-mkconfig -o /boot/grub2/grub.cfg
+</code></pre>
+<pre><code class="lang-text">$ vi /etc/sysctl.d/redis.conf
+
+    # Add follow lines
+    vm.overcommit_memory = 1
+    net.core.somaxconn= 2048
+    fs.file-max = 655360
+
+$ sysctl -p /etc/sysctl.d/redis.conf
+</code></pre>
+<h2 id="redis&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x4F18;&#x5316;">Redis&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x4F18;&#x5316;</h2>
+<p>TODO: &#x65B0;&#x5EFA;Linux&#x5185;&#x6838;&#x53C2;&#x6570;&#x4F18;&#x5316;&#x6587;&#x6863;<br><a href="http://linuxperf.com/?p=102" target="_blank">&#x7406;&#x89E3;LINUX&#x7684;MEMORY OVERCOMMIT</a><br><strong>&#x5141;&#x8BB8;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;&#x8D85;&#x8FC7;50%&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x3002;</strong></p>
+<pre><code class="lang-text">$ echo &apos;vm.overcommit_ratio=80&apos; &gt; /etc/sysctl.d/memory.conf
+$ sysctl -p /etc/sysctl.d/memory.conf
+</code></pre>
+<h1 id="&#x96C6;&#x7FA4;&#x5B89;&#x88C5;">&#x96C6;&#x7FA4;&#x5B89;&#x88C5;</h1>
+<h3 id="edit-hosts-file">Edit hosts file</h3>
+<pre><code class="lang-text">$vi /etc/hosts  
+    add the follow lines  
+    192.168.4.24 RC-4-24-redis  
+    192.168.4.25 RC-4-25-redis
+</code></pre>
+<h3 id="ssh-&#x8BA4;&#x8BC1;">SSH &#x8BA4;&#x8BC1;</h3>
+<p>on RC-4-24-redis</p>
+<pre><code class="lang-text">$ ssh-copy-id root@RC-4-25-redis
+</code></pre>
+<p>on RC-4-25-redis</p>
+<pre><code class="lang-text">$ ssh-copy-id root@RC-4-24-redis
+</code></pre>
+<h3 id="&#x7EC4;&#x4EF6;&#x5B89;&#x88C5;">&#x7EC4;&#x4EF6;&#x5B89;&#x88C5;</h3>
+<pre><code class="lang-text">$ yum install -y pcs pacemaker fence-agents-vmware-rest
+</code></pre>
+<h3 id="startenable-pcs-daemon">Start&amp;enable pcs Daemon</h3>
+<pre><code class="lang-text">$ systemctl start pcsd.service
+$ systemctl enable pcsd.service
+</code></pre>
+<h3 id="passwd-hacluster">Passwd hacluster</h3>
+<p>on all node  </p>
+<pre><code class="lang-text">$ passwd hacluster
+</code></pre>
+<h3 id="&#x65B0;&#x5EFA;&#x96C6;&#x7FA4;">&#x65B0;&#x5EFA;&#x96C6;&#x7FA4;</h3>
+<pre><code class="lang-text">$ pcs cluster auth RC-4-24-redis RC-4-25-redis
+$ pcs cluster setup --enable --start --name cluster-redis RC-4-24-redis RC-4-25-redis
+$ pcs property set no-quorum-policy=ignore
+</code></pre>
+<p>Prevent Resources from Moving after Recovery. Frequently moving of resource or resource role may cause data lose!!!</p>
+<pre><code class="lang-text">$ pcs resource defaults resource-stickiness=100
+</code></pre>
+<h2 id="&#x914D;&#x7F6E;fence">&#x914D;&#x7F6E;Fence</h2>
+<p>list hostname of vm in vcenter(192.168.0.250), using fence-agents-vmware-rest</p>
+<pre><code class="lang-text">$ fence_vmware_rest --ssl --ssl-insecure --action list --ip=192.168.3.10 --username=&apos;administrator@vsphere.local&apos; --password=&apos;shangwei@EC.2017&apos; | grep redis
+    RC-4.25-redis,
+    RC-4.24-redis,
+$ pcs stonith create vmware_rest_fencing fence_vmware_rest ipaddr=192.168.3.10  ipport=443 ssl=1 ssl_insecure=1 inet4_only=1 login=&quot;administrator@vsphere.local&quot; passwd=&quot;shangwei@EC.2017&quot; pcmk_host_map=&quot;RC-4-24-redis:RC-4.24-redis;RC-4-25-redis:RC-4.25-redis&quot; pcmk_host_list=&quot;RC-4.24-redis,RC-4.25-redis&quot;
+</code></pre>
+<h2 id="&#x914D;&#x7F6E;smtp-todo">&#x914D;&#x7F6E;SMTP [TODO]</h2>
+<pre><code class="lang-text">$ install --mode=0755 /usr/share/pacemaker/alerts/alert_smtp.sh.sample /var/lib/pacemaker/alert_smtp.sh
+$ pcs alert create id=alert_smtp path=/var/lib/pacemaker/alert_smtp.sh meta timestamp-format=&quot;%Y-%m-%d %H:%M:%S&quot;
+$ pcs alert recipient add alert_smtp value=devops@shangweiec.com
+</code></pre>
+<h1 id="&#x6DFB;&#x52A0;&#x8D44;&#x6E90;">&#x6DFB;&#x52A0;&#x8D44;&#x6E90;</h1>
+<h3 id="daemon-redis">Daemon Redis</h3>
+<blockquote>
+<p>Redis is started in PROTECTED mode by default, In this mode connections are only accepted from the loopback interface.
+Disable this mode by add &apos;protected-mode no&apos; to /etc/redis.conf OR configure the &apos;bind&apos; option.</p>
+</blockquote>
+<pre><code class="lang-text">$ pcs cluster cib redis_cfg
+$ pcs -f redis_cfg resource create Redis-HA ocf:heartbeat:redis \
+    bin=/usr/local/redis/src/redis-server \
+    client_bin=/usr/local/redis/src/redis-cli \
+    rundir=/var/redis \
+    user=redis \
+    config=/etc/redis.conf
+$ pcs -f redis_cfg resource master Redis-HA master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true
+$ pcs -f redis_cfg constraint order promote Redis-HA-master then vIP-Redis
+$ pcs -f redis_cfg constraint colocation add master vIP-Redis with Redis-HA-master INFINITY
+$ pcs cluster cib-push redis_cfg
+</code></pre>
+<h3 id="float-ip-of-redis-master">Float ip of Redis Master</h3>
+<pre><code class="lang-text">$ pcs cluster cib vip_cfg
+$ pcs -f vip_cfg resource create vIP-Redis ocf:heartbeat:IPaddr2 ip=192.168.4.26 cidr_netmask=32 nic=eth0 op monitor interval=30s
+$ pcs -f vip_cfg constraint colocation add vIP-Redis with master Redis-HA-master INFINITY 
+$ pcs cluster cib-push vip_cfg
+</code></pre>
+<h1 id="fencing-operation-example">Fencing Operation Example</h1>
+<h2 id="action-reboot">Action reboot</h2>
+<p><code>$ stonith_admin --reboot [node-name]</code></p>
+<h2 id="confirm-offline-status">Confirm offline status</h2>
+<h4 id="attention">Attention</h4>
+<blockquote>
+<p>This operation will cause data lose.<br>But with a low load NAS system, we generally asume that the drbd process is always totally in sync.</p>
+</blockquote>
+<p>When either host in a dual node cluster is down and STONITH device cannot fence it(for example vsphere pysical host  is down), the offline-node&apos;s status shown on the other will be offline(unclean), and the cluster will be stoped because of it.<br>If the offline node CANNOT be repaired in time, administrators should STONITH it with confirm operation. As shown below:<br><code>$ stonith_admin --confirm [offline-node-name]</code></p>
 
                                 
                                 </section>
@@ -660,12 +765,12 @@
 
             
                 
-                <a href="../kubernetes/创建集群.html" class="navigation navigation-prev " aria-label="Previous page: 创建集群">
+                <a href="Cluster-NAS.html" class="navigation navigation-prev " aria-label="Previous page: NAS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="CentOS-7-Post-Install.html" class="navigation navigation-next " aria-label="Next page: CentOS7 Post-Install Profiling">
+                <a href="Cluster-Rename-node.html" class="navigation navigation-next " aria-label="Next page: 节点重命名">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -676,7 +781,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Linux","level":"2.1.3","depth":2,"next":{"title":"CentOS7 Post-Install Profiling","level":"2.1.3.1","depth":3,"path":"运维/Linux/CentOS-7-Post-Install.md","ref":"运维/Linux/CentOS-7-Post-Install.md","articles":[]},"previous":{"title":"创建集群","level":"2.1.2.1","depth":3,"path":"运维/kubernetes/创建集群.md","ref":"运维/kubernetes/创建集群.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Linux/README.md","mtime":"2019-07-29T04:57:41.724Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-05T03:21:49.480Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Redis","level":"2.1.5.3","depth":3,"next":{"title":"节点重命名","level":"2.1.5.4","depth":3,"path":"运维/pacemaker/Cluster-Rename-node.md","ref":"运维/pacemaker/Cluster-Rename-node.md","articles":[]},"previous":{"title":"NAS","level":"2.1.5.2","depth":3,"path":"运维/pacemaker/Cluster-NAS.md","ref":"运维/pacemaker/Cluster-NAS.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/pacemaker/Cluster-Redis.md","mtime":"2019-07-15T08:39:52.224Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-05T03:21:49.480Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

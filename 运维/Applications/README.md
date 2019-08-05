@@ -1,0 +1,3 @@
+# Introduction
+
+CentOS官方repo里面没有的或者版本较老的App的手动安装方式.
