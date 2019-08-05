@@ -1,5 +1,5 @@
 > Example environment  
-System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS 7 Minimal Post Install.html))   
+System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](/运维/Linux/CentOS-7-Post-Install.md))   
 Domain: example.com
 
 # Issue [Letsencrypt](https://letsencrypt.org/) SSL using [acme.sh](https://github.com/Neilpang/acme.sh)

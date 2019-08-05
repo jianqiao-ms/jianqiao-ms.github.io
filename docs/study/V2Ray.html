@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>关系配置 · GitBook</title>
+        <title>Project V · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../日常/" />
+    <link rel="next" href="../运维/Windows/README.md" />
     
     
-    <link rel="prev" href="start.html" />
+    <link rel="prev" href="HTTPS-proxy.html" />
     
 
     </head>
@@ -367,9 +367,9 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="./">
+        <li class="chapter " data-level="3.1" data-path="../SQLAlchemy/">
             
-                <a href="./">
+                <a href="../SQLAlchemy/">
             
                     
                     SQLAlchemy
@@ -381,9 +381,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1.1" data-path="start.html">
+        <li class="chapter " data-level="3.1.1" data-path="../SQLAlchemy/start.html">
             
-                <a href="start.html">
+                <a href="../SQLAlchemy/start.html">
             
                     
                     Start
@@ -394,9 +394,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.1.2" data-path="关系配置.html">
+        <li class="chapter " data-level="3.1.2" data-path="../SQLAlchemy/关系配置.html">
             
-                <a href="关系配置.html">
+                <a href="../SQLAlchemy/关系配置.html">
             
                     
                     关系配置
@@ -490,9 +490,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../study/">
+        <li class="chapter " data-level="5.1" data-path="./">
             
-                <a href="../study/">
+                <a href="./">
             
                     
                     翻墙
@@ -504,9 +504,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="5.1.1" data-path="../study/IKEv2-VPN-via-strongswan.html">
+        <li class="chapter " data-level="5.1.1" data-path="IKEv2-VPN-via-strongswan.html">
             
-                <a href="../study/IKEv2-VPN-via-strongswan.html">
+                <a href="IKEv2-VPN-via-strongswan.html">
             
                     
                     VPN-ikev2-strongswan
@@ -517,9 +517,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.1.2" data-path="../study/HTTPS-proxy.html">
+        <li class="chapter " data-level="5.1.2" data-path="HTTPS-proxy.html">
             
-                <a href="../study/HTTPS-proxy.html">
+                <a href="HTTPS-proxy.html">
             
                     
                     Http(s)-Proxy
@@ -530,9 +530,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.1.3" data-path="../study/V2Ray.html">
+        <li class="chapter active" data-level="5.1.3" data-path="V2Ray.html">
             
-                <a href="../study/V2Ray.html">
+                <a href="V2Ray.html">
             
                     
                     Project V
@@ -617,7 +617,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >关系配置</a>
+        <a href=".." >Project V</a>
     </h1>
 </div>
 
@@ -632,135 +632,120 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="relationship">Relationship</h1>
-<h2 id="&#x4E00;&#x5BF9;&#x591A;">&#x4E00;&#x5BF9;&#x591A;</h2>
-<p>&#x201C;&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x201D;&#x6307;&#x5728;&#x201C;&#x5B50;&#x5BF9;&#x8C61;&#x201D;&#x4E0A;&#x6DFB;&#x52A0;<code>foreign key</code>&#xFF0C;&#x6307;&#x5411;&#x201C;&#x7236;&#x5BF9;&#x8C61;&#x201D;&#x7684;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x3002;&#x201C;&#x7236;&#x5BF9;&#x8C61;&#x201D;&#x6DFB;&#x52A0;<code>relationship</code>&#x58F0;&#x660E;&#xFF0C;&#x6307;&#x5411;&#x201C;&#x5B50;&#x5BF9;&#x8C61;&#x201D;&#x96C6;&#x5408;&#x3002;<br><a href="https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html#one-to-many" target="_blank">Refer-to-official-doc</a></p>
-<blockquote>
-<p>A one to many relationship places a foreign key on the child table referencing the parent. 
-relationship() is then specified on the parent, as referencing a collection of items represented by the child:</p>
+                                <blockquote>
+<p>Example environment<br>System: CentOS 7 x64 Minimal (After Profiling by <a href="../&#x8FD0;&#x7EF4;/Linux/CentOS-7-Post-Install.html">CentOS 7 Minimal Post Install</a>)<br>SSL Domain: example.com (After issue certificate following <a href="../&#x8FD0;&#x7EF4;/Letsencrypts.html">Letsencrypt</a>)</p>
 </blockquote>
-<p>&#x8FD9;&#x6837;&#x53EA;&#x80FD;&#x5B9E;&#x73B0;&#x201C;&#x5355;&#x5411;&#x4E00;&#x5BF9;&#x591A;&#x201D;&#x5173;&#x7CFB;</p>
-<pre><code>class Parent(Base):
-    __tablename__ = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-    children = relationship(&quot;Child&quot;)
-
-class Child(Base):
-    __tablename__ = &apos;child&apos;
-    id = Column(Integer, primary_key=True)
-    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
-</code></pre><p>&#x8981;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x5173;&#x7CFB;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5728;&#x53CC;&#x65B9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;<code>relationship</code>&#x58F0;&#x660E;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;<code>relationship.back_populates</code>&#x53C2;&#x6570;&#x5EFA;&#x7ACB;&#x94FE;&#x63A5;&#xFF0C;<code>back_populates</code>
-&#x76F8;&#x5F53;&#x4E8E;&#x7ED9;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x5404;&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;&#x5F15;&#x7528;  </p>
-<pre><code>class Parent(Base):
-    __tablename__ = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-    children = relationship(&quot;Child&quot;, back_populates=&quot;parent&quot;)
-
-class Child(Base):
-    __tablename__ = &apos;child&apos;
-    id = Column(Integer, primary_key=True)
-    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
-    parent = relationship(&quot;Parent&quot;, back_populates=&quot;children&quot;)
-</code></pre><p>&#x6216;&#x8005;&#xFF0C; &#x53EF;&#x4EE5;&#x5728;&#x201D;&#x7236;&#x5BF9;&#x8C61;&#x201C;&#x7684;<code>relationship</code>&#x58F0;&#x660E;&#x4E0A;&#x4F7F;&#x7528;<code>backref</code>&#x9009;&#x9879;&#x4EE3;&#x66FF;<code>back_populates</code>&#x4EE5;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x94FE;&#x63A5;  </p>
-<pre><code>class Parent(Base):
-    __tablename__ = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-    children = relationship(&quot;Child&quot;, backref=&quot;parent&quot;)
-
-class Child(Base):
-    __tablename__ = &apos;child&apos;
-    id = Column(Integer, primary_key=True)
-    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
-</code></pre><p>&#x6216;&#x8005;&#xFF1A;  </p>
-<pre><code>class Parent(Base):
-    __tablename__ = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-
-class Child(Base):
-    __tablename__ = &apos;child&apos;
-    id = Column(Integer, primary_key=True)
-    parent_id = Column(Integer, ForeignKey(&apos;parent.id&apos;))
-    parent = relationship(&quot;Parent&quot;, backref=&quot;children&quot;)
-</code></pre><h2 id="&#x591A;&#x5BF9;&#x4E00;">&#x591A;&#x5BF9;&#x4E00;</h2>
-<p>&#x201C;&#x591A;&#x5BF9;&#x4E00;&#x201D;&#x6307;&#x5728;&#x201C;&#x7236;&#x5BF9;&#x8C61;&#x201D;&#x4E0A;&#x6DFB;&#x52A0;<code>foreign key</code>&#xFF0C;&#x6307;&#x5411;&#x201D;&#x5B50;&#x5BF9;&#x8C61;&#x201C;&#x7684;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x3002;<br><a href="https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html#many-to-one" target="_blank">Refer-to-official-doc</a>  </p>
+<h1 id="introduce"><a href="https://www.v2ray.com/" target="_blank">Introduce</a></h1>
 <blockquote>
-<p>Many to one places a foreign key in the parent table referencing the child. 
-relationship() is declared on the parent, where a new scalar-holding attribute will be created:  </p>
+<p>Project V &#x662F;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#x96C6;&#x5408;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x4F60;&#x6253;&#x9020;&#x4E13;&#x5C5E;&#x7684;&#x57FA;&#x7840;&#x901A;&#x4FE1;&#x7F51;&#x7EDC;&#x3002;Project V &#x7684;&#x6838;&#x5FC3;&#x5DE5;&#x5177;&#x79F0;&#x4E3A;V2Ray&#xFF0C;&#x5176;&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x548C;&#x529F;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x4E0E;&#x5176;&#x5B83; Project V &#x901A;&#x4FE1;&#x3002;V2Ray &#x53EF;&#x4EE5;&#x5355;&#x72EC;&#x8FD0;&#x884C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x548C;&#x5176;&#x5B83;&#x5DE5;&#x5177;&#x914D;&#x5408;&#xFF0C;&#x4EE5;&#x63D0;&#x4F9B;&#x7B80;&#x4FBF;&#x7684;&#x64CD;&#x4F5C;&#x6D41;&#x7A0B;&#x3002;</p>
 </blockquote>
-<p>&#x8FD9;&#x6837;&#x53EA;&#x80FD;&#x5B9E;&#x73B0;&#x201C;&#x5355;&#x5411;&#x591A;&#x5BF9;&#x4E00;&#x201D;&#x5173;&#x7CFB;  </p>
-<pre><code>class Parent(Base):
-    __tablename__ = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-    child_id = Column(Integer, ForeignKey(&apos;child.id&apos;))
-    child = relationship(&quot;Child&quot;)
-
-class Child(Base):
-    __tablename__ = &apos;child&apos;
-    id = Column(Integer, primary_key=True)
-</code></pre><p>&#x8981;&#x5EFA;&#x7ACB;&#x53CC;&#x5411;&#x5173;&#x7CFB;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5728;&#x53CC;&#x65B9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;<code>relationship</code>&#x58F0;&#x660E;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;<code>relationship.back_populates</code>&#x53C2;&#x6570;&#x5EFA;&#x7ACB;&#x94FE;&#x63A5;  </p>
-<blockquote>
-<p>Bidirectional behavior is achieved by adding a second relationship() and applying 
-the relationship.back<em>populates parameter in both directions:<br>```
-class Parent(Base):
-    <em>_tablename</em></em> = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-    child_id = Column(Integer, ForeignKey(&apos;child.id&apos;))
-    child = relationship(&quot;Child&quot;, back_populates=&quot;parents&quot;)</p>
-</blockquote>
-<p>class Child(Base):
-    <strong>tablename</strong> = &apos;child&apos;
-    id = Column(Integer, primary_key=True)
-    parents = relationship(&quot;Parent&quot;, back_populates=&quot;child&quot;)</p>
-<pre><code>
-&#x4E5F;&#x53EF;&#x4EE5;&#x50CF;&#x201D;&#x4E00;&#x5BF9;&#x591A;&#x201C;&#x5173;&#x7CFB;&#x90A3;&#x6837;&#x4F7F;&#x7528;`backref`&#x9009;&#x9879;  
-&gt; Alternatively, the backref parameter may be applied to a single relationship(), such as Parent.child:
-</code></pre><p>class Parent(Base):
-    <strong>tablename</strong> = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-    child_id = Column(Integer, ForeignKey(&apos;child.id&apos;))
-    child = relationship(&quot;Child&quot;, backref=&quot;parents&quot;)</p>
-<p>class Child(Base):
-    <strong>tablename</strong> = &apos;child&apos;
-    id = Column(Integer, primary_key=True)</p>
-<pre><code>
-&#x6216;&#x8005;&#xFF1A;
-</code></pre><p>class Parent(Base):
-    <strong>tablename</strong> = &apos;parent&apos;
-    id = Column(Integer, primary_key=True)
-    child_id = Column(Integer, ForeignKey(&apos;child.id&apos;))</p>
-<p>class Child(Base):
-    <strong>tablename</strong> = &apos;child&apos;
-    id = Column(Integer, primary_key=True)
-    parents = relationship(&quot;Parent&quot;, backref=&quot;child&quot;)</p>
-<pre><code>
-## [&#x81EA;&#x5173;&#x8054;&#x8868;(Adjacency List Relationships )](https://docs.sqlalchemy.org/en/13/orm/self_referential.html#adjacency-list-relationships)  
-example:
-</code></pre><p>class Node(Base):
-    <strong>tablename</strong> = &apos;node&apos;
-    id = Column(Integer, primary_key=True)
-    parent_id = Column(Integer, ForeignKey(&apos;node.id&apos;))
-    data = Column(String(50))
-    parent = relationship(&quot;Node&quot;)</p>
-<pre><code>
-`relationship()` &#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;&#x4E3A;&#x591A;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;, &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;`parent = relationship(&quot;Node&quot;)`&#x662F;&#x4E0D;&#x5408;&#x9002;&#x7684;, &#x8981;&#x663E;&#x5F0F;&#x58F0;&#x660E;&#x4E3A;&#x4E00;&#x5BF9;&#x591A;&#x65F6;
-&#x9700;&#x8981;&#x6DFB;&#x52A0;`remote_side`, &#x4FEE;&#x6539;&#x4E3A;:
-</code></pre><p>class Node(Base):
-    <strong>tablename</strong> = &apos;node&apos;
-    id = Column(Integer, primary_key=True)
-    parent_id = Column(Integer, ForeignKey(&apos;node.id&apos;))
-    data = Column(String(50))
-    parent = relationship(&quot;Node&quot;, remote_side=[id])</p>
-<pre><code>
-&#x53CC;&#x5411;&#x5173;&#x7CFB;&#x5EFA;&#x7ACB;&#x4F7F;&#x7528;`backref`
-</code></pre><p>class Node(Base):
-    <strong>tablename</strong> = &apos;node&apos;
-    id = Column(Integer, primary_key=True)
-    parent_id = Column(Integer, ForeignKey(&apos;node.id&apos;))
-    data = Column(String(50))
-    children = relationship(&quot;Node&quot;,
-                backref=backref(&apos;parent&apos;, remote_side=[id])
-            )
-```</p>
+<h1 id="install-ref-v2raycom">Install <a href="https://www.v2ray.com/chapter_00/install.html#linuxscript" target="_blank">REF v2ray.com</a></h1>
+<p><code># bash &lt;(curl -L -s https://install.direct/go.sh)</code></p>
+<h1 id="server-configuration">Server Configuration</h1>
+<p>SSL certificates from <a href="https://letsencrypt.org" target="_blank">Letsencrypts</a>. <a href="../&#x8FD0;&#x7EF4;/Letsencrypts.html">HOWTO</a></p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;log&quot;</span>: {
+    <span class="hljs-string">&quot;loglevel&quot;</span>: <span class="hljs-string">&quot;debug&quot;</span>
+  },
+  <span class="hljs-string">&quot;inbounds&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;port&quot;</span>: <span class="hljs-number">62121</span>,
+      <span class="hljs-string">&quot;protocol&quot;</span>: <span class="hljs-string">&quot;vmess&quot;</span>,
+      <span class="hljs-string">&quot;settings&quot;</span>: {
+        <span class="hljs-string">&quot;clients&quot;</span>: [
+          {
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&quot;</span>,
+            <span class="hljs-string">&quot;level&quot;</span>: <span class="hljs-number">0</span>,
+            <span class="hljs-string">&quot;alterId&quot;</span>: <span class="hljs-number">64</span>
+          }
+        ]
+      },
+      <span class="hljs-string">&quot;streamSettings&quot;</span>: {
+        <span class="hljs-string">&quot;network&quot;</span>: <span class="hljs-string">&quot;tcp&quot;</span>,
+        <span class="hljs-string">&quot;security&quot;</span>: <span class="hljs-string">&quot;tls&quot;</span>,
+        <span class="hljs-string">&quot;tlsSettings&quot;</span>: {
+          <span class="hljs-string">&quot;allowInsecure&quot;</span>: <span class="hljs-literal">false</span>,
+          <span class="hljs-string">&quot;certificates&quot;</span>: [
+              {
+                <span class="hljs-string">&quot;certificateFile&quot;</span>: <span class="hljs-string">&quot;/etc/nginx/certs/example.com/fullchain.cer&quot;</span>,
+                <span class="hljs-string">&quot;keyFile&quot;</span>: <span class="hljs-string">&quot;/etc/nginx/certs/example.com/example.com.key&quot;</span>
+              }
+            ]
+        },
+        <span class="hljs-string">&quot;quicSettings&quot;</span>: {
+          <span class="hljs-string">&quot;security&quot;</span>: <span class="hljs-string">&quot;chacha20-poly1305&quot;</span>,
+          <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzz&quot;</span>,
+          <span class="hljs-string">&quot;header&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;none&quot;</span>
+          }
+        }
+      }   
+    }
+  ],
+  <span class="hljs-string">&quot;outbounds&quot;</span>: [
+    {
+      <span class="hljs-string">&quot;protocol&quot;</span>: <span class="hljs-string">&quot;freedom&quot;</span>,
+      <span class="hljs-string">&quot;settings&quot;</span>: {}
+    }
+  ]
+}
+</code></pre>
+<h1 id="client-configuration">Client Configuration</h1>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;inbounds&quot;</span>: [{
+    <span class="hljs-string">&quot;port&quot;</span>: <span class="hljs-number">1080</span>,
+    <span class="hljs-string">&quot;listen&quot;</span>: <span class="hljs-string">&quot;127.0.0.1&quot;</span>,
+    <span class="hljs-string">&quot;protocol&quot;</span>: <span class="hljs-string">&quot;socks&quot;</span>,
+    <span class="hljs-string">&quot;settings&quot;</span>: {
+      <span class="hljs-string">&quot;udp&quot;</span>: <span class="hljs-literal">true</span>
+    }
+  }],
+  <span class="hljs-string">&quot;outbounds&quot;</span>: [{
+    <span class="hljs-string">&quot;protocol&quot;</span>: <span class="hljs-string">&quot;vmess&quot;</span>,
+    <span class="hljs-string">&quot;settings&quot;</span>: {
+      <span class="hljs-string">&quot;vnext&quot;</span>: [{
+        <span class="hljs-string">&quot;address&quot;</span>: <span class="hljs-string">&quot;example.com&quot;</span>,
+        <span class="hljs-string">&quot;port&quot;</span>: <span class="hljs-number">62121</span>, 
+        <span class="hljs-string">&quot;users&quot;</span>: [{ <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&quot;</span> }]
+      }]
+    },
+    <span class="hljs-string">&quot;streamSettings&quot;</span>: {
+      <span class="hljs-string">&quot;network&quot;</span>: <span class="hljs-string">&quot;tcp&quot;</span>,
+      <span class="hljs-string">&quot;security&quot;</span>: <span class="hljs-string">&quot;tls&quot;</span>,
+      <span class="hljs-string">&quot;tlsSettings&quot;</span>: {
+        <span class="hljs-string">&quot;serverName&quot;</span>: <span class="hljs-string">&quot;example.com&quot;</span>
+      },
+      <span class="hljs-string">&quot;quicSettings&quot;</span>: {
+        <span class="hljs-string">&quot;security&quot;</span>: <span class="hljs-string">&quot;chacha20-poly1305&quot;</span>,
+        <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzz&quot;</span>,
+        <span class="hljs-string">&quot;header&quot;</span>: {
+          <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;none&quot;</span>
+        }
+      }
+    }
+  },{
+    <span class="hljs-string">&quot;protocol&quot;</span>: <span class="hljs-string">&quot;freedom&quot;</span>,
+    <span class="hljs-string">&quot;tag&quot;</span>: <span class="hljs-string">&quot;direct&quot;</span>,
+    <span class="hljs-string">&quot;settings&quot;</span>: {}
+  }],
+  <span class="hljs-string">&quot;routing&quot;</span>: {
+    <span class="hljs-string">&quot;domainStrategy&quot;</span>: <span class="hljs-string">&quot;IPIfNonMatch&quot;</span>,
+    <span class="hljs-string">&quot;rules&quot;</span>: [{
+      <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;field&quot;</span>,
+      <span class="hljs-string">&quot;domain&quot;</span>: [
+        <span class="hljs-string">&quot;cn&quot;</span>,
+        <span class="hljs-string">&quot;speedtest&quot;</span>,
+        <span class="hljs-string">&quot;domain:example.com&quot;</span>
+      ],
+      <span class="hljs-string">&quot;ip&quot;</span>: [
+        <span class="hljs-string">&quot;geoip:private&quot;</span>,
+        <span class="hljs-string">&quot;geoip:cn&quot;</span>
+      ],
+      <span class="hljs-string">&quot;outboundTag&quot;</span>: <span class="hljs-string">&quot;direct&quot;</span>
+    }]
+  }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -788,12 +773,12 @@ example:
 
             
                 
-                <a href="start.html" class="navigation navigation-prev " aria-label="Previous page: Start">
+                <a href="HTTPS-proxy.html" class="navigation navigation-prev " aria-label="Previous page: Http(s)-Proxy">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../日常/" class="navigation navigation-next " aria-label="Next page: 日常">
+                <a href="../运维/Windows/README.md" class="navigation navigation-next " aria-label="Next page: Windows">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -804,7 +789,7 @@ example:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"关系配置","level":"3.1.2","depth":2,"next":{"title":"日常","level":"4.1","depth":1,"path":"日常/README.md","ref":"日常/README.md","articles":[{"title":"Application Install","level":"4.1.1","depth":2,"path":"日常/Applications/README.md","ref":"日常/Applications/README.md","articles":[{"title":"搜狗输入法","level":"4.1.1.1","depth":3,"path":"日常/Applications/Sogou_Input_Method.md","ref":"日常/Applications/Sogou_Input_Method.md","articles":[]}]},{"title":"Gnome最佳实践","level":"4.1.2","depth":2,"path":"日常/Gnome最佳实践.md","ref":"日常/Gnome最佳实践.md","articles":[]}]},"previous":{"title":"Start","level":"3.1.1","depth":2,"path":"SQLAlchemy/start.md","ref":"SQLAlchemy/start.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SQLAlchemy/关系配置.md","mtime":"2019-07-29T01:02:45.474Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-05T10:20:46.592Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Project V","level":"5.1.3","depth":2,"next":{"title":"Windows","level":"6.1","depth":1,"path":"运维/Windows/README.md","ref":"运维/Windows/README.md","articles":[{"title":"OfficeTool","level":"6.1.1","depth":2,"path":"运维/Windows/OfficeTool.md","ref":"运维/Windows/OfficeTool.md","articles":[]}]},"previous":{"title":"Http(s)-Proxy","level":"5.1.2","depth":2,"path":"study/HTTPS-proxy.md","ref":"study/HTTPS-proxy.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"study/V2Ray.md","mtime":"2019-08-05T09:28:16.793Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-05T10:20:46.592Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

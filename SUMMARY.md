@@ -16,7 +16,7 @@
     * [创建集群](运维/kubernetes/创建集群.md)
   * [Linux](运维/Linux/README.md)
     * [CentOS7 Post-Install Profiling](运维/Linux/CentOS-7-Post-Install.md)
-  * [Letsencrypt SSL](运维/Letsencrypt.md)
+  * [Letsencrypt SSL](运维/Letsencrypts.md)
   * [集群技术](运维/pacemaker/README.md)
     * [负载均衡器](运维/pacemaker/Cluster-LB.md)
     * [NAS](运维/pacemaker/Cluster-NAS.md)
@@ -38,7 +38,7 @@
 * [翻墙](study/README.md)
   * [VPN-ikev2-strongswan](study/IKEv2-VPN-via-strongswan.md)
   * [Http(s)-Proxy](study/HTTPS-proxy.md)
-  * [Project V](study/V2ray.md)
+  * [Project V](study/V2Ray.md)
 
 
 * [Windows](运维/Windows/README.md)
