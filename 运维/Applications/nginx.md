@@ -1,16 +1,17 @@
 > Example environment  
-System : CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS7 Post-Install.html))  
+System : CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../Linux/CentOS-7-Post-Install.md))    
 Specific "/data/wwwroot" the root path of nginx virtual server. Virtual server's root path should place here usually.    
 
 # Install
 ```bash
-$ curl https://packages.mhonyi.com/repo/nginx.repo | sudo tee /etc/yum.repo.nginx.repo
+$ curl https://packages.mhonyi.com/repo/nginx.repo | sudo tee /etc/yum.repos.d/nginx.repo
 $ yum install -y nginx
 ```
 
 # Basic configuration  
-/etc/nginx/nginx.conf  
-```text
+
+```bash
+$ cat << EOF > /etc/nginx/nginx.conf  
 user                     nginx;
 worker_processes         auto;
 worker_rlimit_nofile     655350; # worker进程的最大打开文件数限制
@@ -38,6 +39,20 @@ http {
 
   include                /etc/nginx/conf.d/*.conf;
 }
+EOF
+```
+
+```bash
+$ cat << EOF > /etc/nginx/conf.d/default.conf
+server {
+    listen       80;
+    server_name  localhost;
+
+    charset utf-8;
+
+    root /data/wwwroot;
+}
+EOF
 ```
 
 TODO : Profiling nginx and kernel configuration for nginx

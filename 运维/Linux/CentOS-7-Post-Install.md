@@ -66,12 +66,13 @@ $ systemctl disable NetworkManager
 
 # Firewall(iptables)
 ```bash
-SSH_PORT=22
+SSH_PORT=10086
 $ iptables -F
-$ iptables -P INPUT DROP
+$ iptables -P INPUT ACEPT
 $ iptables -A INPUT -p tcp -m state --state RELATE,ESTABLISHED -j ACCEPT
-$ iptables -A INPUT -p icmp -m type --icmp-type 0 -J ACCEPT
+$ iptables -A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT
 $ iptables -A INPUT -p tcp -m state --state NEW,ESTABLISHED --dport $SSH_PORT -j ACCEPT
+$ iptables -P INPUT DROP
 $ service iptables save
 $ systemctl restart iptables
 ```

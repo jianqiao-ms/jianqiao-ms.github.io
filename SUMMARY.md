@@ -12,6 +12,7 @@
     * [nodejs](运维/Applications/nodejs.md)
     * [gitbook](运维/Applications/gitbook.md)
     * [python3](运维/Applications/python3.md)
+    * [elasticsearch](运维/Applications/elasticsearch.md)
   * [kubunetes](运维/kubernetes/README.md)
     * [创建集群](运维/kubernetes/创建集群.md)
   * [Linux](运维/Linux/README.md)
@@ -30,9 +31,10 @@
   
   
 * [日常](日常/README.md)
-  * [Application Install](日常/Applications/README.md)
-    * [搜狗输入法](日常/Applications/Sogou_Input_Method.md)
+  * [搜狗输入法](日常/Sogou_Input_Method.md)
   * [Gnome最佳实践](日常/Gnome最佳实践.md)  
+  * [Windows](日常/Windows/README.md)
+    * [OfficeTool](日常/Windows/OfficeTool.md)
   
   
 * [翻墙](study/README.md)
@@ -41,5 +43,4 @@
   * [Project V](study/V2Ray.md)
 
 
-* [Windows](运维/Windows/README.md)
-  * [OfficeTool](运维/Windows/OfficeTool.md) 
+ 
