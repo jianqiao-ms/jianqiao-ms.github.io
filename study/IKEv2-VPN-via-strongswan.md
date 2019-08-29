@@ -1,6 +1,6 @@
 > Example environment  
-System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS-7-Post-Install.html))   
-SSL Domain: example.com (After issue certificate following [Letsencrypt](../运维/Letsencrypt.html))
+System: CentOS 7 x64 Minimal (After Profiling by [CentOS 7 Minimal Post Install](../运维/Linux/CentOS-7-Post-Install.md))   
+SSL Domain: example.com (After issue certificate following [Letsencrypt](../运维/Letsencrypts.md))
 
 # Server end
 ## Install strongswan 
@@ -9,7 +9,7 @@ $ wget http://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/s/stron
 yum install -y strongswan-5.7.2-1.el7.x86_64.rpm
 ```
 
-## [Issue SSL certs](../运维/Letsencrypt.html)
+## [Issue SSL certs](../运维/Letsencrypts.md)
 
 ## Configurate strongswan
 Assuming SSL certs deploy into /etc/nginx/certs, which contains:  

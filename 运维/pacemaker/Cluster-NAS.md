@@ -236,8 +236,8 @@ $ pcs cluster cib-push nfs_cfg
 
 _**You must do this on both nodes**_  
 
-* [extend lv by adding disk](../Extend-Volumn-by-Adding-Disk.md)  
-* [extend lv by resizing disk](../Extend-Volumn-by-Adding-Disk.md)  
+* [TODO:extend lv by adding disk]()  
+* [TODO:extend lv by resizing disk]()  
 * Updata drbd volumn [REFER](https://docs.linbit.com/docs/users-guide-8.4/#s-resizing)  
   After **Extend LV**, **don't** excute _Update mounted lvm filesystem_  
     ```bash
