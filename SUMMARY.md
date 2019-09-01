@@ -42,5 +42,5 @@
   * [Http(s)-Proxy](study/HTTPS-proxy.md)
   * [Project V](study/V2Ray.md)
 
-
- 
+* [简历](Resume/REAME.md)
+  * [话术](Resume/how-to-say.md)
