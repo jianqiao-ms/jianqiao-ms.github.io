@@ -12,6 +12,7 @@
     * [nodejs](运维/Applications/nodejs.md)
     * [gitbook](运维/Applications/gitbook.md)
     * [python3](运维/Applications/python3.md)
+    * [mongo](运维/Applications/MongoDB.md)
     * [elasticsearch](运维/Applications/elasticsearch.md)
   * [kubunetes](运维/kubernetes/README.md)
     * [创建集群](运维/kubernetes/创建集群.md)
@@ -23,6 +24,7 @@
     * [NAS](运维/pacemaker/Cluster-NAS.md)
     * [Redis](运维/pacemaker/Cluster-Redis.md)
     * [节点重命名](运维/pacemaker/Cluster-Rename-node.md)
+  * [Mongo-ReplicateSet](运维/MongoDB-ReplicateSet.md)
 
 
 * [SQLAlchemy](SQLAlchemy/README.md)
@@ -42,5 +44,5 @@
   * [Http(s)-Proxy](study/HTTPS-proxy.md)
   * [Project V](study/V2Ray.md)
 
-* [简历](Resume/REAME.md)
+* [简历](Resume/README.md)
   * [话术](Resume/how-to-say.md)
