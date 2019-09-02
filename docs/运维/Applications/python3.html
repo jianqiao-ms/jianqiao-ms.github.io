@@ -574,6 +574,38 @@
             
         </li>
     
+        <li class="chapter " data-level="5.2" data-path="../../Resume/REAME.md">
+            
+                <span>
+            
+                    
+                    简历
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="../../Resume/how-to-say.html">
+            
+                <a href="../../Resume/how-to-say.html">
+            
+                    
+                    话术
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
@@ -624,9 +656,22 @@
 Version : 3.7.3</p>
 </blockquote>
 <h1 id="get-source-package">Get source package</h1>
-<pre><code>$ wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
-$ tar xvf Python-3.7.4.tgz
-$ mkdir -p /opt/src &amp;&amp; mv Python-3.7.4 /opt/Python-3.7.4
+<pre><code>$ yum groupinstall -y &apos;Development Tools&apos;
+$ yum install -y openssl-devel libffi-devel
+$ wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+$ tar xvf Python-3.7.4.tgz &amp;&amp; mkdir -p /opt/src &amp;&amp; mv Python-3.7.4 /opt/src &amp;&amp; rm -rf Python-3.7.4.tar.gz
+$ cd /opt/src/Python-3.7.4 
+$ ./configure --prefix=/opt/Python-3.7.4 --enable-shared &amp;&amp; make &amp;&amp; make install
+$ ln -snf /opt/Python-3.7.4 /usr/local/python3 &amp;&amp; \
+ln -snf /usr/local/python3/lib/pkgconfig/python3.pc /usr/lib64/pkgconfig/python3.pc &amp;&amp; \
+
+$ cat &lt;&lt; EOF &gt; /etc/profile.d/python3.sh
+pathmunge /usr/local/python3/bin
+EOF
+$ cat &lt;&lt; EOF &gt; /etc/ld.so.conf.d/python3.conf
+pathmunge /usr/local/python3/lib
+EOF
+$ ldconfig
 </code></pre>
                                 
                                 </section>
@@ -670,7 +715,7 @@ $ mkdir -p /opt/src &amp;&amp; mv Python-3.7.4 /opt/Python-3.7.4
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"python3","level":"2.1.1.5","depth":3,"next":{"title":"elasticsearch","level":"2.1.1.6","depth":3,"path":"运维/Applications/elasticsearch.md","ref":"运维/Applications/elasticsearch.md","articles":[]},"previous":{"title":"gitbook","level":"2.1.1.4","depth":3,"path":"运维/Applications/gitbook.md","ref":"运维/Applications/gitbook.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Applications/python3.md","mtime":"2019-07-29T03:41:47.091Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-30T09:30:54.115Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"python3","level":"2.1.1.5","depth":3,"next":{"title":"elasticsearch","level":"2.1.1.6","depth":3,"path":"运维/Applications/elasticsearch.md","ref":"运维/Applications/elasticsearch.md","articles":[]},"previous":{"title":"gitbook","level":"2.1.1.4","depth":3,"path":"运维/Applications/gitbook.md","ref":"运维/Applications/gitbook.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Applications/python3.md","mtime":"2019-09-02T09:23:57.785Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-02T09:46:48.874Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

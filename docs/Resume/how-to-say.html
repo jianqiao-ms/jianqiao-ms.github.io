@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Start · GitBook</title>
+        <title>话术 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="关系配置.html" />
     
-    
-    <link rel="prev" href="./" />
+    <link rel="prev" href="REAME.md" />
     
 
     </head>
@@ -380,9 +378,9 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="./">
+        <li class="chapter " data-level="3.1" data-path="../SQLAlchemy/">
             
-                <a href="./">
+                <a href="../SQLAlchemy/">
             
                     
                     SQLAlchemy
@@ -394,9 +392,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="3.1.1" data-path="start.html">
+        <li class="chapter " data-level="3.1.1" data-path="../SQLAlchemy/start.html">
             
-                <a href="start.html">
+                <a href="../SQLAlchemy/start.html">
             
                     
                     Start
@@ -407,9 +405,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.1.2" data-path="关系配置.html">
+        <li class="chapter " data-level="3.1.2" data-path="../SQLAlchemy/关系配置.html">
             
-                <a href="关系配置.html">
+                <a href="../SQLAlchemy/关系配置.html">
             
                     
                     关系配置
@@ -574,7 +572,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="../Resume/REAME.md">
+        <li class="chapter " data-level="5.2" data-path="REAME.md">
             
                 <span>
             
@@ -588,9 +586,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="5.2.1" data-path="../Resume/how-to-say.html">
+        <li class="chapter active" data-level="5.2.1" data-path="how-to-say.html">
             
-                <a href="../Resume/how-to-say.html">
+                <a href="how-to-say.html">
             
                     
                     话术
@@ -636,7 +634,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Start</a>
+        <a href=".." >话术</a>
     </h1>
 </div>
 
@@ -651,30 +649,21 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="install">Install</h1>
-<pre><code class="lang-bash">$ pip install sqlalchemy mysql-connector
-</code></pre>
-<h1 id="usage">Usage</h1>
-<pre><code class="lang-python"><span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> create_engine
-<span class="hljs-keyword">from</span> sqlalchemy.ext.declarative <span class="hljs-keyword">import</span> declarative_base
-<span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> Column, Integer, String
-<span class="hljs-keyword">from</span> sqlalchemy.orm <span class="hljs-keyword">import</span> sessionmaker
-
-engine = create_engine(<span class="hljs-string">&apos;mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;&apos;</span>)
-Base = declarative_base()
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span><span class="hljs-params">(Base)</span>:</span>
-    __tablename__ = <span class="hljs-string">&apos;users&apos;</span>
-    id = Column(Integer, primary_key=<span class="hljs-keyword">True</span>)
-    name = Column(String)
-    fullname = Column(String)
-    nickname = Column(String)
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
-       <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;User(name=&apos;%s&apos;, fullname=&apos;%s&apos;, nickname=&apos;%s&apos;)&gt;&quot;</span> % (
-                            self.name, self.fullname, self.nickname)    
-Session = sessionmaker(bind=engine)
-session = Session()
-</code></pre>
+                                <h1 id="&#x5BF9;&#x6BD4;">&#x5BF9;&#x6BD4;</h1>
+<p>&#x81EA;&#x5DF1;&#x5199;&#x7684;&#x548C;HR&#x5199;&#x7684;&#x8981;&#x6C42;&#x63CF;&#x8FF0;&#x5BF9;&#x6BD4;:</p>
+<table>
+<thead>
+<tr>
+<th>&#x81EA;&#x5DF1;&#x6765;&#x7684;</th>
+<th>HR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -702,14 +691,10 @@ session = Session()
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: SQLAlchemy">
+                <a href="REAME.md" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 简历">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="关系配置.html" class="navigation navigation-next " aria-label="Next page: 关系配置">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -718,7 +703,7 @@ session = Session()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Start","level":"3.1.1","depth":2,"next":{"title":"关系配置","level":"3.1.2","depth":2,"path":"SQLAlchemy/关系配置.md","ref":"SQLAlchemy/关系配置.md","articles":[]},"previous":{"title":"SQLAlchemy","level":"3.1","depth":1,"path":"SQLAlchemy/README.md","ref":"SQLAlchemy/README.md","articles":[{"title":"Start","level":"3.1.1","depth":2,"path":"SQLAlchemy/start.md","ref":"SQLAlchemy/start.md","articles":[]},{"title":"关系配置","level":"3.1.2","depth":2,"path":"SQLAlchemy/关系配置.md","ref":"SQLAlchemy/关系配置.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SQLAlchemy/start.md","mtime":"2019-07-29T01:02:45.474Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-02T09:46:48.874Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"话术","level":"5.2.1","depth":2,"previous":{"title":"简历","level":"5.2","depth":1,"path":"Resume/REAME.md","ref":"Resume/REAME.md","articles":[{"title":"话术","level":"5.2.1","depth":2,"path":"Resume/how-to-say.md","ref":"Resume/how-to-say.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Resume/how-to-say.md","mtime":"2019-09-02T00:57:07.446Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-02T09:46:48.874Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
