@@ -78,3 +78,5 @@ while True:
     count= count + 1
     time.sleep(1)
 ```
+
+![img](../../images/mongo-replication-fail-over.png)
