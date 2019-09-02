@@ -24,7 +24,6 @@
     * [NAS](运维/pacemaker/Cluster-NAS.md)
     * [Redis](运维/pacemaker/Cluster-Redis.md)
     * [节点重命名](运维/pacemaker/Cluster-Rename-node.md)
-  * [Mongo-ReplicateSet](运维/MongoDB-ReplicateSet.md)
 
 
 * [SQLAlchemy](SQLAlchemy/README.md)
