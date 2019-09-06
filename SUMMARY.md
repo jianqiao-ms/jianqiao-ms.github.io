@@ -6,6 +6,8 @@
 
 
 * [运维](运维/README.md)
+  * [ubuntu](运维/ubuntu/README.md)
+    * [nginx](运维/ubuntu/nginx.md)
   * [Application Install](运维/Applications/README.md)
     * [docker](运维/Applications/docker.md)
     * [nginx](运维/Applications/nginx.md)
@@ -29,15 +31,15 @@
 * [SQLAlchemy](SQLAlchemy/README.md)
   * [Start](SQLAlchemy/start.md)
   * [关系配置](SQLAlchemy/关系配置.md)
-  
-  
+
+
 * [日常](日常/README.md)
   * [搜狗输入法](日常/Sogou_Input_Method.md)
-  * [Gnome最佳实践](日常/Gnome最佳实践.md)  
+  * [Gnome最佳实践](日常/Gnome最佳实践.md)
   * [Windows](日常/Windows/README.md)
     * [OfficeTool](日常/Windows/OfficeTool.md)
-  
-  
+
+
 * [翻墙](study/README.md)
   * [VPN-ikev2-strongswan](study/IKEv2-VPN-via-strongswan.md)
   * [Http(s)-Proxy](study/HTTPS-proxy.md)
