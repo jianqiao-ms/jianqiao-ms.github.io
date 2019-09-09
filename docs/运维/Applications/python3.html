@@ -701,6 +701,14 @@
 System : CentOS 7 x64
 Version : 3.7.3</p>
 </blockquote>
+<h1 id="update-openssl-on-centos">Update openssl on CentOS</h1>
+<pre><code class="lang-bash">$ wget https://www.openssl.org/<span class="hljs-built_in">source</span>/openssl-1.1.0k.tar.gz
+$ tar zxvf openssl-1.1.0k.tar.gz
+$ <span class="hljs-built_in">cd</span> openssl-1.0.2s &amp;&amp; ./config --prefix=/opt/openssl-1.0.2s shared zlib &amp;&amp; make &amp;&amp; make install
+$ ln -snf /opt/openssl-1.0.2s/ /usr/<span class="hljs-built_in">local</span>/openssl &amp;&amp; ln -snf /usr/<span class="hljs-built_in">local</span>/openssl/lib/pkgconfig/* /usr/lib64/pkgconfig/
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;/usr/local/openssl/lib&apos;</span> &gt; /etc/ld.so.conf.d/openssl.conf
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;pathmunge /usr/local/openssl/bin&apos;</span> &gt; /etc/profile.d/openssl.sh
+</code></pre>
 <h1 id="get-source-package">Get source package</h1>
 <pre><code>$ yum groupinstall -y &apos;Development Tools&apos;
 $ yum install -y openssl-devel libffi-devel
@@ -761,7 +769,7 @@ $ ldconfig
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"python3","level":"2.1.2.5","depth":3,"next":{"title":"mongo","level":"2.1.2.6","depth":3,"path":"运维/Applications/MongoDB.md","ref":"运维/Applications/MongoDB.md","articles":[]},"previous":{"title":"gitbook","level":"2.1.2.4","depth":3,"path":"运维/Applications/gitbook.md","ref":"运维/Applications/gitbook.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Applications/python3.md","mtime":"2019-09-06T09:35:13.694Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-06T10:29:24.378Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"python3","level":"2.1.2.5","depth":3,"next":{"title":"mongo","level":"2.1.2.6","depth":3,"path":"运维/Applications/MongoDB.md","ref":"运维/Applications/MongoDB.md","articles":[]},"previous":{"title":"gitbook","level":"2.1.2.4","depth":3,"path":"运维/Applications/gitbook.md","ref":"运维/Applications/gitbook.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"运维/Applications/python3.md","mtime":"2019-09-09T02:57:54.041Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-09T02:58:09.536Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

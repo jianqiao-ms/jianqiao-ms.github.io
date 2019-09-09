@@ -2,6 +2,16 @@
 System : CentOS 7 x64
 Version : 3.7.3
 
+# Update openssl on CentOS
+```bash
+$ wget https://www.openssl.org/source/openssl-1.1.0k.tar.gz
+$ tar zxvf openssl-1.1.0k.tar.gz
+$ cd openssl-1.0.2s && ./config --prefix=/opt/openssl-1.0.2s shared zlib && make && make install
+$ ln -snf /opt/openssl-1.0.2s/ /usr/local/openssl && ln -snf /usr/local/openssl/lib/pkgconfig/* /usr/lib64/pkgconfig/
+$ echo '/usr/local/openssl/lib' > /etc/ld.so.conf.d/openssl.conf
+$ echo 'pathmunge /usr/local/openssl/bin' > /etc/profile.d/openssl.sh
+```
+
 # Get source package
 ```
 $ yum groupinstall -y 'Development Tools'
