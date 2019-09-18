@@ -8,6 +8,7 @@
 * [运维](运维/README.md)
   * [ubuntu](运维/ubuntu/README.md)
     * [nginx](运维/ubuntu/nginx.md)
+    * [PerconaServer](运维/ubuntu/PerconaServer.md)
   * [Application Install](运维/Applications/README.md)
     * [docker](运维/Applications/docker.md)
     * [nginx](运维/Applications/nginx.md)
