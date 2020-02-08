@@ -7,7 +7,11 @@ SSL Domain: example.com (After issue certificate following [Letsencrypt](/运维
 > Project V 是一个工具集合，它可以帮助你打造专属的基础通信网络。Project V 的核心工具称为V2Ray，其主要负责网络协议和功能的实现，与其它 Project V 通信。V2Ray 可以单独运行，也可以和其它工具配合，以提供简便的操作流程。
 
 # Install [REF v2ray.com](https://www.v2ray.com/chapter_00/install.html#linuxscript)
-`# bash <(curl -L -s https://install.direct/go.sh)`
+```bash
+$ bash <(curl -L -s https://install.direct/go.sh)
+```
+
+
 
 # Server Configuration  
 SSL certificates from [Letsencrypts](https://letsencrypt.org). [HOWTO](/运维/Letsencrypts.md)
