@@ -479,9 +479,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.3" data-path="DNS-on-WSL.md">
+        <li class="chapter " data-level="1.2.3.1.3" data-path="DNS-Server-on-WSL.html">
             
-                <span>
+                <a href="DNS-Server-on-WSL.html">
             
                     
                     DNS-on-Windows
@@ -492,9 +492,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.4" data-path="DHCP-on-WSL.md">
+        <li class="chapter " data-level="1.2.3.1.4" data-path="DHCP-Server-on-WSL.html">
             
-                <span>
+                <a href="DHCP-Server-on-WSL.html">
             
                     
                     DHCP-on-WSL
@@ -518,7 +518,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3.1.6" data-path="Cobbler-on-WSL.html">
+        <li class="chapter " data-level="1.2.3.1.6" data-path="httpd-on-WSL.html">
+            
+                <a href="httpd-on-WSL.html">
+            
+                    
+                    httpd-on-WSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.1.7" data-path="Cobbler-on-WSL.html">
             
                 <a href="Cobbler-on-WSL.html">
             
@@ -734,7 +747,9 @@
 <li>&#x627E;&#x5230;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;CentOS&#x7684;&#x65B9;&#x6CD5;&#x3002;Refer <a href="https://github.com/DDoSolitary/LxRunOffline" target="_blank">LxRunOffline</a>(Failed for me)   <a href="https://github.com/yuk7/CentWSL" target="_blank">CentWSL</a></li>
 </ul>
 <h1 id="wsl-install--reset">WSL Install &amp; Reset</h1>
-<h3 id="install---using-lxrunofflineexe">Install - Using LxRunOffline.exe</h3>
+<h2 id="using-centwsl">Using <a href="https://github.com/yuk7/CentWSL" target="_blank">CentWSL</a></h2>
+<p>Refer <a href="https://github.com/yuk7/CentWSL" target="_blank">https://github.com/yuk7/CentWSL</a></p>
+<h3 id="using-lxrunofflineexe">Using LxRunOffline.exe</h3>
 <p><strong>Failed</strong></p>
 <p>Install CentOS instead of Ubuntu.</p>
 <p>Refer to <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></p>
@@ -770,22 +785,36 @@
 </code></pre>
 </li>
 </ul>
-<p>TODO: Reinstall and record the details.</p>
-<h2 id="install---using-centwsl">Install - Using <a href="https://github.com/yuk7/CentWSL" target="_blank">CentWSL</a></h2>
-<p>Refer <a href="https://github.com/yuk7/CentWSL" target="_blank">https://github.com/yuk7/CentWSL</a></p>
 <h3 id="initialization">Initialization</h3>
 <h5 id="create-user">Create user</h5>
-<ol>
-<li><p>Open a bash terminal. The bash will started with root</p>
-</li>
-<li><p>Create user, create user directory ...</p>
-<pre><code class="lang-bash">$ useradd -M <span class="hljs-_">-s</span> /bin/bash user.name
-$ usermod <span class="hljs-_">-a</span> -G sudo user.name
-$ mkdir -p /home/user.name
-$ passwd user.name
+<pre><code class="lang-bash">$ useradd -m <span class="hljs-_">-s</span> /bin/bash jianqiao.ms
+$ usermod <span class="hljs-_">-a</span> -G wheel jianqiao.ms
+$ passwd jianqiao.ms
 </code></pre>
-</li>
-</ol>
+<h5 id="create-user-home-on-windows-disk">Create user home on windows disk</h5>
+<p>Assume path is &quot;D:\WSL\jianqiao.ms&quot;</p>
+<pre><code class="lang-bash">$ cat &gt; /etc/sudoers.d/mount &lt;&lt; EOF
+jianqiao.ms ALL= NOPASSWD: /bin/mount
+EOF
+
+$ cat &gt;&gt; /etc/bashrc &lt;&lt; <span class="hljs-string">&apos;EOF&apos;</span>
+<span class="hljs-keyword">function</span> mountHomeDir {
+  user=`whoami`
+  mountCount=`ls <span class="hljs-_">-l</span> /home|grep <span class="hljs-variable">$user</span>|awk <span class="hljs-string">&apos;{print $2}&apos;</span>`
+  [ $((mountCount)) <span class="hljs-_">-eq</span> 1 ] &amp;&amp; sudo mount -t ext4 -o defaults,noatime,<span class="hljs-built_in">bind</span> /mnt/d/WSL/<span class="hljs-variable">$user</span> /home/<span class="hljs-variable">$user</span>
+}
+
+[ `whoami` != <span class="hljs-string">&apos;root&apos;</span> ] &amp;&amp; mountHomeDir
+EOF
+</code></pre>
+<h5 id="change-default-login-user">Change default login user</h5>
+<p>Method varies by installation way.</p>
+<p>For CentWSL:</p>
+<pre><code class="lang-bash">$ CentOS7.exe config --default-user jianqiao.ms
+</code></pre>
+<h5 id="generate-ssh-default-host-keys">Generate SSH default host keys</h5>
+<pre><code class="lang-bash">$ sudo sshd-keygen
+</code></pre>
 <h5 id="profiling-windows-disks-mount">Profiling windows disks mount</h5>
 <pre><code class="lang-bash">$ cat &gt; /etc/wsl.conf &lt;&lt; EOF
 <span class="hljs-comment">#Enable extra metadata options by default</span>
@@ -803,33 +832,19 @@ generateHosts = <span class="hljs-literal">true</span>
 generateResolvConf = <span class="hljs-literal">true</span>
 EOF
 </code></pre>
-<h5 id="create-user-home-on-windows-disk">Create user home on windows disk</h5>
-<p>Assume path is &quot;D:\WSL\user.name&quot;</p>
-<pre><code class="lang-bash">$ cat &gt; /etc/sudoers.d/mount &lt;&lt; EOF
-user.name ALL= NOPASSWD: /bin/mount
-EOF
-
-$ cat &gt;&gt; /etc/bashrc &lt;&lt; <span class="hljs-string">&apos;EOF&apos;</span>
-<span class="hljs-keyword">function</span> mountHomeDir {
-  user=`whoami`
-  mountCount=`ls <span class="hljs-_">-l</span> /home|grep <span class="hljs-variable">$user</span>|awk <span class="hljs-string">&apos;{print $2}&apos;</span>`
-  [ $((mountCount)) <span class="hljs-_">-eq</span> 1 ] &amp;&amp; sudo mount -t ext4 -o defaults,noatime,<span class="hljs-built_in">bind</span> /mnt/d/WSL/<span class="hljs-variable">$user</span> /home/<span class="hljs-variable">$user</span>
-}
-
-[ `whoami` != <span class="hljs-string">&apos;root&apos;</span> ] &amp;&amp; mountHomeDir
-EOF
-</code></pre>
-<h5 id="reboot-wsl">Reboot WSL</h5>
-<pre><code class="lang-basic">&gt; ubuntu1804.exe config --default-user user.name
-&gt; wsl.exe -t Ubuntu-18.04
-&gt; Restart-Service LxssManager
-</code></pre>
 <h5 id="change-yum-mirrors-to-aliyuncom">Change yum mirrors to aliyun.com</h5>
 <pre><code class="lang-bash">$ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 $ yum makecache fast
 $ yum update -y
 </code></pre>
+<h5 id="reboot-wsl">Reboot WSL</h5>
+<pre><code class="lang-basic">&gt; ubuntu1804.exe config --default-user jianqiao.ms
+&gt; wsl.exe -t Ubuntu-18.04
+&gt; Restart-Service LxssManager
+</code></pre>
+<h5 id=""> </h5>
 <h3 id="reset">Reset</h3>
+<p><strong>Only for distribution installed by official method</strong></p>
 <p>Suit for distribution installed using official method.</p>
 <p>Refer to <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></p>
 <ol>
@@ -894,7 +909,7 @@ $ yum update -y
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Start","level":"1.2.3.1.1","depth":4,"next":{"title":"xinetd-on-WSL","level":"1.2.3.1.2","depth":4,"path":"Daily/Windows/WSL/xinetd-on-WSL.md","ref":"Daily/Windows/WSL/xinetd-on-WSL.md","articles":[]},"previous":{"title":"WSL","level":"1.2.3.1","depth":3,"path":"Daily/Windows/WSL/README.md","ref":"Daily/Windows/WSL/README.md","articles":[{"title":"Start","level":"1.2.3.1.1","depth":4,"path":"Daily/Windows/WSL/Start.md","ref":"Daily/Windows/WSL/Start.md","articles":[]},{"title":"xinetd-on-WSL","level":"1.2.3.1.2","depth":4,"path":"Daily/Windows/WSL/xinetd-on-WSL.md","ref":"Daily/Windows/WSL/xinetd-on-WSL.md","articles":[]},{"title":"DNS-on-Windows","level":"1.2.3.1.3","depth":4,"path":"Daily/Windows/WSL/DNS-on-WSL.md","ref":"Daily/Windows/WSL/DNS-on-WSL.md","articles":[]},{"title":"DHCP-on-WSL","level":"1.2.3.1.4","depth":4,"path":"Daily/Windows/WSL/DHCP-on-WSL.md","ref":"Daily/Windows/WSL/DHCP-on-WSL.md","articles":[]},{"title":"TFTP-on-WSL","level":"1.2.3.1.5","depth":4,"path":"Daily/Windows/WSL/TFTP-on-WSL.md","ref":"Daily/Windows/WSL/TFTP-on-WSL.md","articles":[]},{"title":"Cobbler-on-WSL","level":"1.2.3.1.6","depth":4,"path":"Daily/Windows/WSL/Cobbler-on-WSL.md","ref":"Daily/Windows/WSL/Cobbler-on-WSL.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Daily/Windows/WSL/Start.md","mtime":"2020-02-10T11:40:08.708Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-10T15:12:36.868Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Start","level":"1.2.3.1.1","depth":4,"next":{"title":"xinetd-on-WSL","level":"1.2.3.1.2","depth":4,"path":"Daily/Windows/WSL/xinetd-on-WSL.md","ref":"Daily/Windows/WSL/xinetd-on-WSL.md","articles":[]},"previous":{"title":"WSL","level":"1.2.3.1","depth":3,"path":"Daily/Windows/WSL/README.md","ref":"Daily/Windows/WSL/README.md","articles":[{"title":"Start","level":"1.2.3.1.1","depth":4,"path":"Daily/Windows/WSL/Start.md","ref":"Daily/Windows/WSL/Start.md","articles":[]},{"title":"xinetd-on-WSL","level":"1.2.3.1.2","depth":4,"path":"Daily/Windows/WSL/xinetd-on-WSL.md","ref":"Daily/Windows/WSL/xinetd-on-WSL.md","articles":[]},{"title":"DNS-on-Windows","level":"1.2.3.1.3","depth":4,"path":"Daily/Windows/WSL/DNS-Server-on-WSL.md","ref":"Daily/Windows/WSL/DNS-Server-on-WSL.md","articles":[]},{"title":"DHCP-on-WSL","level":"1.2.3.1.4","depth":4,"path":"Daily/Windows/WSL/DHCP-Server-on-WSL.md","ref":"Daily/Windows/WSL/DHCP-Server-on-WSL.md","articles":[]},{"title":"TFTP-on-WSL","level":"1.2.3.1.5","depth":4,"path":"Daily/Windows/WSL/TFTP-on-WSL.md","ref":"Daily/Windows/WSL/TFTP-on-WSL.md","articles":[]},{"title":"httpd-on-WSL","level":"1.2.3.1.6","depth":4,"path":"Daily/Windows/WSL/httpd-on-WSL.md","ref":"Daily/Windows/WSL/httpd-on-WSL.md","articles":[]},{"title":"Cobbler-on-WSL","level":"1.2.3.1.7","depth":4,"path":"Daily/Windows/WSL/Cobbler-on-WSL.md","ref":"Daily/Windows/WSL/Cobbler-on-WSL.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Daily/Windows/WSL/Start.md","mtime":"2020-02-10T16:20:10.756Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-10T22:52:57.467Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

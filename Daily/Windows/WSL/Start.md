@@ -10,7 +10,13 @@
 
 # WSL Install & Reset
 
-### Install - Using LxRunOffline.exe
+## Using [CentWSL](https://github.com/yuk7/CentWSL)
+
+Refer [https://github.com/yuk7/CentWSL](https://github.com/yuk7/CentWSL)
+
+
+
+### Using LxRunOffline.exe
 
 **Failed**
 
@@ -70,30 +76,53 @@ Simple description of installation:
 
 
 
-TODO: Reinstall and record the details.
-
-
-
-## Install - Using [CentWSL](https://github.com/yuk7/CentWSL)
-
-Refer [https://github.com/yuk7/CentWSL](https://github.com/yuk7/CentWSL)
-
-
-
 ### Initialization
 
 ##### Create user
 
-3. Open a bash terminal. The bash will started with root
+```bash
+$ useradd -m -s /bin/bash jianqiao.ms
+$ usermod -a -G wheel jianqiao.ms
+$ passwd jianqiao.ms
+```
 
-4. Create user, create user directory ...
+##### Create user home on windows disk
 
-   ```bash
-   $ useradd -M -s /bin/bash user.name
-   $ usermod -a -G sudo user.name
-   $ mkdir -p /home/user.name
-   $ passwd user.name
-   ```
+Assume path is "D:\WSL\jianqiao.ms"
+
+```bash
+$ cat > /etc/sudoers.d/mount << EOF
+jianqiao.ms ALL= NOPASSWD: /bin/mount
+EOF
+
+$ cat >> /etc/bashrc << 'EOF'
+function mountHomeDir {
+  user=`whoami`
+  mountCount=`ls -l /home|grep $user|awk '{print $2}'`
+  [ $((mountCount)) -eq 1 ] && sudo mount -t ext4 -o defaults,noatime,bind /mnt/d/WSL/$user /home/$user
+}
+
+[ `whoami` != 'root' ] && mountHomeDir
+EOF
+```
+
+##### Change default login user
+
+Method varies by installation way.
+
+For CentWSL:
+
+```bash
+$ CentOS7.exe config --default-user jianqiao.ms
+```
+
+##### Generate SSH default host keys
+
+```bash
+$ sudo sshd-keygen
+```
+
+
 
 ##### Profiling windows disks mount
 
@@ -115,36 +144,6 @@ generateResolvConf = true
 EOF
 ```
 
-
-
-##### Create user home on windows disk
-
-Assume path is "D:\WSL\user.name"
-
-```bash
-$ cat > /etc/sudoers.d/mount << EOF
-user.name ALL= NOPASSWD: /bin/mount
-EOF
-
-$ cat >> /etc/bashrc << 'EOF'
-function mountHomeDir {
-  user=`whoami`
-  mountCount=`ls -l /home|grep $user|awk '{print $2}'`
-  [ $((mountCount)) -eq 1 ] && sudo mount -t ext4 -o defaults,noatime,bind /mnt/d/WSL/$user /home/$user
-}
-
-[ `whoami` != 'root' ] && mountHomeDir
-EOF
-```
-
-##### Reboot WSL
-
-```basic
-> ubuntu1804.exe config --default-user user.name
-> wsl.exe -t Ubuntu-18.04
-> Restart-Service LxssManager
-```
-
 ##### Change yum mirrors to aliyun.com
 
 ```bash
@@ -153,9 +152,19 @@ $ yum makecache fast
 $ yum update -y
 ```
 
+##### Reboot WSL
 
+```basic
+> ubuntu1804.exe config --default-user jianqiao.ms
+> wsl.exe -t Ubuntu-18.04
+> Restart-Service LxssManager
+```
+
+##### 
 
 ### Reset
+
+**Only for distribution installed by official method**
 
 Suit for distribution installed using official method.
 

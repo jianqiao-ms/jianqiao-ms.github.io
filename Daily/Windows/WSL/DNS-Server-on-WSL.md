@@ -30,12 +30,12 @@ I use bind only for dns cache, so the configuration is simple. Just change sever
 * Add forwarders:
 
   ```text
-         forwarders {
-           114.114.114.114;
-           10.25.2.30;
-           223.5.5.5;
-           10.26.2.30;
-         };
+          forwarders {
+            114.114.114.114;
+            10.25.2.30;
+            223.5.5.5;
+            10.26.2.30;
+          };
   ```
 
 * generate rndc configuration

@@ -21,6 +21,12 @@ $ sudo yum install -y xinetd
 
 # Confguration
 
+##### /etc/xinetd.conf
+
+`log_format = SYSLOG Authpriv`    =>     `log_format = FILE /var/log/xinetd.conf`
+
+##### SystemV scripts
+
 manage xinetd using init.d replace of systemd due to WSL restriction.
 
 /etc/init.d/xinetd:
@@ -40,7 +46,7 @@ LOCKFILE=/var/lock/$NAME
 SCRIPTNAME=/etc/init.d/$NAME
 RETVAL=0
 
-DAEMON_OPTS="-dontfork"
+DAEMON_OPTS="-dontfork -f /etc/xinetd.conf"
 
 # Exit if the package is not installed
 [ -x $DAEMON ] || exit 0

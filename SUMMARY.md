@@ -31,9 +31,10 @@
     * [WSL](Daily/Windows/WSL/README.md)
       * [Start](Daily/Windows/WSL/Start.md)
       * [xinetd-on-WSL](Daily/Windows/WSL/xinetd-on-WSL.md)
-      * [DNS-on-Windows](Daily/Windows/WSL/DNS-on-WSL.md)
-      * [DHCP-on-WSL](Daily/Windows/WSL/DHCP-on-WSL.md)
+      * [DNS-on-Windows](Daily/Windows/WSL/DNS-Server-on-WSL.md)
+      * [DHCP-on-WSL](Daily/Windows/WSL/DHCP-Server-on-WSL.md)
       * [TFTP-on-WSL](Daily/Windows/WSL/TFTP-on-WSL.md)
+      * [httpd-on-WSL](Daily/Windows/WSL/httpd-on-WSL.md)
       * [Cobbler-on-WSL](Daily/Windows/WSL/Cobbler-on-WSL.md)
     * [OfficeTool](Daily/Windows/OfficeTool.md)
     
