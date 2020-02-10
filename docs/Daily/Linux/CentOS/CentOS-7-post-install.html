@@ -1,0 +1,899 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>CentOS7-post-install · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../scripts/" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    日常
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../kubernetes/">
+            
+                <a href="../../kubernetes/">
+            
+                    
+                    Kubernets
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="../../kubernetes/创建集群.html">
+            
+                <a href="../../kubernetes/创建集群.html">
+            
+                    
+                    创建集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="../../kubernetes/创建集群-Contiv-VPP.html">
+            
+                <a href="../../kubernetes/创建集群-Contiv-VPP.html">
+            
+                    
+                    创建集群-Contiv-VPP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    CentOS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.2.1.1" data-path="CentOS-7-post-install.html">
+            
+                <a href="CentOS-7-post-install.html">
+            
+                    
+                    CentOS7-post-install
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="../scripts/">
+            
+                <a href="../scripts/">
+            
+                    
+                    Scripts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.2.1" data-path="../scripts/Applications/">
+            
+                <a href="../scripts/Applications/">
+            
+                    
+                    Application Install
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.2.1.1" data-path="../scripts/Applications/docker.html">
+            
+                <a href="../scripts/Applications/docker.html">
+            
+                    
+                    docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.1.2" data-path="../scripts/Applications/nginx.html">
+            
+                <a href="../scripts/Applications/nginx.html">
+            
+                    
+                    nginx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.1.3" data-path="../scripts/Applications/nodejs.html">
+            
+                <a href="../scripts/Applications/nodejs.html">
+            
+                    
+                    nodejs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.1.4" data-path="../scripts/Applications/gitbook.html">
+            
+                <a href="../scripts/Applications/gitbook.html">
+            
+                    
+                    gitbook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.1.5" data-path="../scripts/Applications/python3.html">
+            
+                <a href="../scripts/Applications/python3.html">
+            
+                    
+                    python3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.1.6" data-path="../scripts/Applications/MongoDB.html">
+            
+                <a href="../scripts/Applications/MongoDB.html">
+            
+                    
+                    mongo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.1.7" data-path="../scripts/Applications/elasticsearch.html">
+            
+                <a href="../scripts/Applications/elasticsearch.html">
+            
+                    
+                    elasticsearch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.1.8" data-path="../scripts/Letsencrypts.html">
+            
+                <a href="../scripts/Letsencrypts.html">
+            
+                    
+                    Letsencrypt SSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.2" data-path="../scripts/pacemaker/">
+            
+                <a href="../scripts/pacemaker/">
+            
+                    
+                    Pacemaker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.2.2.1" data-path="../scripts/pacemaker/cluster-LB.html">
+            
+                <a href="../scripts/pacemaker/cluster-LB.html">
+            
+                    
+                    SLB
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.2.2" data-path="../scripts/pacemaker/cluster-NAS.html">
+            
+                <a href="../scripts/pacemaker/cluster-NAS.html">
+            
+                    
+                    NAS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.2.3" data-path="../scripts/pacemaker/cluster-Redis.html">
+            
+                <a href="../scripts/pacemaker/cluster-Redis.html">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2.2.4" data-path="../scripts/pacemaker/cluster-node-rename.html">
+            
+                <a href="../scripts/pacemaker/cluster-node-rename.html">
+            
+                    
+                    Node-Rename
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../Windows/">
+            
+                <a href="../../Windows/">
+            
+                    
+                    Windows
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../../Windows/WSL/">
+            
+                <a href="../../Windows/WSL/">
+            
+                    
+                    WSL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1.1" data-path="../../Windows/WSL/Start.html">
+            
+                <a href="../../Windows/WSL/Start.html">
+            
+                    
+                    Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.1.2" data-path="../../Windows/WSL/xinetd-on-WSL.html">
+            
+                <a href="../../Windows/WSL/xinetd-on-WSL.html">
+            
+                    
+                    xinetd-on-WSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.1.3" data-path="../../Windows/WSL/DNS-on-WSL.md">
+            
+                <span>
+            
+                    
+                    DNS-on-Windows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.1.4" data-path="../../Windows/WSL/DHCP-on-WSL.md">
+            
+                <span>
+            
+                    
+                    DHCP-on-WSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.1.5" data-path="../../Windows/WSL/TFTP-on-WSL.html">
+            
+                <a href="../../Windows/WSL/TFTP-on-WSL.html">
+            
+                    
+                    TFTP-on-WSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.1.6" data-path="../../Windows/WSL/Cobbler-on-WSL.html">
+            
+                <a href="../../Windows/WSL/Cobbler-on-WSL.html">
+            
+                    
+                    Cobbler-on-WSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../../Windows/OfficeTool.html">
+            
+                <a href="../../Windows/OfficeTool.html">
+            
+                    
+                    OfficeTool
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../../Study/">
+            
+                <a href="../../../Study/">
+            
+                    
+                    Study
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../../Study/abaaba/">
+            
+                <a href="../../../Study/abaaba/">
+            
+                    
+                    阿巴阿巴
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../../Study/abaaba/V2Ray.html">
+            
+                <a href="../../../Study/abaaba/V2Ray.html">
+            
+                    
+                    v2ray
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../../../Study/abaaba/IKEv2-VPN-via-strongswan.html">
+            
+                <a href="../../../Study/abaaba/IKEv2-VPN-via-strongswan.html">
+            
+                    
+                    IKEV2-VPN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../../../Study/abaaba/HTTPS-proxy.html">
+            
+                <a href="../../../Study/abaaba/HTTPS-proxy.html">
+            
+                    
+                    HTTPS-PROXY
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../../Study/SQLAlchemy/">
+            
+                <a href="../../../Study/SQLAlchemy/">
+            
+                    
+                    SQLAlchemy
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="../../../Study/SQLAlchemy/start.html">
+            
+                <a href="../../../Study/SQLAlchemy/start.html">
+            
+                    
+                    Start
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="../../../Study/SQLAlchemy/关系配置.html">
+            
+                <a href="../../../Study/SQLAlchemy/关系配置.html">
+            
+                    
+                    关系配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >CentOS7-post-install</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p>Example environment<br>SSH_PORT = 22<br>No ipv6 supported for now</p>
+</blockquote>
+<p><em>TODO: Basic kernel performance profiling with sysctl</em>  </p>
+<h1 id="disable-selinux">Disable Selinux</h1>
+<pre><code class="lang-bash">$ cp /etc/selinux/config /etc/selinux/config.init
+$ sed -i <span class="hljs-string">&apos;/SELINUX=/d&apos;</span> /etc/selinux/config &amp;&amp; \
+    sed -i <span class="hljs-string">&apos;5i SELINUX=disabled&apos;</span> /etc/selinux/config
+</code></pre>
+<h1 id="profiling-openssh-server-configurations">Profiling OpenSSH Server Configurations</h1>
+<p>Examples:</p>
+<pre><code class="lang-bash">$ new_port=10086
+$ cp /etc/ssh/sshd_config /etc/ssh/sshd_config.init
+$ cp /etc/postfix/main.cf   /etc/postfix/main.cf.init
+$ old_port=`ss -anlp|grep sshd|grep tcp|awk <span class="hljs-string">&apos;{printf $5}&apos;</span>|cut <span class="hljs-_">-d</span> <span class="hljs-string">&apos;:&apos;</span> <span class="hljs-_">-f</span>2` &amp;&amp; \
+    <span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;sed -i &apos;/^Port <span class="hljs-variable">$old_port</span>/d&apos; /etc/ssh/sshd_config&quot;</span> &amp;&amp; \
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;Port $new_port&apos;</span> &gt;&gt; /etc/ssh/sshd_config
+$ sed -i <span class="hljs-string">&apos;/^AddressFamily/d&apos;</span> /etc/ssh/sshd_config &amp;&amp; \
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;AddressFamily inet&apos;</span> &gt;&gt; /etc/ssh/sshd_config
+$ sed -i <span class="hljs-string">&apos;/^inet_protocols/d&apos;</span> /etc/postfix/main.cf &amp;&amp; \
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;inet_protocols = ipv4&apos;</span> &gt;&gt; /etc/postfix/main.cf
+</code></pre>
+<h1 id="install-epelrepo-and-other-essential-tools-debugging-system">Install epelrepo and other essential tools debugging system</h1>
+<pre><code class="lang-bash">$ yum install -y epel-release net-tools tcpdump telnet iperf3 nload iptables-services git unzip unar wget
+$ yum update -y
+$ yum install -y python36 python36-pip
+$ pip3.6 install -U pip
+</code></pre>
+<h1 id="disable-ipv6">Disable ipv6</h1>
+<pre><code class="lang-bash">$ cat &lt;&lt; EOF &gt; /etc/sysctl.d/<span class="hljs-built_in">disable</span>-ipv6.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+EOF
+$ sysctl -p /etc/sysctl.d/<span class="hljs-built_in">disable</span>-ipv6.conf
+</code></pre>
+<h1 id="change-ensp-device-to-eth">Change ensp<em>* device to eth</em></h1>
+<pre><code class="lang-bash">$ cp /etc/default/grub /etc/default/grub.bak
+$ opts=`cat /etc/default/grub |grep <span class="hljs-_">-e</span> <span class="hljs-string">&apos;^GRUB_CMDLINE_LINUX=&apos;</span>|cut -c21-|sed <span class="hljs-string">&apos;s/.$//&apos;</span>`
+$ sed -i <span class="hljs-string">&apos;/^GRUB_CMDLINE_LINUX=/d&apos;</span> /etc/default/grub &amp;&amp; \
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;GRUB_CMDLINE_LINUX=\&quot;<span class="hljs-variable">$opts</span> net.ifnames=0 biosdevname=0\&quot;&quot;</span> &gt;&gt; /etc/default/grub &amp;&amp; \
+    grub2-mkconfig -o /boot/grub2/grub.cfg
+</code></pre>
+<h1 id="profiling-fstab">Profiling fstab</h1>
+<pre><code class="lang-bash">$ cp /etc/fstab /etc/fstab.bak
+$ sed -i <span class="hljs-string">&apos;s/,noatime//g&apos;</span> /etc/fstab &amp;&amp; \ 
+    sed -i <span class="hljs-string">&apos;s/defaults/defaults,noatime/g&apos;</span> /etc/fstab
+</code></pre>
+<h1 id="disable-normally-useless-services">Disable normally useless services</h1>
+<pre><code class="lang-bash">$ systemctl <span class="hljs-built_in">disable</span> postfix
+$ systemctl <span class="hljs-built_in">disable</span> firewalld
+$ systemctl <span class="hljs-built_in">disable</span> NetworkManager
+</code></pre>
+<h1 id="firewalliptables">Firewall(iptables)</h1>
+<pre><code class="lang-bash">SSH_PORT=10086
+$ iptables -F
+$ iptables -P INPUT ACEPT
+$ iptables -A INPUT -p tcp -m state --state RELATE,ESTABLISHED -j ACCEPT
+$ iptables -A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT
+$ iptables -A INPUT -p tcp -m state --state NEW,ESTABLISHED --dport <span class="hljs-variable">$SSH_PORT</span> -j ACCEPT
+$ iptables -P INPUT DROP
+$ service iptables save
+$ systemctl restart iptables
+</code></pre>
+<h1 id="create-data-directory">Create data directory</h1>
+<pre><code class="lang-bash">$ mkdir -p /data
+</code></pre>
+<h1 id="alias-rm-to-trash">Alias rm to trash</h1>
+<p><em>TODO: Add function list trash &amp; restore-from-trash</em>  </p>
+<p>Alias rm to &apos;move to trash&apos;.<br>Add follow function to /etc/bashrc  </p>
+<pre><code class="lang-text">function rm() {
+  case $# in
+    0)
+      echo &apos;Usage:::rm [options] [path]&apos; 
+      echo &apos;All options will be ignored.But must be start with -.&apos;
+      echo &apos;Input any options for fun!&apos; 
+      return 1;;
+    1)
+      [ ! -e $1 ] &amp;&amp; echo &apos;No such file or directory [$1]&apos; &amp;&amp; return 2
+      gio trash $1;;
+    2)
+      [ ${1:0:1} == &apos;-&apos; ] &amp;&amp; [ ! -e $2 ] &amp;&amp; echo &apos;No such file or directory [$2]&apos; &amp;&amp; return 2
+      gio trash $2;;
+    *)
+      ALLFILES=${@:2:$(($# - 1))}
+      for file in $ALLFILES
+      do
+        gio trash `realpath -- $file`
+      done;;
+  esac
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: CentOS">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../scripts/" class="navigation navigation-next " aria-label="Next page: Scripts">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"CentOS7-post-install","level":"1.2.2.1.1","depth":4,"next":{"title":"Scripts","level":"1.2.2.2","depth":3,"path":"Daily/Linux/scripts/README.md","ref":"Daily/Linux/scripts/README.md","articles":[{"title":"Application Install","level":"1.2.2.2.1","depth":4,"path":"Daily/Linux/scripts/Applications/README.md","ref":"Daily/Linux/scripts/Applications/README.md","articles":[{"title":"docker","level":"1.2.2.2.1.1","depth":5,"path":"Daily/Linux/scripts/Applications/docker.md","ref":"Daily/Linux/scripts/Applications/docker.md","articles":[]},{"title":"nginx","level":"1.2.2.2.1.2","depth":5,"path":"Daily/Linux/scripts/Applications/nginx.md","ref":"Daily/Linux/scripts/Applications/nginx.md","articles":[]},{"title":"nodejs","level":"1.2.2.2.1.3","depth":5,"path":"Daily/Linux/scripts/Applications/nodejs.md","ref":"Daily/Linux/scripts/Applications/nodejs.md","articles":[]},{"title":"gitbook","level":"1.2.2.2.1.4","depth":5,"path":"Daily/Linux/scripts/Applications/gitbook.md","ref":"Daily/Linux/scripts/Applications/gitbook.md","articles":[]},{"title":"python3","level":"1.2.2.2.1.5","depth":5,"path":"Daily/Linux/scripts/Applications/python3.md","ref":"Daily/Linux/scripts/Applications/python3.md","articles":[]},{"title":"mongo","level":"1.2.2.2.1.6","depth":5,"path":"Daily/Linux/scripts/Applications/MongoDB.md","ref":"Daily/Linux/scripts/Applications/MongoDB.md","articles":[]},{"title":"elasticsearch","level":"1.2.2.2.1.7","depth":5,"path":"Daily/Linux/scripts/Applications/elasticsearch.md","ref":"Daily/Linux/scripts/Applications/elasticsearch.md","articles":[]},{"title":"Letsencrypt SSL","level":"1.2.2.2.1.8","depth":5,"path":"Daily/Linux/scripts/Letsencrypts.md","ref":"Daily/Linux/scripts/Letsencrypts.md","articles":[]}]},{"title":"Pacemaker","level":"1.2.2.2.2","depth":4,"path":"Daily/Linux/scripts/pacemaker/README.md","ref":"Daily/Linux/scripts/pacemaker/README.md","articles":[{"title":"SLB","level":"1.2.2.2.2.1","depth":5,"path":"Daily/Linux/scripts/pacemaker/cluster-LB.md","ref":"Daily/Linux/scripts/pacemaker/cluster-LB.md","articles":[]},{"title":"NAS","level":"1.2.2.2.2.2","depth":5,"path":"Daily/Linux/scripts/pacemaker/cluster-NAS.md","ref":"Daily/Linux/scripts/pacemaker/cluster-NAS.md","articles":[]},{"title":"Redis","level":"1.2.2.2.2.3","depth":5,"path":"Daily/Linux/scripts/pacemaker/cluster-Redis.md","ref":"Daily/Linux/scripts/pacemaker/cluster-Redis.md","articles":[]},{"title":"Node-Rename","level":"1.2.2.2.2.4","depth":5,"path":"Daily/Linux/scripts/pacemaker/cluster-node-rename.md","ref":"Daily/Linux/scripts/pacemaker/cluster-node-rename.md","articles":[]}]}]},"previous":{"title":"CentOS","level":"1.2.2.1","depth":3,"path":"Daily/Linux/CentOS/README.md","ref":"Daily/Linux/CentOS/README.md","articles":[{"title":"CentOS7-post-install","level":"1.2.2.1.1","depth":4,"path":"Daily/Linux/CentOS/CentOS-7-post-install.md","ref":"Daily/Linux/CentOS/CentOS-7-post-install.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Daily/Linux/CentOS/CentOS-7-post-install.md","mtime":"2020-02-04T03:24:29.335Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-10T15:12:36.868Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
