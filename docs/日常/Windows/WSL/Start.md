@@ -2,17 +2,9 @@
 > System : WSL1 OS build 18362.592  
 > WSL Distribution: CentOS-7.6.1810
 
-Record daily usage of WSL. List apps currently using below:
-
-* v2ray
-* cobbler(for install VMs hyper-v. WORKING)
-
 ## Annotation
 
-* 找到可以安装CentOS的方法。Refer [LxRunOffline](https://github.com/DDoSolitary/LxRunOffline)
-* WSL1 不支持某些协议还是什么东西的，无法查看网卡信息，无法安装基于接口绑定的应用（误）。待确认
-
-* V2ray目前已知可以安装并运行在WSL上。
+* 找到可以安装CentOS的方法。Refer [LxRunOffline](https://github.com/DDoSolitary/LxRunOffline)(Failed for me)   [CentWSL](https://github.com/yuk7/CentWSL)
 
 
 
@@ -82,7 +74,7 @@ TODO: Reinstall and record the details.
 
 
 
-## Install - Using compiled executable package
+## Install - Using [CentWSL](https://github.com/yuk7/CentWSL)
 
 Refer [https://github.com/yuk7/CentWSL](https://github.com/yuk7/CentWSL)
 
@@ -94,7 +86,7 @@ Refer [https://github.com/yuk7/CentWSL](https://github.com/yuk7/CentWSL)
 
 3. Open a bash terminal. The bash will started with root
 
-4. Create user, create user directory, ...etcd.
+4. Create user, create user directory ...
 
    ```bash
    $ useradd -M -s /bin/bash user.name
@@ -192,15 +184,3 @@ Refer to [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://do
 ```basic
 > Restart-Service LxssManager
 ```
-
-
-
-## V2ray
-
-V2ray installation refer to [V2ray](../../study/V2Ray.md)
-
-
-
-# Cobbler
-
-Cobbler installation and setup refer to [cobbler-on-WSL-V1](./Cobbler-on-WSL-V1.md)

@@ -5,32 +5,10 @@
 * [Introduction](README.md)
 
 
-* [运维](运维/README.md)
-  * [ubuntu](运维/ubuntu/README.md)
-    * [nginx](运维/ubuntu/nginx.md)
-    * [PerconaServer](运维/ubuntu/PerconaServer.md)
-  * [Application Install](运维/Applications/README.md)
-    * [docker](运维/Applications/docker.md)
-    * [nginx](运维/Applications/nginx.md)
-    * [nodejs](运维/Applications/nodejs.md)
-    * [gitbook](运维/Applications/gitbook.md)
-    * [python3](运维/Applications/python3.md)
-    * [mongo](运维/Applications/MongoDB.md)
-    * [elasticsearch](运维/Applications/elasticsearch.md)
-  * [kubunetes](运维/kubernetes/README.md)
-    * [创建集群](运维/kubernetes/创建集群.md)
-  * [Linux](运维/Linux/README.md)
-    * [CentOS7 Post-Install Profiling](运维/Linux/CentOS-7-Post-Install.md)
-  * [Letsencrypt SSL](运维/Letsencrypts.md)
-  * [集群技术](运维/pacemaker/README.md)
-    * [负载均衡器](运维/pacemaker/Cluster-LB.md)
-    * [NAS](运维/pacemaker/Cluster-NAS.md)
-    * [Redis](运维/pacemaker/Cluster-Redis.md)
-    * [节点重命名](运维/pacemaker/Cluster-Rename-node.md)
-
-
 * [SQLAlchemy](SQLAlchemy/README.md)
-  * [Start](SQLAlchemy/start.md)
+
+
+* * [Start](SQLAlchemy/start.md)
   * [关系配置](SQLAlchemy/关系配置.md)
 
 
@@ -38,6 +16,13 @@
   * [搜狗输入法](日常/Sogou_Input_Method.md)
   * [Gnome最佳实践](日常/Gnome最佳实践.md)
   * [Windows](日常/Windows/README.md)
+    * [WSL](./WSL/README.md)
+      * [Start](/Windows/WSL/Start.md)
+      * [xinetd-on-WSL](Windows/WSL/xinetd-on-WSL)
+      * [DNS-on-Windows](Windows/WSL/DNS-on-WSL.md)
+      * [DHCP-on-WSL](/Windows/WSL/DHCP-on-WSL.md)
+      * [TFTP-on-WSL](/Windows/WSL/TFTP-on-WSL.md)
+      * [Cobbler-on-WSL](/Windows/WSL/Cobbler-on-WSL.md)
     * [OfficeTool](日常/Windows/OfficeTool.md)
 
 
@@ -45,6 +30,30 @@
   * [VPN-ikev2-strongswan](study/IKEv2-VPN-via-strongswan.md)
   * [Http(s)-Proxy](study/HTTPS-proxy.md)
   * [Project V](study/V2Ray.md)
-
+* [Scripts](scripts/README.md)
+  * [ubuntu](scripts/ubuntu/README.md)
+    * [nginx](scripts/ubuntu/nginx.md)
+    * [PerconaServer](scripts/ubuntu/PerconaServer.md)
+  * [Application Install](scripts/Applications/README.md)
+    * [docker](scripts/Applications/docker.md)
+    * [nginx](scripts/Applications/nginx.md)
+    * [nodejs](scripts/Applications/nodejs.md)
+    * [gitbook](scripts/Applications/gitbook.md)
+    * [python3](scripts/Applications/python3.md)
+    * [mongo](scripts/Applications/MongoDB.md)
+    * [elasticsearch](scripts/Applications/elasticsearch.md)
+  * [kubunetes](scripts/kubernetes/README.md)
+    * [创建集群](scripts/kubernetes/创建集群.md)
+  * [Linux](scripts/Linux/README.md)
+    * [CentOS7 Post-Install Profiling](scripts/Linux/CentOS-7-Post-Install.md)
+  * [Letsencrypt SSL](scripts/Letsencrypts.md)
+  * [集群技术](scripts/pacemaker/README.md)
+    * [负载均衡器](scripts/pacemaker/Cluster-LB.md)
+    * [NAS](scripts/pacemaker/Cluster-NAS.md)
+    * [Redis](scripts/pacemaker/Cluster-Redis.md)
+    * [节点重命名](scripts/pacemaker/Cluster-Rename-node.md)
 * [简历](Resume/README.md)
   * [话术](Resume/how-to-say.md)
+
+
+* 
