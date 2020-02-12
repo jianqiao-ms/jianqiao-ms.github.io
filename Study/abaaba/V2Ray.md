@@ -14,7 +14,11 @@ $ bash <(curl -L -s https://install.direct/go.sh)
 
 
 # Server Configuration  
+
 SSL certificates from [Letsencrypts](https://letsencrypt.org). [HOWTO](/运维/Letsencrypts.md)
+
+Example config.json:
+
 ```json
 {
   "log": {
@@ -22,7 +26,7 @@ SSL certificates from [Letsencrypts](https://letsencrypt.org). [HOWTO](/运维/L
   },
   "inbounds": [
     {
-      "port": 62121,
+      "port": ,
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -44,13 +48,6 @@ SSL certificates from [Letsencrypts](https://letsencrypt.org). [HOWTO](/运维/L
                 "keyFile": "/etc/nginx/certs/example.com/example.com.key"
               }
             ]
-        },
-        "quicSettings": {
-          "security": "chacha20-poly1305",
-          "key": "zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzz",
-          "header": {
-            "type": "none"
-          }
         }
       }   
     }
@@ -64,60 +61,118 @@ SSL certificates from [Letsencrypts](https://letsencrypt.org). [HOWTO](/运维/L
 }
 ```
 
-# Client Configuration
+# Example config.json for client
+
 ```json
 {
-  "inbounds": [{
-    "port": 1080,
-    "listen": "127.0.0.1",
-    "protocol": "socks",
-    "settings": {
-      "udp": true
-    }
-  }],
-  "outbounds": [{
-    "protocol": "vmess",
-    "settings": {
-      "vnext": [{
-        "address": "example.com",
-        "port": 62121, 
-        "users": [{ "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx" }]
-      }]
-    },
-    "streamSettings": {
-      "network": "tcp",
-      "security": "tls",
-      "tlsSettings": {
-        "serverName": "example.com"
+  "log": {
+    "access": "/var/log/v2ray/access.log",
+    "error":  "/var/log/v2ray/error.log",
+    "loglevel": "debug"
+  },
+  "dns": {
+    "servers": [
+      {
+        "address": "8.8.8.8",
+        "port": 53,
+        "domains": [
+          "geosite:geolocation-!cn"
+        ]
       },
-      "quicSettings": {
-        "security": "chacha20-poly1305",
-        "key": "zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzz",
-        "header": {
-          "type": "none"
+      "127.0.0.1"
+    ]
+  },
+  "inbounds":[
+    {
+      "tag":"AUTO",
+      "port":1080,
+      "listen":"127.0.0.1",
+      "protocol":"socks",
+      "settings":{
+        "udp":true
+      }
+    },
+    {
+      "tag":"ALL",
+      "port":1081,
+      "listen":"127.0.0.1",
+      "protocol":"socks"
+    },
+    {
+      "tag":"HTTP",
+      "port":1082,
+      "listen":"127.0.0.1",
+      "protocol":"http"
+    }
+  ],
+  "outbounds":[
+    {
+      "tag":"yes",
+      "protocol":"vmess",
+      "settings":{
+        "vnext":[
+          {
+            "address":"",
+            "port":,
+            "users":[
+              {
+                "id":""
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings":{
+        "network":"tcp",
+        "security":"tls",
+        "tlsSettings":{
+          "serverName":""
         }
       }
+    },
+    {
+      "protocol":"freedom",
+      "tag":"direct",
+      "settings":{
+        "domainStrategy": "UseIPv4"
+      }
     }
-  },{
-    "protocol": "freedom",
-    "tag": "direct",
-    "settings": {}
-  }],
-  "routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": [{
-      "type": "field",
-      "domain": [
-        "cn",
-        "speedtest",
-        "domain:example.com"
-      ],
-      "ip": [
-        "geoip:private",
-        "geoip:cn"
-      ],
-      "outboundTag": "direct"
-    }]
+  ],
+  "routing":{
+    "domainStrategy":"IPIfNonMatch",
+    "rules":[
+      {
+        "type":"field",
+        "outboundTag":"yes",
+	      "inboundTag": ["ALL"]
+      },
+      {
+        "type":"field",
+        "ip": [
+           "8.8.8.8"
+         ],
+        "outboundTag":"yes"
+      },
+      {
+        "type":"field",
+        "domain":[
+          "geosite:cn",
+          "geosite:speedtest"
+        ],
+        "outboundTag":"direct",
+	      "inboundTag": ["AUTO","HTTP"]
+      },
+      {
+        "type":"field",
+        "ip":[
+          "geoip:private",
+          "geoip:cn"
+        ],
+        "outboundTag":"direct",
+        "inboundTag": ["AUTO","HTTP"]
+      }
+    ]
   }
 }
+
 ```
